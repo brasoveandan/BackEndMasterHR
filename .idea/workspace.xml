@@ -5,9 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37a40007-6493-42bc-b2ad-fcc769c1fae3" name="Default Changelist" comment="Layered architecture">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/4/e44a8606ce010ad9b89aafdfcee2ab49afbf6d10" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/StartServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/BackEndMasterHR.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BackEndMasterHR.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatabaseMasterHR" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseMasterHR.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StartServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/CrudRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/CrudRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/RestServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/RestServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/HibernateSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/HibernateSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/SQLiteDialect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +46,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -45,33 +69,36 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="sqlite" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="copyright" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Facultate\Anul III\BackEndMasterHR\src\main\resources" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="utils" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="StartServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StartServer" />
-      <module name="BackEndMasterHR.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -83,9 +110,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StartServices" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="BackEndMasterHR.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="services.StartServices" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StartServer" />
+        <item itemvalue="Spring Boot.StartServices" />
       </list>
     </recent_temporary>
   </component>
@@ -100,7 +140,7 @@
       <workItem from="1614879061998" duration="22000" />
       <workItem from="1614879238372" duration="237000" />
       <workItem from="1614946363163" duration="1894000" />
-      <workItem from="1614949077738" duration="137000" />
+      <workItem from="1614949077738" duration="17595000" />
     </task>
     <task id="LOCAL-00001" summary="Version01">
       <created>1614879453592</created>
@@ -123,5 +163,16 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/services/RestServices.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -15,7 +15,7 @@ public class HibernateSession {
     public static void initialize() {
 
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure("/hibernate.cfg.xml")
+                .configure("hibernate.cfg.xml")
                 .build();
         try {
             sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();

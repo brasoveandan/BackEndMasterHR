@@ -8,7 +8,7 @@
         <property name="dialect">utils.SQLiteDialect</property>
 
         <property name="connection.driver_class">org.sqlite.JDBC</property>
-        <property name="connection.url"></property>
+        <property name="connection.url">jdbc:sqlite:D:\Facultate\Anul III\BackEndMasterHR\DatabaseMasterHR</property>
 
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
@@ -17,7 +17,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <!--        <mapping resource="employee.xml"/>-->
+        <mapping resource="employee.xml"/>
 
     </session-factory>
 </hibernate-configuration>
