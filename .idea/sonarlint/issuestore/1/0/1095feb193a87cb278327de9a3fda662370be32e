@@ -1,0 +1,49 @@
+
+c
+java:S1192"HDefine a constant instead of duplicating this literal "integer" 3 times.(Ñ¯âþûÿÿÿÿ
+V	java:S125("<This block of commented-out lines of code should be removed.(áÖ–ùúÿÿÿÿ
+Q	java:S125W"<This block of commented-out lines of code should be removed.(¸ŠÜ˜
+T
+java:S3400k"9Remove this method and declare a constant for this value.(ò«§®ýÿÿÿÿ
+Q	java:S125a"<This block of commented-out lines of code should be removed.(þ¡ûœ
+Q	java:S125j"<This block of commented-out lines of code should be removed.(¹²ÏÒ
+O
+java:S3400o"9Remove this method and declare a constant for this value.(ô‡¼
+`
+java:S1874r"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(ÙšÌé
+P
+java:S1161r":Add the "@Override" annotation above this method signature(ÙšÌé
+`
+java:S1874v"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(„¦Ü°
+P
+java:S1161v":Add the "@Override" annotation above this method signature(„¦Ü°
+U
+java:S3400‚"9Remove this method and declare a constant for this value.(É—±æÿÿÿÿÿ
+Q
+java:S1161‰":Add the "@Override" annotation above this method signature(æƒûà
+V
+java:S1161":Add the "@Override" annotation above this method signature(àÜÍÉýÿÿÿÿ
+V
+java:S1161‘":Add the "@Override" annotation above this method signature(šº©»ùÿÿÿÿ
+P
+java:S1161•":Add the "@Override" annotation above this method signature(³¿°
+V
+java:S1161™":Add the "@Override" annotation above this method signature(¶é“üûÿÿÿÿ
+Q
+java:S1161":Add the "@Override" annotation above this method signature(ÆñúÜ
+V
+java:S1161¡":Add the "@Override" annotation above this method signature(Ö–Æõüÿÿÿÿ
+Q
+java:S1161¥":Add the "@Override" annotation above this method signature(Ö©ù
+Q
+java:S1161©":Add the "@Override" annotation above this method signature(€ÛÉ¡
+Q
+java:S1161­":Add the "@Override" annotation above this method signature(Üö¦›
+Q
+java:S1161±":Add the "@Override" annotation above this method signature(Ò ©ß
+Q
+java:S1161·":Add the "@Override" annotation above this method signature(´©¾
+V
+java:S1161»":Add the "@Override" annotation above this method signature(Ä¿¨„üÿÿÿÿ
+V
+java:S1161¿":Add the "@Override" annotation above this method signature(ÕŸ™ˆúÿÿÿÿ
