@@ -9,12 +9,6 @@ public class Employee {
     private String lastName;
     private String cnp;
 
-    public Employee(String firstName, String lastName, String cnp) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.cnp = cnp;
-    }
-
     public Employee() {
 
     }

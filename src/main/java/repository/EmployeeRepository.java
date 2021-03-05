@@ -81,7 +81,7 @@ public class EmployeeRepository implements CrudRepository<String, Employee> {
                     .setParameter("username", username)
                     .list();
             session.getTransaction().commit();
-            if (result.size() > 0)
+            if (!result.isEmpty())
                 return result.get(0);
             else
                 return null;

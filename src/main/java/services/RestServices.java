@@ -44,7 +44,7 @@ public class RestServices {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
         if (employeeReturned == null)
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
