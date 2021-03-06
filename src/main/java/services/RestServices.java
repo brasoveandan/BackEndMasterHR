@@ -3,7 +3,6 @@ package services;
 import domain.Administrator;
 import domain.Employee;
 import domain.validators.Validator;
-import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +16,17 @@ import java.util.List;
 public class RestServices {
     private final EmployeeRepository employeeRepository = new EmployeeRepository();
     private final AdministratorRepository administratorRepository = new AdministratorRepository();
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Employee employee){
+        Employee employeeStored = employeeRepository.findOne(employee.getUsername());
+        if (employeeStored != null) {
+            if (employee.getPassword().equals(employeeStored.getPassword()))
+                return new ResponseEntity<>(employee.getFirstName(), HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
     @PostMapping("/employee")
     public ResponseEntity<String> saveEmployee(@RequestBody Employee employee) {
