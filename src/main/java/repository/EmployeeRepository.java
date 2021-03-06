@@ -92,8 +92,7 @@ public class EmployeeRepository implements CrudRepository<String, Employee> {
     public List<Employee> findAll() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            List<Employee> result = session.createQuery("select a from Employee a")
-                    .list();
+            List<Employee> result = session.createQuery("select a from Employee a").list();
             session.getTransaction().commit();
             return result;
         }

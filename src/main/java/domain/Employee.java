@@ -10,7 +10,7 @@ public class Employee {
     private String cnp;
 
     public Employee() {
-
+        // Do nothing
     }
 
     public String getUsername() {
