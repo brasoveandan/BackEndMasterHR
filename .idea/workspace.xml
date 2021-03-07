@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37a40007-6493-42bc-b2ad-fcc769c1fae3" name="Default Changelist" comment="Layered architecture">
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BackEndMasterHR.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BackEndMasterHR.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67ff8b33b0f09426de6981193683d7096764bb7c" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67ff8b33b0f09426de6981193683d7096764bb7c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/enums/AdminRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/enums/AdminRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain/validators/EmployeeValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/validators/EmployeeValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/employee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/employee.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +120,7 @@
       <workItem from="1614946363163" duration="1894000" />
       <workItem from="1614949077738" duration="30233000" />
       <workItem from="1614995958016" duration="777000" />
-      <workItem from="1615115807356" duration="4990000" />
+      <workItem from="1615115807356" duration="5456000" />
     </task>
     <task id="LOCAL-00001" summary="Version01">
       <created>1614879453592</created>
