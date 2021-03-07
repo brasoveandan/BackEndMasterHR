@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37a40007-6493-42bc-b2ad-fcc769c1fae3" name="Default Changelist" comment="Layered architecture">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/0/1095feb193a87cb278327de9a3fda662370be32e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/0/1095feb193a87cb278327de9a3fda662370be32e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/BackEndMasterHR.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BackEndMasterHR.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67ff8b33b0f09426de6981193683d7096764bb7c" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67ff8b33b0f09426de6981193683d7096764bb7c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/f/6f0d0cd6bdb6c20d3c0d1fee56c333afeef51eb0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef0a15c939b4b1058f15850d49ea05824fdd2e5f" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef0a15c939b4b1058f15850d49ea05824fdd2e5f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/RestServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/RestServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/validators/EmployeeValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/validators/EmployeeValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/employee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/employee.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +123,8 @@
       <workItem from="1614879238372" duration="237000" />
       <workItem from="1614946363163" duration="1894000" />
       <workItem from="1614949077738" duration="30233000" />
-      <workItem from="1614995958016" duration="630000" />
+      <workItem from="1614995958016" duration="777000" />
+      <workItem from="1615115807356" duration="4990000" />
     </task>
     <task id="LOCAL-00001" summary="Version01">
       <created>1614879453592</created>

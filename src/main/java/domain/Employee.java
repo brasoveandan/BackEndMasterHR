@@ -7,7 +7,9 @@ public class Employee {
     private String password;
     private String firstName;
     private String lastName;
-    private String cnp;
+    private String mail;
+    private String phoneNumber;
+    private String socialSecurityNumber;
 
     public Employee() {
         // Do nothing
@@ -45,12 +47,28 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getCnp() {
-        return cnp;
+    public String getMail() {
+        return mail;
     }
 
-    public void setCnp(String cnp) {
-        this.cnp = cnp;
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getSocialSecurityNumber() {
+        return socialSecurityNumber;
+    }
+
+    public void setSocialSecurityNumber(String socialSecurityNumber) {
+        this.socialSecurityNumber = socialSecurityNumber;
     }
 
     @Override
@@ -58,12 +76,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(cnp, employee.cnp);
+        return Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(mail, employee.mail) && Objects.equals(phoneNumber, employee.phoneNumber) && Objects.equals(socialSecurityNumber, employee.socialSecurityNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, firstName, lastName, cnp);
+        return Objects.hash(username, password, firstName, lastName, mail, phoneNumber, socialSecurityNumber);
     }
 
     @Override
@@ -73,7 +91,9 @@ public class Employee {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", cnp='" + cnp + '\'' +
+                ", mail='" + mail + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", socialSecurityNumber='" + socialSecurityNumber + '\'' +
                 '}';
     }
 }

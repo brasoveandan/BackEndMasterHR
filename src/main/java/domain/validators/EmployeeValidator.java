@@ -18,7 +18,7 @@ public class EmployeeValidator implements Validator<Employee> {
         if (employee.getLastName() == null || employee.getLastName().equals("")) {
             message += "Numele nu poate fi vid.\n";
         }
-        if (employee.getCnp() == null || employee.getCnp().length()!=13) {
+        if (employee.getSocialSecurityNumber() == null || employee.getSocialSecurityNumber().length()!=13) {
             message += "CNP-ul trebuie sa contina 13 cifre.\n";
         }
         if (!message.equals("")) {
