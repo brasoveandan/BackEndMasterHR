@@ -33,7 +33,7 @@ public class EmployeeValidator implements Validator<Employee> {
         if (employee.getLastName() == null || employee.getLastName().equals("")) {
             message += "Numele nu poate fi vid.\n";
         }
-        if (mailValidation(employee.getMail())) {
+        if (!mailValidation(employee.getMail())) {
             message += "E-mail invalid.\n";
         }
         if (employee.getPhoneNumber() == null || employee.getPhoneNumber().length() != 10) {

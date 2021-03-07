@@ -11,7 +11,9 @@
         <property name="password" column="password"/>
         <property name="firstName" column="firstName"/>
         <property name="lastName" column="lastName"/>
-        <property name="cnp" column="cnp"/>
+        <property name="mail" column="mail"/>
+        <property name="phoneNumber" column="phoneNumber"/>
+        <property name="socialSecurityNumber" column="socialSecurityNumber"/>
     </class>
 
 </hibernate-mapping>

@@ -18,13 +18,13 @@ repository/AdministratorRepository.java
  repository.AdministratorRepository
 domain/Administrator.java
  domain.Administrator
-domain/validators/EmployeeValidator.java
- domain.validators.EmployeeValidator
+domain/enums/AdminRole.java
+ domain.enums.AdminRole
 domain/validators/AdministratorValidator.java
  domain.validators.AdministratorValidator
 services/RestServices.java
  services.RestServices
+domain/validators/EmployeeValidator.java
+ domain.validators.EmployeeValidator
 repository/EmployeeRepository.java
  repository.EmployeeRepository
-domain/enums/AdminRole.java
- domain.enums.AdminRole
