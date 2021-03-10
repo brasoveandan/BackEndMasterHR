@@ -56,7 +56,7 @@ public class AdministratorRepository implements CrudRepository<String, Administr
     public Administrator update(Administrator entity) throws Validator.ValidationException {
         if (entity == null)
             throw new IllegalArgumentException();
-        if (findOne(entity.getUsernameEmployee()).equals(entity))
+        if (findOne(entity.getUsernameEmployee()) == null )
             return entity;
         try {
             administratorValidator.validate(entity);

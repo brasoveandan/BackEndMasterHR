@@ -10,21 +10,33 @@ utils/HibernateSession.java
  utils.HibernateSession
 services/StartServices.java
  services.StartServices
-domain/User.java
- domain.User
+domain/validators/AdministratorValidator.java
+ domain.validators.AdministratorValidator
 domain/Employee.java
  domain.Employee
-repository/AdministratorRepository.java
- repository.AdministratorRepository
+domain/validators/EmployeeValidator.java
+ domain.validators.EmployeeValidator
 domain/Administrator.java
  domain.Administrator
 domain/enums/AdminRole.java
  domain.enums.AdminRole
-domain/validators/AdministratorValidator.java
- domain.validators.AdministratorValidator
+domain/validators/ContractValidator.java
+ domain.validators.ContractValidator
+domain/enums/ContractType.java
+ domain.enums.ContractType
+repository/ContractRepository.java
+ repository.ContractRepository
 services/RestServices.java
  services.RestServices
-domain/validators/EmployeeValidator.java
- domain.validators.EmployeeValidator
+domain/Contract.java
+ domain.Contract
 repository/EmployeeRepository.java
  repository.EmployeeRepository
+repository/AdministratorRepository.java
+ repository.AdministratorRepository
+domain/validators/PayslipValidator.java
+ domain.validators.PayslipValidator
+domain/Payslip.java
+ domain.Payslip
+repository/PayslipRepository.java
+ repository.PayslipRepository

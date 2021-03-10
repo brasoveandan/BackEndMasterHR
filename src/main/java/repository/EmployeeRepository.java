@@ -56,7 +56,7 @@ public class EmployeeRepository implements CrudRepository<String, Employee> {
     public Employee update(Employee entity) throws Validator.ValidationException {
         if (entity == null)
             throw new IllegalArgumentException();
-        if (findOne(entity.getUsername()).equals(entity))
+        if (findOne(entity.getUsername()) == null)
             return entity;
         try {
             employeeValidator.validate(entity);

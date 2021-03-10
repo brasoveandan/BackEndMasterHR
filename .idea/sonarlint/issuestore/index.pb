@@ -3,8 +3,6 @@
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ^
 .src/main/java/domain/validators/Validator.java,5\e\5e5bdc04aa22e650d871bb3b681571f5c9bc756f
-N
-src/main/java/domain/User.java,e\f\ef0a15c939b4b1058f15850d49ea05824fdd2e5f
 \
 ,src/main/java/repository/CrudRepository.java,d\7\d718cf7fe4b42a253b17caf2a6a5f2c90454231c
 X
@@ -29,3 +27,13 @@ e
 5src/main/java/repository/AdministratorRepository.java,2\1\214f041ad95d1ba9424d89432873ccac60c491dd
 Y
 )src/main/java/services/StartServices.java,1\0\100d1c144fc0a231d86eb4982f8dc171b5589fb7
+\
+,src/main/java/domain/enums/ContractType.java,7\8\78d2bcbee09c8281e81858f68511a62614e1c899
+R
+"src/main/java/domain/Contract.java,3\7\374e80fd275c41074ae60ab77f473cd73d447c90
+f
+6src/main/java/domain/validators/ContractValidator.java,d\7\d7489f246590e9c8cc2951d3659d548122dfadda
+`
+0src/main/java/repository/ContractRepository.java,d\9\d9af6ce806110de1d827f8403db63a7b70f99a8a
+Q
+!src/main/java/domain/Payslip.java,2\a\2a318ef8e8136f94b55a6ffce51d2fecdd6c49eb

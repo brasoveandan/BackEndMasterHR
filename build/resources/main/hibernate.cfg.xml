@@ -19,6 +19,8 @@
 
         <mapping resource="employee.xml"/>
         <mapping resource="administrator.xml"/>
+        <mapping resource="contract.xml"/>
+        <mapping resource="payslip.xml"/>
 
     </session-factory>
 </hibernate-configuration>
