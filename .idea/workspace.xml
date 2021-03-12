@@ -5,20 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37a40007-6493-42bc-b2ad-fcc769c1fae3" name="Default Changelist" comment="Layered architecture">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/19b23188-b3ac-4b8b-9d72-e81d5ec48c2f.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BackEndMasterHR.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BackEndMasterHR.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef0a15c939b4b1058f15850d49ea05824fdd2e5f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/a/2a318ef8e8136f94b55a6ffce51d2fecdd6c49eb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/a/2a318ef8e8136f94b55a6ffce51d2fecdd6c49eb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67ff8b33b0f09426de6981193683d7096764bb7c" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67ff8b33b0f09426de6981193683d7096764bb7c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/9/d9af6ce806110de1d827f8403db63a7b70f99a8a" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/9/d9af6ce806110de1d827f8403db63a7b70f99a8a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseMasterHR" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseMasterHR" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/services/RestServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/services/RestServices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/validators/AdministratorValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/validators/AdministratorValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/AdministratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/AdministratorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/EmployeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/contract.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/contract.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Payslip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Payslip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/validators/ContractValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/validators/ContractValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/validators/PayslipValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/validators/PayslipValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/services/RestServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/RestServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/contract.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/contract.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/payslip.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/payslip.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,13 +124,15 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -158,7 +173,8 @@
       <workItem from="1615200402722" duration="825000" />
       <workItem from="1615219758040" duration="3508000" />
       <workItem from="1615288920945" duration="1506000" />
-      <workItem from="1615363331928" duration="10895000" />
+      <workItem from="1615363331928" duration="22734000" />
+      <workItem from="1615479609031" duration="5439000" />
     </task>
     <task id="LOCAL-00001" summary="Version01">
       <created>1614879453592</created>

@@ -4,6 +4,8 @@ import domain.Administrator;
 import domain.Contract;
 import domain.Employee;
 import domain.Payslip;
+import domain.validators.TimesheetValidator;
+import domain.validators.HolidayValidator;
 import domain.validators.Validator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,8 @@ public class RestServices {
     private final AdministratorRepository administratorRepository = new AdministratorRepository();
     private final ContractRepository contractRepository = new ContractRepository();
     private final PayslipRepository payslipRepository = new PayslipRepository();
+    private final TimesheetValidator timesheetValidator = new TimesheetValidator();
+    private final HolidayValidator holidayValidator = new HolidayValidator();
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Employee employee){

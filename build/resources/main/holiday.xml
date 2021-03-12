@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="domain.Holiday" table="Holiday">
+        <id name="usernameEmployee" column="usernameEmployee"/>
+        <property name="idRequest" column="idRequest"/>
+        <property name="fromDate" type="date" column="fromDate"/>
+        <property name="toDate" column="toDate"/>
+        <property name="type" column="type">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">domain.enums.HolidayType</param>
+                <param name="type">12</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
+        <property name="proxyUsername" column="proxyUsername"/>
+    </class>
+
+</hibernate-mapping>

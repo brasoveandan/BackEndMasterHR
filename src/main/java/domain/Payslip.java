@@ -3,6 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Payslip {
+    private int idPayslip;
     private String usernameEmployee;
     private int year;
     private int month;
@@ -14,6 +15,14 @@ public class Payslip {
     private float requiredHours;
 
     public Payslip() {
+    }
+
+    public int getIdPayslip() {
+        return idPayslip;
+    }
+
+    public void setIdPayslip(int idPayslip) {
+        this.idPayslip = idPayslip;
     }
 
     public String getUsernameEmployee() {
@@ -93,18 +102,19 @@ public class Payslip {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payslip payslip = (Payslip) o;
-        return year == payslip.year && month == payslip.month && Float.compare(payslip.brutSalary, brutSalary) == 0 && Float.compare(payslip.netSalary, netSalary) == 0 && Float.compare(payslip.realizedSalary, realizedSalary) == 0 && Float.compare(payslip.workedHours, workedHours) == 0 && Float.compare(payslip.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(payslip.requiredHours, requiredHours) == 0 && Objects.equals(usernameEmployee, payslip.usernameEmployee);
+        return idPayslip == payslip.idPayslip && year == payslip.year && month == payslip.month && Float.compare(payslip.brutSalary, brutSalary) == 0 && Float.compare(payslip.netSalary, netSalary) == 0 && Float.compare(payslip.realizedSalary, realizedSalary) == 0 && Float.compare(payslip.workedHours, workedHours) == 0 && Float.compare(payslip.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(payslip.requiredHours, requiredHours) == 0 && Objects.equals(usernameEmployee, payslip.usernameEmployee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usernameEmployee, year, month, brutSalary, netSalary, realizedSalary, workedHours, homeOfficeHours, requiredHours);
+        return Objects.hash(idPayslip, usernameEmployee, year, month, brutSalary, netSalary, realizedSalary, workedHours, homeOfficeHours, requiredHours);
     }
 
     @Override
     public String toString() {
         return "Payslip{" +
-                "usernameEmployee='" + usernameEmployee + '\'' +
+                "idPayslip=" + idPayslip +
+                ", usernameEmployee='" + usernameEmployee + '\'' +
                 ", year=" + year +
                 ", month=" + month +
                 ", brutSalary=" + brutSalary +

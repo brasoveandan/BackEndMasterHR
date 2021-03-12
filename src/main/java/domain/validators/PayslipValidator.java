@@ -8,6 +8,8 @@ public class PayslipValidator implements Validator<Payslip> {
     @Override
     public void validate(Payslip entity) throws ValidationException {
         String message = "";
+        if (entity.getIdPayslip() < 0)
+            message += "Id fluturas salariu invalid.";
         if (entity.getUsernameEmployee() == null || entity.getUsernameEmployee().equals(""))
             message += "Nume de utilizator invalid.";
         if (entity.getYear() < 2000 || entity.getYear() > LocalDateTime.now().getYear())

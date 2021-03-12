@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="domain.Clocking" table="Clocking">
+        <id name="usernameEmployee" column="usernameEmployee"/>
+        <property name="idRequest" column="idRequest"/>
+        <property name="date" type="date" column="dateTime"/>
+        <property name="workedHours" type="float" column="workedHours"/>
+        <property name="homeOfficeHours" type="float" column="homeOfficeHours"/>
+        <property name="requiredHours" type="float" column="requiredHours"/>
+        <property name="overtimeHours" type="float" column="overtimeHours"/>
+        <property name="overtimeLeave" type="float" column="overtimeLeave"/>
+    </class>
+
+</hibernate-mapping>

@@ -9,8 +9,8 @@
     <class name="domain.Contract" table="Contract">
         <id name="usernameEmployee" column="usernameEmployee"/>
         <property name="companyName" column="companyName"/>
-        <property name="grossSalary" column="grossSalary"/>
-        <property name="hireDate" type="date" column="hireDate"/>
+        <property name="grossSalary" type="float" column="grossSalary"/>
+        <property name="hireDate" type="toDate" column="hireDate"/>
         <property name="type" column="type">
             <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">domain.enums.ContractType</param>
