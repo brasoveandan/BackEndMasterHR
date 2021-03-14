@@ -7,14 +7,11 @@
 <hibernate-mapping>
 
     <class name="domain.Clocking" table="Clocking">
-        <id name="usernameEmployee" column="usernameEmployee"/>
-        <property name="idRequest" column="idRequest"/>
-        <property name="date" type="date" column="dateTime"/>
-        <property name="workedHours" type="float" column="workedHours"/>
-        <property name="homeOfficeHours" type="float" column="homeOfficeHours"/>
-        <property name="requiredHours" type="float" column="requiredHours"/>
-        <property name="overtimeHours" type="float" column="overtimeHours"/>
-        <property name="overtimeLeave" type="float" column="overtimeLeave"/>
+        <id name="idClocking" column="idClocking"/>
+        <property name="idTimesheet" column="idTimesheet"/>
+        <property name="usernameEmployee" column="usernameEmployee"/>
+        <property name="fromHour" column="fromHour"/>
+        <property name="toHour" column="toHour"/>
     </class>
 
 </hibernate-mapping>

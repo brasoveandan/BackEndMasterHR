@@ -1,28 +1,27 @@
 package domain;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Timesheet {
-    private int idTimesheet;
+    private String idTimesheet;
     private String usernameEmployee;
-    private int idRequest;
-    private Date toDate;
+    private int year;
+    private int month;
     private float workedHours;
     private float homeOfficeHours;
     private float requiredHours;
     private float overtimeHours;
-    private float overtimeLeave;
+    private float totalOvertimeLeave;
 
     public Timesheet() {
         //default constructor
     }
 
-    public int getIdTimesheet() {
+    public String getIdTimesheet() {
         return idTimesheet;
     }
 
-    public void setIdTimesheet(int idTimesheet) {
+    public void setIdTimesheet(String idTimesheet) {
         this.idTimesheet = idTimesheet;
     }
 
@@ -34,20 +33,20 @@ public class Timesheet {
         this.usernameEmployee = usernameEmployee;
     }
 
-    public int getIdRequest() {
-        return idRequest;
+    public int getYear() {
+        return year;
     }
 
-    public void setIdRequest(int idRequest) {
-        this.idRequest = idRequest;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public Date getToDate() {
-        return toDate;
+    public int getMonth() {
+        return month;
     }
 
-    public void setToDate(Date toDate) {
-        this.toDate = toDate;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
     public float getWorkedHours() {
@@ -82,12 +81,12 @@ public class Timesheet {
         this.overtimeHours = overtimeHours;
     }
 
-    public float getOvertimeLeave() {
-        return overtimeLeave;
+    public float getTotalOvertimeLeave() {
+        return totalOvertimeLeave;
     }
 
-    public void setOvertimeLeave(float overtimeLeave) {
-        this.overtimeLeave = overtimeLeave;
+    public void setTotalOvertimeLeave(float totalOvertimeLeave) {
+        this.totalOvertimeLeave = totalOvertimeLeave;
     }
 
     @Override
@@ -95,12 +94,12 @@ public class Timesheet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Timesheet timesheet = (Timesheet) o;
-        return idRequest == timesheet.idRequest && Float.compare(timesheet.workedHours, workedHours) == 0 && Float.compare(timesheet.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(timesheet.requiredHours, requiredHours) == 0 && Float.compare(timesheet.overtimeHours, overtimeHours) == 0 && Float.compare(timesheet.overtimeLeave, overtimeLeave) == 0 && Objects.equals(idTimesheet, timesheet.idTimesheet) && Objects.equals(usernameEmployee, timesheet.usernameEmployee) && Objects.equals(toDate, timesheet.toDate);
+        return year == timesheet.year && month == timesheet.month && Float.compare(timesheet.workedHours, workedHours) == 0 && Float.compare(timesheet.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(timesheet.requiredHours, requiredHours) == 0 && Float.compare(timesheet.overtimeHours, overtimeHours) == 0 && Float.compare(timesheet.totalOvertimeLeave, totalOvertimeLeave) == 0 && Objects.equals(idTimesheet, timesheet.idTimesheet) && Objects.equals(usernameEmployee, timesheet.usernameEmployee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idTimesheet, usernameEmployee, idRequest, toDate, workedHours, homeOfficeHours, requiredHours, overtimeHours, overtimeLeave);
+        return Objects.hash(idTimesheet, usernameEmployee, year, month, workedHours, homeOfficeHours, requiredHours, overtimeHours, totalOvertimeLeave);
     }
 
     @Override
@@ -108,13 +107,13 @@ public class Timesheet {
         return "Timesheet{" +
                 "idTimesheet='" + idTimesheet + '\'' +
                 ", usernameEmployee='" + usernameEmployee + '\'' +
-                ", idRequest=" + idRequest +
-                ", toDate=" + toDate +
+                ", year=" + year +
+                ", month=" + month +
                 ", workedHours=" + workedHours +
                 ", homeOfficeHours=" + homeOfficeHours +
                 ", requiredHours=" + requiredHours +
                 ", overtimeHours=" + overtimeHours +
-                ", overtimeLeave=" + overtimeLeave +
+                ", totalOvertimeLeave=" + totalOvertimeLeave +
                 '}';
     }
 }

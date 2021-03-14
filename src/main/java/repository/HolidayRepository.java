@@ -27,7 +27,7 @@ public class HolidayRepository implements CrudRepository<String, Holiday> {
         } catch (Validator.ValidationException exception) {
             throw new Validator.ValidationException(exception.getMessage());
         }
-        if (findOne(entity.getUsernameEmployee()) != null)
+        if (findOne(entity.getIdHoliday()) != null)
             return entity;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -56,7 +56,7 @@ public class HolidayRepository implements CrudRepository<String, Holiday> {
     public Holiday update(Holiday entity) throws Validator.ValidationException {
         if (entity == null)
             throw new IllegalArgumentException();
-        if (findOne(entity.getUsernameEmployee()) == null)
+        if (findOne(entity.getIdHoliday()) == null)
             return entity;
         try {
             holidayValidator.validate(entity);
@@ -77,14 +77,14 @@ public class HolidayRepository implements CrudRepository<String, Holiday> {
             throw new IllegalArgumentException();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            List<Holiday> result = session.createQuery("select a from Holiday a where usernameEmployee=:usernameEmployee")
-                    .setParameter("usernameEmployee", id)
+            List<Holiday> result = session.createQuery("select a from Holiday a where idHoliday=:idHoliday")
+                    .setParameter("idHoliday", id)
                     .list();
             session.getTransaction().commit();
-            if (!result.isEmpty())
-                return result.get(0);
-            else
+
+            if (result.isEmpty())
                 return null;
+            else return result.get(0);
         }
     }
 

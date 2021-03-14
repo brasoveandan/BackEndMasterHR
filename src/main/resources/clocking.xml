@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="domain.Clocking" table="Clocking">
+        <id name="idClocking" column="idClocking"/>
+        <property name="idTimesheet" column="idTimesheet"/>
+        <property name="usernameEmployee" column="usernameEmployee"/>
+        <property name="fromHour" column="fromHour"/>
+        <property name="toHour" column="toHour"/>
+    </class>
+
+</hibernate-mapping>

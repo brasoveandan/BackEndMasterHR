@@ -23,6 +23,7 @@
         <mapping resource="payslip.xml"/>
         <mapping resource="request.xml"/>
         <mapping resource="holiday.xml"/>
+        <mapping resource="timesheet.xml"/>
         <mapping resource="clocking.xml"/>
 
     </session-factory>

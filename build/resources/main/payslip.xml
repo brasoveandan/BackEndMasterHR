@@ -7,7 +7,8 @@
 <hibernate-mapping>
 
     <class name="domain.Payslip" table="Payslip">
-        <id name="usernameEmployee" column="usernameEmployee"/>
+        <id name="idPayslip" column="idPayslip"/>
+        <property name="usernameEmployee" column="usernameEmployee"/>
         <property name="year" type="int" column="year"/>
         <property name="month" type="int" column="month"/>
         <property name="brutSalary" type="float" column="brutSalary"/>

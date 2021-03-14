@@ -3,7 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Payslip {
-    private int idPayslip;
+    private String idPayslip;
     private String usernameEmployee;
     private int year;
     private int month;
@@ -15,13 +15,14 @@ public class Payslip {
     private float requiredHours;
 
     public Payslip() {
+        //default constructor
     }
 
-    public int getIdPayslip() {
+    public String getIdPayslip() {
         return idPayslip;
     }
 
-    public void setIdPayslip(int idPayslip) {
+    public void setIdPayslip(String idPayslip) {
         this.idPayslip = idPayslip;
     }
 
@@ -102,7 +103,7 @@ public class Payslip {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payslip payslip = (Payslip) o;
-        return idPayslip == payslip.idPayslip && year == payslip.year && month == payslip.month && Float.compare(payslip.brutSalary, brutSalary) == 0 && Float.compare(payslip.netSalary, netSalary) == 0 && Float.compare(payslip.realizedSalary, realizedSalary) == 0 && Float.compare(payslip.workedHours, workedHours) == 0 && Float.compare(payslip.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(payslip.requiredHours, requiredHours) == 0 && Objects.equals(usernameEmployee, payslip.usernameEmployee);
+        return year == payslip.year && month == payslip.month && Float.compare(payslip.brutSalary, brutSalary) == 0 && Float.compare(payslip.netSalary, netSalary) == 0 && Float.compare(payslip.realizedSalary, realizedSalary) == 0 && Float.compare(payslip.workedHours, workedHours) == 0 && Float.compare(payslip.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(payslip.requiredHours, requiredHours) == 0 && Objects.equals(idPayslip, payslip.idPayslip) && Objects.equals(usernameEmployee, payslip.usernameEmployee);
     }
 
     @Override

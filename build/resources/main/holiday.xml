@@ -7,10 +7,13 @@
 <hibernate-mapping>
 
     <class name="domain.Holiday" table="Holiday">
-        <id name="usernameEmployee" column="usernameEmployee"/>
+        <id name="idHoliday" column="idHoliday"/>
+        <property name="usernameEmployee" column="usernameEmployee"/>
         <property name="idRequest" column="idRequest"/>
-        <property name="fromDate" type="date" column="fromDate"/>
+        <property name="idTimesheet" column="idTimesheet"/>
+        <property name="fromDate" column="fromDate"/>
         <property name="toDate" column="toDate"/>
+        <property name="daysLeft" type="int" column="daysLeft"/>
         <property name="type" column="type">
             <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">domain.enums.HolidayType</param>

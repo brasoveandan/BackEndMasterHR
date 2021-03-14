@@ -27,7 +27,7 @@ public class TimesheetRepository implements CrudRepository<String, Timesheet> {
         } catch (Validator.ValidationException exception) {
             throw new Validator.ValidationException(exception.getMessage());
         }
-        if (findOne(entity.getUsernameEmployee()) != null)
+        if (findOne(entity.getIdTimesheet()) != null)
             return entity;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -56,7 +56,7 @@ public class TimesheetRepository implements CrudRepository<String, Timesheet> {
     public Timesheet update(Timesheet entity) throws Validator.ValidationException {
         if (entity == null)
             throw new IllegalArgumentException();
-        if (findOne(entity.getUsernameEmployee()) == null)
+        if (findOne(entity.getIdTimesheet()) == null)
             return entity;
         try {
             timesheetValidator.validate(entity);
@@ -77,8 +77,8 @@ public class TimesheetRepository implements CrudRepository<String, Timesheet> {
             throw new IllegalArgumentException();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            List<Timesheet> result = session.createQuery("select a from Timesheet a where usernameEmployee=:usernameEmployee")
-                    .setParameter("usernameEmployee", id)
+            List<Timesheet> result = session.createQuery("select a from Timesheet a where idTimesheet=:idTimesheet")
+                    .setParameter("idTimesheet", id)
                     .list();
             session.getTransaction().commit();
             if (!result.isEmpty())

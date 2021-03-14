@@ -2,6 +2,7 @@ package domain;
 
 import domain.enums.ContractType;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,9 +10,9 @@ public class Contract {
     private String usernameEmployee;
     private String companyName;
     private float grossSalary;
-    private Date hireDate;
+    private LocalDate hireDate;
     private ContractType type;
-    private Date expirationDate;
+    private LocalDate expirationDate;
     private String department;
     private String position;
 
@@ -42,11 +43,11 @@ public class Contract {
         this.grossSalary = grossSalary;
     }
 
-    public Date getHireDate() {
+    public LocalDate getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
     }
 
@@ -58,11 +59,11 @@ public class Contract {
         this.type = type;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 

@@ -30,11 +30,4 @@ public class HibernateSession {
         initialize();
         return sessionFactory;
     }
-
-    public static void close() {
-        if (sessionFactory != null) {
-            sessionFactory.close();
-        }
-    }
-
 }

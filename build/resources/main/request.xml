@@ -7,7 +7,9 @@
 <hibernate-mapping>
 
     <class name="domain.Request" table="Request">
-        <id name="id" column="idRequest"/>
+        <id name="idRequest" column="idRequest">
+            <generator class="identity" />
+        </id>
         <property name="usernameEmployee" column="usernameEmployee"/>
         <property name="description" column="description"/>
         <property name="status" column="status">
@@ -17,7 +19,8 @@
                 <param name="useNamed">true</param>
             </type>
         </property>
-        <property name="date" type="date" column="date"/>
+        <property name="submittedDate" column="submittedDate"/>
+        <property name="idTimesheet" column="idTimesheet"/>
 
     </class>
 

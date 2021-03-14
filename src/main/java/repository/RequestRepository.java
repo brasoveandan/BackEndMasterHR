@@ -1,6 +1,5 @@
 package repository;
 
-import domain.Administrator;
 import domain.Request;
 import domain.validators.RequestValidator;
 import domain.validators.Validator;
@@ -29,7 +28,7 @@ public class RequestRepository implements CrudRepository<String, Request> {
         } catch (Validator.ValidationException exception) {
             throw new Validator.ValidationException(exception.getMessage());
         }
-        if (findOne(entity.getUsernameEmployee()) != null)
+        if (findOne(String.valueOf(entity.getIdRequest())) != null)
             return entity;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -58,7 +57,7 @@ public class RequestRepository implements CrudRepository<String, Request> {
     public Request update(Request entity) throws Validator.ValidationException {
         if (entity == null)
             throw new IllegalArgumentException();
-        if (findOne(entity.getUsernameEmployee()) == null )
+        if (findOne(String.valueOf(entity.getIdRequest())) == null )
             return entity;
         try {
             requestValidator.validate(entity);
@@ -73,33 +72,14 @@ public class RequestRepository implements CrudRepository<String, Request> {
         }
     }
 
-    /**
-     * @param id - the id of the entity to be returned
-     * @return the entity with the specified id
-     *      * or null - if there is no entity with the given id
-     */
-    public Request findOneByID(int id) {
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            List<Request> result = session.createQuery("select a from Request a where idRequest=:id")
-                    .setParameter("id", id)
-                    .list();
-            session.getTransaction().commit();
-            if (!result.isEmpty())
-                return result.get(0);
-            else
-                return null;
-        }
-    }
-
     @Override
     public Request findOne(String id) {
         if (id == null)
             throw new IllegalArgumentException();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            List<Request> result = session.createQuery("select a from Request a where usernameEmployee=:usernameEmployee")
-                    .setParameter("usernameEmployee", id)
+            List<Request> result = session.createQuery("select a from Request a where idRequest=:idRequest")
+                    .setParameter("idRequest", Integer.parseInt(id))
                     .list();
             session.getTransaction().commit();
             if (!result.isEmpty())

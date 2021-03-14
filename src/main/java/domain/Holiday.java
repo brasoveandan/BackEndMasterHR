@@ -2,16 +2,17 @@ package domain;
 
 import domain.enums.HolidayType;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Holiday {
-    public int idHoliday;
+    private String idHoliday;
     private String usernameEmployee;
     private int idRequest;
-    private Date fromDate;
-    private Date toDate;
-    private int daysOff;
+    private String idTimesheet;
+    private LocalDate fromDate;
+    private LocalDate toDate;
+    private int daysLeft;
     private HolidayType type;
     private String proxyUsername;
 
@@ -19,11 +20,11 @@ public class Holiday {
         //default constructor
     }
 
-    public int getIdHoliday() {
+    public String getIdHoliday() {
         return idHoliday;
     }
 
-    public void setIdHoliday(int idHoliday) {
+    public void setIdHoliday(String idHoliday) {
         this.idHoliday = idHoliday;
     }
 
@@ -43,28 +44,36 @@ public class Holiday {
         this.idRequest = idRequest;
     }
 
-    public Date getFromDate() {
+    public String getIdTimesheet() {
+        return idTimesheet;
+    }
+
+    public void setIdTimesheet(String idTimesheet) {
+        this.idTimesheet = idTimesheet;
+    }
+
+    public LocalDate getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
+    public void setFromDate(LocalDate fromDate) {
         this.fromDate = fromDate;
     }
 
-    public Date getToDate() {
+    public LocalDate getToDate() {
         return toDate;
     }
 
-    public void setToDate(Date toDate) {
+    public void setToDate(LocalDate toDate) {
         this.toDate = toDate;
     }
 
-    public int getDaysOff() {
-        return daysOff;
+    public int getDaysLeft() {
+        return daysLeft;
     }
 
-    public void setDaysOff(int daysOff) {
-        this.daysOff = daysOff;
+    public void setDaysLeft(int daysOff) {
+        this.daysLeft = daysOff;
     }
 
     public HolidayType getType() {
@@ -88,23 +97,24 @@ public class Holiday {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Holiday holiday = (Holiday) o;
-        return idHoliday == holiday.idHoliday && idRequest == holiday.idRequest && daysOff == holiday.daysOff && Objects.equals(usernameEmployee, holiday.usernameEmployee) && Objects.equals(fromDate, holiday.fromDate) && Objects.equals(toDate, holiday.toDate) && type == holiday.type && Objects.equals(proxyUsername, holiday.proxyUsername);
+        return idRequest == holiday.idRequest && daysLeft == holiday.daysLeft && Objects.equals(idHoliday, holiday.idHoliday) && Objects.equals(usernameEmployee, holiday.usernameEmployee) && Objects.equals(idTimesheet, holiday.idTimesheet) && Objects.equals(fromDate, holiday.fromDate) && Objects.equals(toDate, holiday.toDate) && type == holiday.type && Objects.equals(proxyUsername, holiday.proxyUsername);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idHoliday, usernameEmployee, idRequest, fromDate, toDate, daysOff, type, proxyUsername);
+        return Objects.hash(idHoliday, usernameEmployee, idRequest, idTimesheet, fromDate, toDate, daysLeft, type, proxyUsername);
     }
 
     @Override
     public String toString() {
         return "Holiday{" +
-                "idHoliday=" + idHoliday +
+                "idHoliday='" + idHoliday + '\'' +
                 ", usernameEmployee='" + usernameEmployee + '\'' +
                 ", idRequest=" + idRequest +
+                ", idTimesheet='" + idTimesheet + '\'' +
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
-                ", daysOff=" + daysOff +
+                ", daysLeft=" + daysLeft +
                 ", type=" + type +
                 ", proxyUsername='" + proxyUsername + '\'' +
                 '}';

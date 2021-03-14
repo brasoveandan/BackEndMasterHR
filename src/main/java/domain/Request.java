@@ -2,7 +2,7 @@ package domain;
 
 import domain.enums.RequestStatus;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Request {
@@ -10,7 +10,8 @@ public class Request {
     private String usernameEmployee;
     private String description;
     private RequestStatus status;
-    private Date date;
+    private LocalDate submittedDate;
+    private String idTimesheet;
 
     public Request() {
         //default constructor
@@ -48,12 +49,20 @@ public class Request {
         this.status = status;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDate getSubmittedDate() {
+        return submittedDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setSubmittedDate(LocalDate date) {
+        this.submittedDate = date;
+    }
+
+    public String getIdTimesheet() {
+        return idTimesheet;
+    }
+
+    public void setIdTimesheet(String idTimesheet) {
+        this.idTimesheet = idTimesheet;
     }
 
     @Override
@@ -61,22 +70,23 @@ public class Request {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Request request = (Request) o;
-        return idRequest == request.idRequest && Objects.equals(usernameEmployee, request.usernameEmployee) && Objects.equals(description, request.description) && status == request.status && Objects.equals(date, request.date);
+        return idRequest == request.idRequest && Objects.equals(usernameEmployee, request.usernameEmployee) && Objects.equals(description, request.description) && status == request.status && Objects.equals(submittedDate, request.submittedDate) && Objects.equals(idTimesheet, request.idTimesheet);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idRequest, usernameEmployee, description, status, date);
+        return Objects.hash(idRequest, usernameEmployee, description, status, submittedDate, idTimesheet);
     }
 
     @Override
     public String toString() {
         return "Request{" +
-                "id=" + idRequest +
+                "idRequest=" + idRequest +
                 ", usernameEmployee='" + usernameEmployee + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
-                ", date=" + date +
+                ", submittedDate=" + submittedDate +
+                ", idTimesheet='" + idTimesheet + '\'' +
                 '}';
     }
 }

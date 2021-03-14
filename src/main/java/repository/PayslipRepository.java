@@ -27,7 +27,7 @@ public class PayslipRepository implements CrudRepository<String, Payslip> {
         } catch (Validator.ValidationException exception) {
             throw new Validator.ValidationException(exception.getMessage());
         }
-        if (findOne(entity.getUsernameEmployee()) != null)
+        if (findOne(entity.getIdPayslip()) != null)
             return entity;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -56,7 +56,7 @@ public class PayslipRepository implements CrudRepository<String, Payslip> {
     public Payslip update(Payslip entity) throws Validator.ValidationException {
         if (entity == null)
             throw new IllegalArgumentException();
-        if (findOne(entity.getUsernameEmployee()) == null)
+        if (findOne(entity.getIdPayslip()) == null)
             return entity;
         try {
             payslipValidator.validate(entity);
@@ -77,8 +77,8 @@ public class PayslipRepository implements CrudRepository<String, Payslip> {
             throw new IllegalArgumentException();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            List<Payslip> result = session.createQuery("select a from Payslip a where usernameEmployee=:usernameEmployee")
-                    .setParameter("usernameEmployee", id)
+            List<Payslip> result = session.createQuery("select a from Payslip a where idPayslip=:idPayslip")
+                    .setParameter("idPayslip", id)
                     .list();
             session.getTransaction().commit();
             if (!result.isEmpty())
