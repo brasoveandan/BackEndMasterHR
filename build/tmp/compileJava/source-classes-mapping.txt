@@ -1,5 +1,5 @@
-repository/EmployeeRepository.java
- repository.EmployeeRepository
+domain/validators/ClockingValidator.java
+ domain.validators.ClockingValidator
 repository/CrudRepository.java
  repository.CrudRepository
 utils/SQLiteDialect.java
@@ -16,16 +16,16 @@ domain/enums/RequestStatus.java
  domain.enums.RequestStatus
 domain/enums/ContractType.java
  domain.enums.ContractType
-domain/Employee.java
- domain.Employee
+domain/Holiday.java
+ domain.Holiday
 utils/HibernateSession.java
  utils.HibernateSession
 domain/validators/PayslipValidator.java
  domain.validators.PayslipValidator
 repository/PayslipRepository.java
  repository.PayslipRepository
-domain/validators/EmployeeValidator.java
- domain.validators.EmployeeValidator
+repository/HolidayRepository.java
+ repository.HolidayRepository
 domain/Payslip.java
  domain.Payslip
 domain/Contract.java
@@ -60,11 +60,11 @@ domain/Clocking.java
  domain.Clocking
 repository/ClockingRepository.java
  repository.ClockingRepository
-domain/validators/ClockingValidator.java
- domain.validators.ClockingValidator
-domain/Holiday.java
- domain.Holiday
-repository/HolidayRepository.java
- repository.HolidayRepository
+domain/Employee.java
+ domain.Employee
+domain/validators/EmployeeValidator.java
+ domain.validators.EmployeeValidator
 services/RestServices.java
  services.RestServices
+repository/EmployeeRepository.java
+ repository.EmployeeRepository

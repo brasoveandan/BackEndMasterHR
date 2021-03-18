@@ -1,10 +1,13 @@
 package domain;
 
+import domain.enums.AdminRole;
+
 import java.util.Objects;
 
 public class Employee {
     private String username;
     private String password;
+    private AdminRole adminRole;
     private String firstName;
     private String lastName;
     private String mail;
@@ -29,6 +32,14 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public AdminRole getAdminRole() {
+        return adminRole;
+    }
+
+    public void setAdminRole(AdminRole adminRole) {
+        this.adminRole = adminRole;
     }
 
     public String getFirstName() {
@@ -76,12 +87,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(mail, employee.mail) && Objects.equals(phoneNumber, employee.phoneNumber) && Objects.equals(socialSecurityNumber, employee.socialSecurityNumber);
+        return Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && adminRole == employee.adminRole && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(mail, employee.mail) && Objects.equals(phoneNumber, employee.phoneNumber) && Objects.equals(socialSecurityNumber, employee.socialSecurityNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, firstName, lastName, mail, phoneNumber, socialSecurityNumber);
+        return Objects.hash(username, password, adminRole, firstName, lastName, mail, phoneNumber, socialSecurityNumber);
     }
 
     @Override
@@ -89,6 +100,7 @@ public class Employee {
         return "Employee{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", adminRole=" + adminRole +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", mail='" + mail + '\'' +

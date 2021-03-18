@@ -27,6 +27,10 @@ public class EmployeeValidator implements Validator<Employee> {
         if (employee.getPassword() == null || employee.getPassword().equals("")) {
             message += "Parola invalida.\n";
         }
+        if (employee.getAdminRole() != null && !employee.getAdminRole().toString().equals("GROUP_LEADER") &&
+                !employee.getAdminRole().toString().equals("HR_EMPLOYEE") &&
+                !employee.getAdminRole().toString().equals("HR_RESPONSIVE_DEPARTMENT"))
+            message += "Rolul trebuie sa fie GROUP_LEADER, HR_EMPLOYEE sau HR_RESPONSIVE_DEPARTMENT.";
         if (employee.getFirstName() == null || employee.getFirstName().equals("")) {
             message += "Prenumele nu poate fi vid.\n";
         }
