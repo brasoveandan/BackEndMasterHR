@@ -18,7 +18,6 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping resource="employee.xml"/>
-        <mapping resource="administrator.xml"/>
         <mapping resource="contract.xml"/>
         <mapping resource="payslip.xml"/>
         <mapping resource="request.xml"/>

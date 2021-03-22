@@ -1,5 +1,5 @@
-domain/validators/ClockingValidator.java
- domain.validators.ClockingValidator
+domain/Clocking.java
+ domain.Clocking
 repository/CrudRepository.java
  repository.CrudRepository
 utils/SQLiteDialect.java
@@ -8,63 +8,59 @@ utils/SQLiteDialect.java
 domain/validators/Validator.java
  domain.validators.Validator
  domain.validators.Validator$ValidationException
-domain/enums/AdminRole.java
- domain.enums.AdminRole
-domain/validators/AdministratorValidator.java
- domain.validators.AdministratorValidator
-domain/enums/RequestStatus.java
- domain.enums.RequestStatus
+services/RestServices.java
+ services.RestServices
+domain/validators/TimesheetValidator.java
+ domain.validators.TimesheetValidator
+domain/Timesheet.java
+ domain.Timesheet
 domain/enums/ContractType.java
  domain.enums.ContractType
-domain/Holiday.java
- domain.Holiday
-utils/HibernateSession.java
- utils.HibernateSession
+domain/Employee.java
+ domain.Employee
+domain/validators/HolidayValidator.java
+ domain.validators.HolidayValidator
 domain/validators/PayslipValidator.java
  domain.validators.PayslipValidator
-repository/PayslipRepository.java
- repository.PayslipRepository
 repository/HolidayRepository.java
  repository.HolidayRepository
+domain/validators/EmployeeValidator.java
+ domain.validators.EmployeeValidator
 domain/Payslip.java
  domain.Payslip
 domain/Contract.java
  domain.Contract
-domain/Request.java
- domain.Request
+domain/Holiday.java
+ domain.Holiday
 repository/ContractRepository.java
  repository.ContractRepository
 services/StartServices.java
  services.StartServices
 domain/validators/ContractValidator.java
  domain.validators.ContractValidator
-domain/validators/RequestValidator.java
- domain.validators.RequestValidator
-domain/Timesheet.java
- domain.Timesheet
-domain/enums/HolidayType.java
- domain.enums.HolidayType
-domain/validators/TimesheetValidator.java
- domain.validators.TimesheetValidator
-repository/RequestRepository.java
- repository.RequestRepository
 repository/TimesheetRepository.java
  repository.TimesheetRepository
-repository/AdministratorRepository.java
- repository.AdministratorRepository
-domain/Administrator.java
- domain.Administrator
-domain/validators/HolidayValidator.java
- domain.validators.HolidayValidator
-domain/Clocking.java
- domain.Clocking
 repository/ClockingRepository.java
  repository.ClockingRepository
-domain/Employee.java
- domain.Employee
-domain/validators/EmployeeValidator.java
- domain.validators.EmployeeValidator
-services/RestServices.java
- services.RestServices
+domain/enums/HolidayType.java
+ domain.enums.HolidayType
+repository/RequestRepository.java
+ repository.RequestRepository
+repository/PayslipRepository.java
+ repository.PayslipRepository
+domain/Request.java
+ domain.Request
+domain/enums/RequestStatus.java
+ domain.enums.RequestStatus
+utils/HibernateSession.java
+ utils.HibernateSession
 repository/EmployeeRepository.java
  repository.EmployeeRepository
+domain/enums/AdminRole.java
+ domain.enums.AdminRole
+domain/validators/RequestValidator.java
+ domain.validators.RequestValidator
+domain/dtos/ResponseDTO.java
+ domain.dtos.ResponseDTO
+domain/validators/ClockingValidator.java
+ domain.validators.ClockingValidator

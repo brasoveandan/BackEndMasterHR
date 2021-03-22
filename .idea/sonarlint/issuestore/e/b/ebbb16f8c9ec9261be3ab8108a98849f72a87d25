@@ -1,3 +1,6 @@
 
-g
-java:S5998"LRefactor this repetition that can lead to a stack overflow for large inputs.(´ÖÊ8ºÎó€/
+i
+java:S5998
+"LRefactor this repetition that can lead to a stack overflow for large inputs.(´ÖÊ8ºÎó€/
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ï¹¤éüÿÿÿÿ8Õ¬ü¯„/

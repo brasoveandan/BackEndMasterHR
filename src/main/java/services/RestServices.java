@@ -1,6 +1,7 @@
 package services;
 
 import domain.*;
+import domain.dtos.ResponseDTO;
 import domain.validators.Validator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,6 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class RestServices {
-    private final AdministratorRepository administratorRepository = new AdministratorRepository();
     private final EmployeeRepository employeeRepository = new EmployeeRepository();
     private final ContractRepository contractRepository = new ContractRepository();
     private final RequestRepository requestRepository = new RequestRepository();
@@ -22,49 +22,18 @@ public class RestServices {
     private final ClockingRepository clockingRepository = new ClockingRepository();
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Employee employee){
+    public ResponseEntity<?> login(@RequestBody Employee employee){
         Employee employeeStored = employeeRepository.findOne(employee.getUsername());
         if (employeeStored != null) {
             if (employee.getPassword().equals(employeeStored.getPassword())) {
-                for (Administrator administrator : administratorRepository.findAll()) {
-                    if (administrator.getUsernameEmployee().equals(employee.getUsername()))
-                        return new ResponseEntity<>(administrator.getUsernameEmployee() + " " + administrator.getAdminRole(), HttpStatus.OK);
-                }
-                return new ResponseEntity<>(employee.getFirstName(), HttpStatus.OK);
+                if (employeeStored.getAdminRole() == null)
+                    return new ResponseEntity<>(new ResponseDTO("null", employeeStored.getFirstName()),HttpStatus.OK);
+                else
+                    return new ResponseEntity<>(new ResponseDTO(employeeStored.getAdminRole().toString(), employeeStored.getFirstName()),HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    //AdministratorServices
-    @PostMapping("/administrator")
-    public ResponseEntity<String> saveAdministrator(@RequestBody Administrator administrator) {
-        Administrator administrator1;
-        try {
-            administrator1 = administratorRepository.save(administrator);
-        } catch (Validator.ValidationException exception) {
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
-        }
-        if (administrator1 == null)
-            return new ResponseEntity<>(HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.CONFLICT);
-    }
-
-    @DeleteMapping("/administrator/{usernameEmployee}")
-    public ResponseEntity<String> deleteAdministrator(@PathVariable String usernameEmployee) {
-        Administrator administrator = administratorRepository.delete(usernameEmployee);
-        if (administrator == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @GetMapping("/administrator")
-    public ResponseEntity<List<Administrator>> getAdministrators() {
-        List<Administrator> list = administratorRepository.findAll();
-        if (list.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     //EmployeeServices
