@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Employee {
     private String username;
     private String password;
+    private String personalNumber;
     private AdminRole adminRole;
     private String firstName;
     private String lastName;
@@ -32,6 +33,14 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPersonalNumber() {
+        return personalNumber;
+    }
+
+    public void setPersonalNumber(String personalNumber) {
+        this.personalNumber = personalNumber;
     }
 
     public AdminRole getAdminRole() {
@@ -87,12 +96,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && adminRole == employee.adminRole && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(mail, employee.mail) && Objects.equals(phoneNumber, employee.phoneNumber) && Objects.equals(socialSecurityNumber, employee.socialSecurityNumber);
+        return Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(personalNumber, employee.personalNumber) && adminRole == employee.adminRole && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(mail, employee.mail) && Objects.equals(phoneNumber, employee.phoneNumber) && Objects.equals(socialSecurityNumber, employee.socialSecurityNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, adminRole, firstName, lastName, mail, phoneNumber, socialSecurityNumber);
+        return Objects.hash(username, password, personalNumber, adminRole, firstName, lastName, mail, phoneNumber, socialSecurityNumber);
     }
 
     @Override
@@ -100,6 +109,7 @@ public class Employee {
         return "Employee{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", personalNumber='" + personalNumber + '\'' +
                 ", adminRole=" + adminRole +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

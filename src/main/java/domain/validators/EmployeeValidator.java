@@ -27,6 +27,9 @@ public class EmployeeValidator implements Validator<Employee> {
         if (employee.getPassword() == null || employee.getPassword().equals("")) {
             message += "Parola invalida.\n";
         }
+        if (employee.getPassword() == null || employee.getPassword().length() != 10) {
+            message += "Cod numeric invalid.\n";
+        }
         if (employee.getAdminRole() != null && !employee.getAdminRole().toString().equals("GROUP_LEADER") &&
                 !employee.getAdminRole().toString().equals("HR_EMPLOYEE") &&
                 !employee.getAdminRole().toString().equals("HR_RESPONSIVE_DEPARTMENT"))

@@ -9,6 +9,7 @@
     <class name="domain.Employee" table="Employee">
         <id name="username" column="username"/>
         <property name="password" column="password"/>
+        <property name="personalNumber" column="personalNumber"/>
         <property name="adminRole" column="adminRole">
             <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">domain.enums.AdminRole</param>

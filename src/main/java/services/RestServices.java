@@ -1,6 +1,7 @@
 package services;
 
 import domain.*;
+import domain.dtos.ContractDTO;
 import domain.dtos.ResponseDTO;
 import domain.validators.Validator;
 import org.springframework.http.HttpStatus;
@@ -123,10 +124,27 @@ public class RestServices {
     }
 
     @GetMapping("/contract/{usernameEmployee}")
-    public ResponseEntity<Contract> findOneContract(@PathVariable String usernameEmployee) {
+    public ResponseEntity<ContractDTO> findOneContract(@PathVariable String usernameEmployee) {
+        Employee employee = employeeRepository.findOne(usernameEmployee);
         Contract contract = contractRepository.findOne(usernameEmployee);
-        if (contract != null)
-            return new ResponseEntity<>(contract, HttpStatus.OK);
+        ContractDTO contractDTO = new ContractDTO();
+        if (contract != null) {
+            contractDTO.setLastName(employee.getLastName());
+            contractDTO.setFirstName(employee.getFirstName());
+            contractDTO.setPersonalNumber(employee.getPersonalNumber());
+            contractDTO.setMail(employee.getMail());
+            contractDTO.setPhoneNumber(employee.getPhoneNumber());
+            contractDTO.setSocialSecurityNumber(employee.getSocialSecurityNumber());
+            contractDTO.setCompanyName(contract.getCompanyName());
+            contractDTO.setDepartment(contract.getDepartment());
+            contractDTO.setPosition(contract.getPosition());
+            contractDTO.setGrossSalary(contract.getGrossSalary());
+            contractDTO.setHireDate(contract.getHireDate());
+            if (contract.getType().toString().equals("FULL_TIME"))
+                contractDTO.setType("Permanent");
+            contractDTO.setExpirationDate(contract.getExpirationDate());
+            return new ResponseEntity<>(contractDTO, HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

@@ -16,6 +16,8 @@ domain/Timesheet.java
  domain.Timesheet
 domain/enums/ContractType.java
  domain.enums.ContractType
+domain/dtos/ContractDTO.java
+ domain.dtos.ContractDTO
 domain/Employee.java
  domain.Employee
 domain/validators/HolidayValidator.java
