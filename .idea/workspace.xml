@@ -5,23 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37a40007-6493-42bc-b2ad-fcc769c1fae3" name="Default Changelist" comment="Layered architecture">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/7/374e80fd275c41074ae60ab77f473cd73d447c90" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/7/374e80fd275c41074ae60ab77f473cd73d447c90" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/3/536d48d80796b9ce1934bf716a115d3d8ba91550" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/3/536d48d80796b9ce1934bf716a115d3d8ba91550" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67ff8b33b0f09426de6981193683d7096764bb7c" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67ff8b33b0f09426de6981193683d7096764bb7c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/b/ebbb16f8c9ec9261be3ab8108a98849f72a87d25" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/b/ebbb16f8c9ec9261be3ab8108a98849f72a87d25" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseMasterHR" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseMasterHR" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/services/RestServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/services/RestServices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/validators/EmployeeValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/validators/EmployeeValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/RestServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/RestServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/employee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/employee.xml" afterDir="false" />
     </list>
     <list id="2cc9849a-e23f-4483-ae93-bf8059999f87" name="EmployeeServices" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,19 +109,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StartServices" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="BackEndMasterHR.main" />
       <extension name="coverage">
@@ -180,7 +159,9 @@
       <workItem from="1616426377353" duration="701000" />
       <workItem from="1616497442692" duration="639000" />
       <workItem from="1616512048509" duration="1496000" />
-      <workItem from="1616514945453" duration="4386000" />
+      <workItem from="1616514945453" duration="5145000" />
+      <workItem from="1616574869479" duration="3782000" />
+      <workItem from="1616691948429" duration="1203000" />
     </task>
     <task id="LOCAL-00001" summary="Version01">
       <created>1614879453592</created>

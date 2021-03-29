@@ -1,3 +1,3 @@
 
-_
-java:S2094"BRemove this empty class, write its code or make it an "interface".(ÛøÝÞ8†Ëƒþ…/
+ž
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¦Ü—Ñ8‚Ë„ÿ…/
