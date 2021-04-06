@@ -1,0 +1,11 @@
+
+o	java:S116"NRename this field "CAS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›¾Áøÿÿÿÿ8èá“›Š/
+m	java:S117h"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä†½ä8ö×•›Š/
+r	java:S117p"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ‡ôøÿÿÿÿ8ö×•›Š/
+J
+java:S1068"-Remove this unused "increases" private field.(½²í†8™²£œŠ/
+m	java:S117`"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šŠ»8ö×•›Š/
+k	java:S116"ORename this field "CASS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’ğ‚¾8èá“›Š/
+i	java:S116"MRename this field "IV" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À´ã½8èá“›Š/
+O
+java:S1068"-Remove this unused "taxExempt" private field.(â÷œ¬ûÿÿÿÿ8ç¦¬œŠ/

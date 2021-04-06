@@ -9,7 +9,7 @@
     <class name="domain.Contract" table="Contract">
         <id name="usernameEmployee" column="usernameEmployee"/>
         <property name="companyName" column="companyName"/>
-        <property name="grossSalary" type="float" column="grossSalary"/>
+        <property name="baseSalary" type="float" column="baseSalary"/>
         <property name="hireDate" column="hireDate"/>
         <property name="type" column="type">
             <type name="org.hibernate.type.EnumType">
@@ -21,6 +21,9 @@
         <property name="expirationDate" column="expirationDate"/>
         <property name="department" column="department"/>
         <property name="position" column="position"/>
+        <property name="overtimeIncreasePercent" column="overtimeIncreasePercent"/>
+        <property name="taxExempt" column="taxExempt"/>
+        <property name="ticketValue" column="ticketValue"/>
     </class>
 
 </hibernate-mapping>

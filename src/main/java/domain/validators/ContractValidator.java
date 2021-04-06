@@ -10,7 +10,7 @@ public class ContractValidator implements Validator<Contract> {
             message += "Nume de utilizator invalid.";
         if (entity.getCompanyName() == null || entity.getCompanyName().equals(""))
             message += "Numele companiei nu poate fi vid.";
-        if (entity.getGrossSalary() < 0)
+        if (entity.getBaseSalary() < 0)
             message += "Salariul este invalid.";
         if (entity.getHireDate() == null)
             message += "Data de angajare invalida.";
@@ -22,6 +22,10 @@ public class ContractValidator implements Validator<Contract> {
             message += "Departament invalid.";
         if (entity.getPosition() == null || entity.getPosition().equals(""))
             message += "Pozitie angajat invalida.";
+        if (entity.getOvertimeIncreasePercent() < 75)
+            message += "Procent spor invalid.";
+        if (entity.getTicketValue() < 0)
+            message += "Valoare tichet de masa invalida.";
         if (!message.equals("")) {
             throw new Validator.ValidationException(message);
         }

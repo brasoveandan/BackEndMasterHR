@@ -69,3 +69,5 @@ Z
 MasterHR.mdj,2\7\278261e5efb1b52938100cb74d594f36e3ff9b83
 Z
 *src/main/java/domain/dtos/ContractDTO.java,5\3\536d48d80796b9ce1934bf716a115d3d8ba91550
+Y
+)src/main/java/domain/dtos/PayslipDTO.java,2\1\2116822ab265398cb870f795cae9118898bc33d5

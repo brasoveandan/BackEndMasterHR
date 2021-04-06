@@ -138,7 +138,7 @@ public class RestServices {
             contractDTO.setCompanyName(contract.getCompanyName());
             contractDTO.setDepartment(contract.getDepartment());
             contractDTO.setPosition(contract.getPosition());
-            contractDTO.setGrossSalary(contract.getGrossSalary());
+            contractDTO.setGrossSalary(contract.getBaseSalary());
             contractDTO.setHireDate(contract.getHireDate());
             if (contract.getType().toString().equals("FULL_TIME"))
                 contractDTO.setType("Permanent");
@@ -213,7 +213,7 @@ public class RestServices {
     @PostMapping("/payslip")
     public ResponseEntity<String> savePayslip(@RequestBody Payslip payslip) {
         Payslip payslipReturned;
-        payslip.setIdPayslip(payslip.getUsernameEmployee()+payslip.getYear() + payslip.getMonth());
+        payslip.setIdPayslip(payslip.getUsernameEmployee() + payslip.getYear() + payslip.getMonth());
         try {
             payslipReturned = payslipRepository.save(payslip);
         } catch (Validator.ValidationException exception) {
@@ -245,9 +245,9 @@ public class RestServices {
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
-    @GetMapping("/payslip/{usernameEmployee}")
-    public ResponseEntity<Payslip> findOnePayslip(@PathVariable String usernameEmployee) {
-        Payslip payslip = payslipRepository.findOne(usernameEmployee);
+    @GetMapping("/payslip/{idPayslip}")
+    public ResponseEntity<Payslip> findOnePayslip(@PathVariable String idPayslip) {
+        Payslip payslip = payslipRepository.findOne(idPayslip);
         if (payslip != null)
             return new ResponseEntity<>(payslip, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

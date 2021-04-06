@@ -3,18 +3,20 @@ package domain;
 import domain.enums.ContractType;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
 public class Contract {
     private String usernameEmployee;
     private String companyName;
-    private float grossSalary;
+    private float baseSalary;
     private LocalDate hireDate;
     private ContractType type;
     private LocalDate expirationDate;
     private String department;
     private String position;
+    private int overtimeIncreasePercent;
+    private boolean taxExempt;
+    private float ticketValue;
 
     public Contract() {
     }
@@ -35,12 +37,12 @@ public class Contract {
         this.companyName = companyName;
     }
 
-    public float getGrossSalary() {
-        return grossSalary;
+    public float getBaseSalary() {
+        return baseSalary;
     }
 
-    public void setGrossSalary(float grossSalary) {
-        this.grossSalary = grossSalary;
+    public void setBaseSalary(float grossSalary) {
+        this.baseSalary = grossSalary;
     }
 
     public LocalDate getHireDate() {
@@ -83,17 +85,41 @@ public class Contract {
         this.position = position;
     }
 
+    public int getOvertimeIncreasePercent() {
+        return overtimeIncreasePercent;
+    }
+
+    public void setOvertimeIncreasePercent(int overtimeIncreasePercent) {
+        this.overtimeIncreasePercent = overtimeIncreasePercent;
+    }
+
+    public boolean isTaxExempt() {
+        return taxExempt;
+    }
+
+    public void setTaxExempt(boolean taxExempt) {
+        this.taxExempt = taxExempt;
+    }
+
+    public float getTicketValue() {
+        return ticketValue;
+    }
+
+    public void setTicketValue(float ticketValue) {
+        this.ticketValue = ticketValue;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contract contract = (Contract) o;
-        return Objects.equals(usernameEmployee, contract.usernameEmployee) && Objects.equals(companyName, contract.companyName) && Objects.equals(grossSalary, contract.grossSalary) && Objects.equals(hireDate, contract.hireDate) && type == contract.type && Objects.equals(expirationDate, contract.expirationDate) && Objects.equals(department, contract.department) && Objects.equals(position, contract.position);
+        return Float.compare(contract.baseSalary, baseSalary) == 0 && overtimeIncreasePercent == contract.overtimeIncreasePercent && taxExempt == contract.taxExempt && Float.compare(contract.ticketValue, ticketValue) == 0 && Objects.equals(usernameEmployee, contract.usernameEmployee) && Objects.equals(companyName, contract.companyName) && Objects.equals(hireDate, contract.hireDate) && type == contract.type && Objects.equals(expirationDate, contract.expirationDate) && Objects.equals(department, contract.department) && Objects.equals(position, contract.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usernameEmployee, companyName, grossSalary, hireDate, type, expirationDate, department, position);
+        return Objects.hash(usernameEmployee, companyName, baseSalary, hireDate, type, expirationDate, department, position, overtimeIncreasePercent, taxExempt, ticketValue);
     }
 
     @Override
@@ -101,12 +127,15 @@ public class Contract {
         return "Contract{" +
                 "usernameEmployee='" + usernameEmployee + '\'' +
                 ", companyName='" + companyName + '\'' +
-                ", grossSalary=" + grossSalary +
+                ", baseSalary=" + baseSalary +
                 ", hireDate=" + hireDate +
                 ", type=" + type +
                 ", expirationDate=" + expirationDate +
                 ", department='" + department + '\'' +
                 ", position='" + position + '\'' +
+                ", overtimeIncreasePercent=" + overtimeIncreasePercent +
+                ", taxExempt=" + taxExempt +
+                ", ticketValue=" + ticketValue +
                 '}';
     }
 }
