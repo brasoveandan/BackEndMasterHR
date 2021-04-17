@@ -14,6 +14,10 @@ public class Employee {
     private String mail;
     private String phoneNumber;
     private String socialSecurityNumber;
+    private String birthday;
+    private String gender;
+    private String bankName;
+    private String bankAccountNumber ;
 
     public Employee() {
         // Do nothing
@@ -91,17 +95,49 @@ public class Employee {
         this.socialSecurityNumber = socialSecurityNumber;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBankAccountNumber() {
+        return bankAccountNumber;
+    }
+
+    public void setBankAccountNumber(String bankAccountNumber) {
+        this.bankAccountNumber = bankAccountNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(personalNumber, employee.personalNumber) && adminRole == employee.adminRole && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(mail, employee.mail) && Objects.equals(phoneNumber, employee.phoneNumber) && Objects.equals(socialSecurityNumber, employee.socialSecurityNumber);
+        return Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(personalNumber, employee.personalNumber) && adminRole == employee.adminRole && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(mail, employee.mail) && Objects.equals(phoneNumber, employee.phoneNumber) && Objects.equals(socialSecurityNumber, employee.socialSecurityNumber) && Objects.equals(birthday, employee.birthday) && Objects.equals(gender, employee.gender) && Objects.equals(bankName, employee.bankName) && Objects.equals(bankAccountNumber, employee.bankAccountNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, personalNumber, adminRole, firstName, lastName, mail, phoneNumber, socialSecurityNumber);
+        return Objects.hash(username, password, personalNumber, adminRole, firstName, lastName, mail, phoneNumber, socialSecurityNumber, birthday, gender, bankName, bankAccountNumber);
     }
 
     @Override
@@ -116,6 +152,10 @@ public class Employee {
                 ", mail='" + mail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", socialSecurityNumber='" + socialSecurityNumber + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", gender='" + gender + '\'' +
+                ", bankName='" + bankName + '\'' +
+                ", bankAccountNumber='" + bankAccountNumber + '\'' +
                 '}';
     }
 }

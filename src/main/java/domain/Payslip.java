@@ -12,6 +12,9 @@ public class Payslip {
     private float workedHours;
     private float homeOfficeHours;
     private float requiredHours;
+    private float increases;
+    private float overtimeIncreases;
+    private float ticketsValue;
 
     public Payslip() {
         //default constructor
@@ -89,31 +92,58 @@ public class Payslip {
         this.requiredHours = requiredHours;
     }
 
+    public float getIncreases() {
+        return increases;
+    }
+
+    public void setIncreases(float increases) {
+        this.increases = increases;
+    }
+
+    public float getOvertimeIncreases() {
+        return overtimeIncreases;
+    }
+
+    public void setOvertimeIncreases(float overtimeIncreases) {
+        this.overtimeIncreases = overtimeIncreases;
+    }
+
+    public float getTicketsValue() {
+        return ticketsValue;
+    }
+
+    public void setTicketsValue(float ticketsValue) {
+        this.ticketsValue = ticketsValue;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payslip payslip = (Payslip) o;
-        return year == payslip.year && month == payslip.month && Float.compare(payslip.grossSalary, grossSalary) == 0 && Float.compare(payslip.netSalary, netSalary) == 0 && Float.compare(payslip.workedHours, workedHours) == 0 && Float.compare(payslip.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(payslip.requiredHours, requiredHours) == 0 && Objects.equals(idPayslip, payslip.idPayslip) && Objects.equals(usernameEmployee, payslip.usernameEmployee);
+        return year == payslip.year && month == payslip.month && Float.compare(payslip.grossSalary, grossSalary) == 0 && Float.compare(payslip.netSalary, netSalary) == 0 && Float.compare(payslip.workedHours, workedHours) == 0 && Float.compare(payslip.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(payslip.requiredHours, requiredHours) == 0 && Float.compare(payslip.increases, increases) == 0 && Float.compare(payslip.overtimeIncreases, overtimeIncreases) == 0 && Float.compare(payslip.ticketsValue, ticketsValue) == 0 && Objects.equals(idPayslip, payslip.idPayslip) && Objects.equals(usernameEmployee, payslip.usernameEmployee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idPayslip, usernameEmployee, year, month, grossSalary, netSalary, workedHours, homeOfficeHours, requiredHours);
+        return Objects.hash(idPayslip, usernameEmployee, year, month, grossSalary, netSalary, workedHours, homeOfficeHours, requiredHours, increases, overtimeIncreases, ticketsValue);
     }
 
     @Override
     public String toString() {
         return "Payslip{" +
-                "idPayslip=" + idPayslip +
+                "idPayslip='" + idPayslip + '\'' +
                 ", usernameEmployee='" + usernameEmployee + '\'' +
                 ", year=" + year +
                 ", month=" + month +
-                ", brutSalary=" + grossSalary +
+                ", grossSalary=" + grossSalary +
                 ", netSalary=" + netSalary +
                 ", workedHours=" + workedHours +
                 ", homeOfficeHours=" + homeOfficeHours +
                 ", requiredHours=" + requiredHours +
+                ", increases=" + increases +
+                ", overtimeIncreases=" + overtimeIncreases +
+                ", ticketsValue=" + ticketsValue +
                 '}';
     }
 }

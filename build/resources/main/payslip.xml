@@ -16,6 +16,9 @@
         <property name="workedHours" type="float" column="workedHours"/>
         <property name="homeOfficeHours" type="float" column="homeOfficeHours"/>
         <property name="requiredHours" type="float" column="requiredHours"/>
+        <property name="increases" type="float" column="increases"/>
+        <property name="overtimeIncreases" type="float" column="overtimeIncreases"/>
+        <property name="ticketsValue" type="float" column="ticketsValue"/>
     </class>
 
 </hibernate-mapping>

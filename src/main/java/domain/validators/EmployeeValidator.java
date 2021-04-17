@@ -49,6 +49,18 @@ public class EmployeeValidator implements Validator<Employee> {
         if (employee.getSocialSecurityNumber() == null || employee.getSocialSecurityNumber().length()!=13) {
             message += "CNP-ul trebuie sa contina 13 cifre.\n";
         }
+        if (employee.getBirthday() == null || employee.getBirthday().equals("null")) {
+            message += "Zi de nastere invalida.\n";
+        }
+        if (employee.getGender() == null || employee.getGender().equals("null")) {
+            message += "Gen invalid.\n";
+        }
+        if (employee.getBankName() == null || employee.getBankName().equals("null")) {
+            message += "Nume banca invalid.\n";
+        }
+        if (employee.getBankAccountNumber() == null || employee.getBankAccountNumber().length()!=24) {
+            message += "IBAN invalid.\n";
+        }
         if (!message.equals("")) {
             throw new Validator.ValidationException(message);
         }

@@ -72,13 +72,13 @@ public class ContractRepository implements CrudRepository<String, Contract> {
     }
 
     @Override
-    public Contract findOne(String id) {
-        if (id == null)
+    public Contract findOne(String usernameEmployee) {
+        if (usernameEmployee == null)
             throw new IllegalArgumentException();
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             List<Contract> result = session.createQuery("select a from Contract a where usernameEmployee=:usernameEmployee")
-                    .setParameter("usernameEmployee", id)
+                    .setParameter("usernameEmployee", usernameEmployee)
                     .list();
             session.getTransaction().commit();
             if (!result.isEmpty())

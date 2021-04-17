@@ -10,12 +10,18 @@ public class ContractDTO {
     private String phoneNumber;
     private String socialSecurityNumber;
     private String companyName;
-    private float grossSalary;
+    private float baseSalary;
     private LocalDate hireDate;
     private String type;
     private LocalDate expirationDate;
     private String department;
     private String position;
+    private String birthday;
+    private String gender;
+    private String bankName;
+    private String bankAccountNumber;
+    private int overtimeIncreasePercent;
+    private boolean taxExempt;
 
     public ContractDTO() {
     }
@@ -76,12 +82,12 @@ public class ContractDTO {
         this.companyName = companyName;
     }
 
-    public float getGrossSalary() {
-        return grossSalary;
+    public float getBaseSalary() {
+        return baseSalary;
     }
 
-    public void setGrossSalary(float grossSalary) {
-        this.grossSalary = grossSalary;
+    public void setBaseSalary(float baseSalary) {
+        this.baseSalary = baseSalary;
     }
 
     public LocalDate getHireDate() {
@@ -124,6 +130,54 @@ public class ContractDTO {
         this.position = position;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBankAccountNumber() {
+        return bankAccountNumber;
+    }
+
+    public void setBankAccountNumber(String bankAccountNumber) {
+        this.bankAccountNumber = bankAccountNumber;
+    }
+
+    public int getOvertimeIncreasePercent() {
+        return overtimeIncreasePercent;
+    }
+
+    public void setOvertimeIncreasePercent(int overtimeIncreasePercent) {
+        this.overtimeIncreasePercent = overtimeIncreasePercent;
+    }
+
+    public boolean isTaxExempt() {
+        return taxExempt;
+    }
+
+    public void setTaxExempt(boolean taxExempt) {
+        this.taxExempt = taxExempt;
+    }
+
     @Override
     public String toString() {
         return "ContractDTO{" +
@@ -134,12 +188,18 @@ public class ContractDTO {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", socialSecurityNumber='" + socialSecurityNumber + '\'' +
                 ", companyName='" + companyName + '\'' +
-                ", grossSalary=" + grossSalary +
+                ", baseSalary=" + baseSalary +
                 ", hireDate=" + hireDate +
                 ", type='" + type + '\'' +
                 ", expirationDate=" + expirationDate +
                 ", department='" + department + '\'' +
                 ", position='" + position + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", gender='" + gender + '\'' +
+                ", bankName='" + bankName + '\'' +
+                ", bankAccountNumber='" + bankAccountNumber + '\'' +
+                ", overtimeIncreasePercent=" + overtimeIncreasePercent +
+                ", taxExempt=" + taxExempt +
                 '}';
     }
 }

@@ -22,6 +22,10 @@
         <property name="mail" column="mail"/>
         <property name="phoneNumber" column="phoneNumber"/>
         <property name="socialSecurityNumber" column="socialSecurityNumber"/>
+        <property name="birthday" column="birthday"/>
+        <property name="gender" column="gender"/>
+        <property name="bankName" column="bankName"/>
+        <property name="bankAccountNumber" column="bankAccountNumber"/>
     </class>
 
 </hibernate-mapping>

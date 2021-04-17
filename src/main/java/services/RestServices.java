@@ -2,6 +2,7 @@ package services;
 
 import domain.*;
 import domain.dtos.ContractDTO;
+import domain.dtos.PayslipDTO;
 import domain.dtos.ResponseDTO;
 import domain.validators.Validator;
 import org.springframework.http.HttpStatus;
@@ -135,14 +136,24 @@ public class RestServices {
             contractDTO.setMail(employee.getMail());
             contractDTO.setPhoneNumber(employee.getPhoneNumber());
             contractDTO.setSocialSecurityNumber(employee.getSocialSecurityNumber());
+            contractDTO.setBirthday(employee.getBirthday());
+            contractDTO.setGender(employee.getGender());
+            contractDTO.setBankName(employee.getBankName());
+            contractDTO.setBankAccountNumber(employee.getBankAccountNumber());
             contractDTO.setCompanyName(contract.getCompanyName());
             contractDTO.setDepartment(contract.getDepartment());
             contractDTO.setPosition(contract.getPosition());
-            contractDTO.setGrossSalary(contract.getBaseSalary());
+            contractDTO.setBaseSalary(contract.getBaseSalary());
             contractDTO.setHireDate(contract.getHireDate());
+            contractDTO.setTaxExempt(contract.isTaxExempt());
+            contractDTO.setOvertimeIncreasePercent(contract.getOvertimeIncreasePercent());
+            contractDTO.setExpirationDate(contract.getExpirationDate());
             if (contract.getType().toString().equals("FULL_TIME"))
                 contractDTO.setType("Permanent");
-            contractDTO.setExpirationDate(contract.getExpirationDate());
+            if (contract.getType().toString().equals("PART_TIME_6"))
+                contractDTO.setType("Student 6 ore");
+            if (contract.getType().toString().equals("PART_TIME_4"))
+                contractDTO.setType("Student 4 ore");
             return new ResponseEntity<>(contractDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -246,10 +257,44 @@ public class RestServices {
     }
 
     @GetMapping("/payslip/{idPayslip}")
-    public ResponseEntity<Payslip> findOnePayslip(@PathVariable String idPayslip) {
+    public ResponseEntity<PayslipDTO> findOnePayslip(@PathVariable String idPayslip) {
+        PayslipDTO payslipDTO = new PayslipDTO();
         Payslip payslip = payslipRepository.findOne(idPayslip);
+        payslipDTO.setYear(payslip.getYear());
+        payslipDTO.setMonth(payslip.getMonth());
+        payslipDTO.setIdPayslip(payslip.getIdPayslip());
+        payslipDTO.setGrossSalary(payslip.getGrossSalary());
+        payslipDTO.setWorkedHours(payslip.getWorkedHours());
+        payslipDTO.setHomeOfficeHours(payslip.getHomeOfficeHours());
+        payslipDTO.setRequiredHours(payslip.getRequiredHours());
+        payslipDTO.setNetSalary(payslip.getNetSalary());
+        payslipDTO.setIncreases(payslip.getIncreases());
+        payslipDTO.setOvertimeIncreases(payslip.getOvertimeIncreases());
+        payslipDTO.setTicketsValue(payslip.getTicketsValue());
+        payslipDTO.setOvertimeHours(payslip.getWorkedHours() + payslip.getHomeOfficeHours() - payslip.getRequiredHours());
+
+
+        Contract contract = contractRepository.findOne(payslip.getUsernameEmployee());
+        payslipDTO.setCompanyName(contract.getCompanyName());
+        payslipDTO.setDepartment(contract.getDepartment());
+        payslipDTO.setPosition(contract.getPosition());
+        payslipDTO.setTaxExempt(contract.isTaxExempt());
+        payslipDTO.setBaseSalary(contract.getBaseSalary());
+
+        Employee employee = employeeRepository.findOne(payslip.getUsernameEmployee());
+        payslipDTO.setFirstName(employee.getFirstName());
+        payslipDTO.setLastName(employee.getLastName());
+        payslipDTO.setPersonalNumber(employee.getPersonalNumber());
+
+
+        //calculate taxes
+        float total = payslip.getGrossSalary() + payslip.getTicketsValue();
+        payslipDTO.setCAS(25 *  total / 100);
+        payslipDTO.setCASS(10 * total / 100);
+        payslipDTO.setIV(10 *  total / 100);
+
         if (payslip != null)
-            return new ResponseEntity<>(payslip, HttpStatus.OK);
+            return new ResponseEntity<>(payslipDTO, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

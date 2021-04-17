@@ -16,26 +16,26 @@ domain/Timesheet.java
  domain.Timesheet
 domain/enums/ContractType.java
  domain.enums.ContractType
-domain/dtos/ContractDTO.java
- domain.dtos.ContractDTO
-domain/Employee.java
- domain.Employee
+domain/validators/PayslipValidator.java
+ domain.validators.PayslipValidator
+repository/ContractRepository.java
+ repository.ContractRepository
 domain/validators/HolidayValidator.java
  domain.validators.HolidayValidator
 domain/dtos/ResponseDTO.java
  domain.dtos.ResponseDTO
 repository/HolidayRepository.java
  repository.HolidayRepository
-domain/validators/EmployeeValidator.java
- domain.validators.EmployeeValidator
+repository/PayslipRepository.java
+ repository.PayslipRepository
 domain/validators/RequestValidator.java
  domain.validators.RequestValidator
 domain/enums/AdminRole.java
  domain.enums.AdminRole
 domain/Holiday.java
  domain.Holiday
-repository/EmployeeRepository.java
- repository.EmployeeRepository
+domain/Payslip.java
+ domain.Payslip
 services/StartServices.java
  services.StartServices
 domain/validators/ClockingValidator.java
@@ -52,19 +52,19 @@ domain/enums/RequestStatus.java
  domain.enums.RequestStatus
 domain/Request.java
  domain.Request
-repository/PayslipRepository.java
- repository.PayslipRepository
-domain/validators/ContractValidator.java
- domain.validators.ContractValidator
-domain/validators/PayslipValidator.java
- domain.validators.PayslipValidator
-domain/Payslip.java
- domain.Payslip
 domain/Contract.java
  domain.Contract
-repository/ContractRepository.java
- repository.ContractRepository
-services/RestServices.java
- services.RestServices
+domain/validators/ContractValidator.java
+ domain.validators.ContractValidator
 domain/dtos/PayslipDTO.java
  domain.dtos.PayslipDTO
+domain/Employee.java
+ domain.Employee
+domain/validators/EmployeeValidator.java
+ domain.validators.EmployeeValidator
+repository/EmployeeRepository.java
+ repository.EmployeeRepository
+domain/dtos/ContractDTO.java
+ domain.dtos.ContractDTO
+services/RestServices.java
+ services.RestServices
