@@ -22,8 +22,9 @@ public class HolidayValidator implements Validator<Holiday> {
                 (entity.getToDate().getYear()) != java.time.LocalDate.now().getYear())
             message += "Data invalida.";
         if (!entity.getType().toString().equals("BLOOD_DONATIONS") && !entity.getType().toString().equals("MARRIAGE")
-                && !entity.getType().toString().equals("NORMAL") && entity.getType().toString().equals("FUNERAL"))
-            message += "Tipul concediului trebuie sa fie BLOOD_DONATIONS, MARRIAGE, FUNERAL sau NORMAL.";
+                && !entity.getType().toString().equals("NORMAL") && !entity.getType().toString().equals("FUNERAL")
+                && !entity.getType().toString().equals("MEDICAL"))
+            message += "Tipul concediului trebuie sa fie BLOOD_DONATIONS, MARRIAGE, FUNERAL, MEDICAL sau NORMAL.";
         if (!message.equals("")) {
             throw new Validator.ValidationException(message);
         }

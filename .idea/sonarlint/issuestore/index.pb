@@ -5,8 +5,6 @@
 .src/main/java/domain/validators/Validator.java,5\e\5e5bdc04aa22e650d871bb3b681571f5c9bc756f
 \
 ,src/main/java/repository/CrudRepository.java,d\7\d718cf7fe4b42a253b17caf2a6a5f2c90454231c
-X
-(src/main/java/services/RestServices.java,6\7\67ff8b33b0f09426de6981193683d7096764bb7c
 Y
 )src/main/java/utils/HibernateSession.java,c\4\c4600a57cc2a2bfb3baf7d1bb1582a59de939c54
 V
@@ -37,8 +35,6 @@ _
 -src/main/java/domain/enums/RequestStatus.java,f\b\fb7278e135f1b7169621e0bbab949c1026041da4
 _
 /src/main/java/repository/RequestRepository.java,5\c\5cd1c4a24f04de4b591925c1895453419ba521fa
-[
-+src/main/java/domain/enums/HolidayType.java,2\a\2aa3b8ab5cda7af279486dc673ba7ded242d2fa4
 Q
 !src/main/java/domain/Holiday.java,d\e\de1cd5015b9966cab417894452bc80338c791cc2
 Q
@@ -47,8 +43,6 @@ e
 5src/main/java/domain/validators/PayslipValidator.java,e\5\e5897fc6977a53e96595de1405d38dd5d7a7bb53
 e
 5src/main/java/domain/validators/RequestValidator.java,6\7\674fa3ca2ad15b6c70c6e8ffe62679f5e3c1c95b
-e
-5src/main/java/domain/validators/HolidayValidator.java,9\3\93de43c0e64e11593edd9acf457a191c97964ddb
 _
 /src/main/java/repository/HolidayRepository.java,7\5\75084be5bff2564735700e0dd5f7d6dc94487d32
 R
