@@ -4,6 +4,7 @@ import domain.*;
 import domain.dtos.ContractDTO;
 import domain.dtos.PayslipDTO;
 import domain.dtos.ResponseDTO;
+import domain.dtos.TimesheetDTO;
 import domain.validators.Validator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -395,10 +396,18 @@ public class RestServices {
     }
 
     @GetMapping("/timesheet/{idTimesheet}")
-    public ResponseEntity<Timesheet> findOneTimesheet(@PathVariable String idTimesheet) {
+    public ResponseEntity<TimesheetDTO> findOneTimesheet(@PathVariable String idTimesheet) {
+        TimesheetDTO timesheetDTO = new TimesheetDTO();
         Timesheet timesheet = timesheetRepository.findOne(idTimesheet);
+        timesheetDTO.setYear(timesheet.getYear());
+        timesheetDTO.setMonth(timesheet.getMonth());
+        timesheetDTO.setWorkedHours(timesheet.getWorkedHours());
+        timesheetDTO.setHomeOfficeHours(timesheet.getHomeOfficeHours());
+        timesheetDTO.setRequiredHours(timesheet.getRequiredHours());
+        timesheetDTO.setOvertimeHours(timesheet.getOvertimeHours());
+        timesheetDTO.setTotalOvertimeLeave(timesheet.getTotalOvertimeLeave());
         if (timesheet != null)
-            return new ResponseEntity<>(timesheet, HttpStatus.OK);
+            return new ResponseEntity<>(timesheetDTO, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

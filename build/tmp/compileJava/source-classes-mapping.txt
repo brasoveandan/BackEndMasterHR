@@ -20,20 +20,20 @@ domain/validators/PayslipValidator.java
  domain.validators.PayslipValidator
 repository/ContractRepository.java
  repository.ContractRepository
-domain/validators/HolidayValidator.java
- domain.validators.HolidayValidator
+domain/validators/EmployeeValidator.java
+ domain.validators.EmployeeValidator
 domain/dtos/ResponseDTO.java
  domain.dtos.ResponseDTO
-repository/HolidayRepository.java
- repository.HolidayRepository
+domain/dtos/ContractDTO.java
+ domain.dtos.ContractDTO
 repository/PayslipRepository.java
  repository.PayslipRepository
 domain/validators/RequestValidator.java
  domain.validators.RequestValidator
 domain/enums/AdminRole.java
  domain.enums.AdminRole
-domain/Holiday.java
- domain.Holiday
+repository/EmployeeRepository.java
+ repository.EmployeeRepository
 domain/Payslip.java
  domain.Payslip
 services/StartServices.java
@@ -44,8 +44,8 @@ repository/TimesheetRepository.java
  repository.TimesheetRepository
 repository/ClockingRepository.java
  repository.ClockingRepository
-domain/enums/HolidayType.java
- domain.enums.HolidayType
+domain/Employee.java
+ domain.Employee
 repository/RequestRepository.java
  repository.RequestRepository
 domain/enums/RequestStatus.java
@@ -58,13 +58,15 @@ domain/validators/ContractValidator.java
  domain.validators.ContractValidator
 domain/dtos/PayslipDTO.java
  domain.dtos.PayslipDTO
-domain/Employee.java
- domain.Employee
-domain/validators/EmployeeValidator.java
- domain.validators.EmployeeValidator
-repository/EmployeeRepository.java
- repository.EmployeeRepository
-domain/dtos/ContractDTO.java
- domain.dtos.ContractDTO
+domain/validators/HolidayValidator.java
+ domain.validators.HolidayValidator
+repository/HolidayRepository.java
+ repository.HolidayRepository
+domain/dtos/TimesheetDTO.java
+ domain.dtos.TimesheetDTO
+domain/Holiday.java
+ domain.Holiday
 services/RestServices.java
  services.RestServices
+domain/enums/HolidayType.java
+ domain.enums.HolidayType
