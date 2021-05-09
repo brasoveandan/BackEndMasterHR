@@ -1,21 +1,32 @@
 package services;
 
 import domain.*;
-import domain.dtos.ContractDTO;
-import domain.dtos.PayslipDTO;
-import domain.dtos.ResponseDTO;
-import domain.dtos.TimesheetDTO;
+import domain.dtos.request.AddEmployeeDTO;
+import domain.dtos.request.RequestDTO;
+import domain.dtos.request.RequestHolidayDTO;
+import domain.dtos.response.*;
+import domain.enums.ContractType;
+import domain.enums.HolidayType;
+import domain.enums.RequestStatus;
 import domain.validators.Validator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import repository.*;
+import utils.Utils;
 
-import java.util.List;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static java.time.temporal.ChronoUnit.*;
+import static utils.Utils.*;
 
 @CrossOrigin
 @RestController
 public class RestServices {
+    private static final Set<HolidayType> OTHER_TYPES = Collections.unmodifiableSet(EnumSet.of(HolidayType.BLOOD_DONATION, HolidayType.MARRIAGE, HolidayType.FUNERAL));
     private final EmployeeRepository employeeRepository = new EmployeeRepository();
     private final ContractRepository contractRepository = new ContractRepository();
     private final RequestRepository requestRepository = new RequestRepository();
@@ -39,6 +50,8 @@ public class RestServices {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+
+
     //EmployeeServices
     @PostMapping("/employee")
     public ResponseEntity<String> saveEmployee(@RequestBody Employee employee) {
@@ -61,11 +74,16 @@ public class RestServices {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/employee")
-    public ResponseEntity<String> updateEmployee(@RequestBody Employee employee) {
+    @PutMapping("/employeeAccount")
+    public ResponseEntity<String> updateEmployeeAccount(@RequestBody Employee employee) {
         Employee employeeReturned;
+        Employee employeeToAdd = employeeRepository.findOne(employee.getUsername());
+        employeeToAdd.setPassword(employee.getPassword());
+        employeeToAdd.setPersonalNumber(employee.getPersonalNumber());
+        employeeToAdd.setAdminRole(employee.getAdminRole());
+        employeeToAdd.setMail(employee.getMail());
         try {
-            employeeReturned = employeeRepository.update(employee);
+            employeeReturned = employeeRepository.update(employeeToAdd);
         } catch (Validator.ValidationException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
@@ -89,6 +107,8 @@ public class RestServices {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
+
 
     //ContractServices
     @PostMapping("/contract")
@@ -149,11 +169,11 @@ public class RestServices {
             contractDTO.setTaxExempt(contract.isTaxExempt());
             contractDTO.setOvertimeIncreasePercent(contract.getOvertimeIncreasePercent());
             contractDTO.setExpirationDate(contract.getExpirationDate());
-            if (contract.getType().toString().equals("FULL_TIME"))
+            if (contract.getType() == ContractType.FULL_TIME_8)
                 contractDTO.setType("Permanent");
-            if (contract.getType().toString().equals("PART_TIME_6"))
+            if (contract.getType() == ContractType.PART_TIME_6)
                 contractDTO.setType("Student 6 ore");
-            if (contract.getType().toString().equals("PART_TIME_4"))
+            if (contract.getType() == ContractType.PART_TIME_4)
                 contractDTO.setType("Student 4 ore");
             return new ResponseEntity<>(contractDTO, HttpStatus.OK);
         }
@@ -168,17 +188,64 @@ public class RestServices {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+
+
     //RequestServices
     @PostMapping("/request")
-    public ResponseEntity<String> saveRequest(@RequestBody Request request) {
-        Request requestReturned;
+    public ResponseEntity<String> saveRequest(@RequestBody RequestHolidayDTO request) {
+        String idTimesheet = request.getUsernameEmployee() + request.getFromDate().getYear() + request.getFromDate().getMonthValue();
+        Timesheet timesheet = timesheetRepository.findOne(idTimesheet);
+        Holiday holidayReturned;
+        Holiday holiday = new Holiday();
+        holiday.setIdRequest(0);
+        holiday.setIdHoliday(request.getUsernameEmployee() + request.getFromDate() + request.getToDate());
+        holiday.setUsernameEmployee(request.getUsernameEmployee());
+        holiday.setFromDate(request.getFromDate());
+        holiday.setToDate(request.getToDate());
+        holiday.setType(stringToHolidayType(request.getType()));
+        if (holiday.getType() == HolidayType.OVERTIME_LEAVE) {
+            Contract contract = contractRepository.findOne(holiday.getUsernameEmployee());
+            int numberOfHours = Integer.parseInt(contract.getType().toString().split("_")[2]);
+            int numberOfDays = (int) DAYS.between(holiday.getFromDate(), holiday.getToDate());
+            int requiredOvertimeLeave = numberOfDays * numberOfHours;
+
+            if (requiredOvertimeLeave <= timesheet.getOvertimeHours() + timesheet.getTotalOvertimeHours()) {
+                holiday.setOvertimeLeave(requiredOvertimeLeave);
+                if (timesheet.getOvertimeHours() >= requiredOvertimeLeave) {
+                    timesheet.setOvertimeHours(timesheet.getOvertimeHours() - requiredOvertimeLeave);
+                }
+                else {
+                    requiredOvertimeLeave -= timesheet.getOvertimeHours();
+                    timesheet.setOvertimeHours(0);
+                    timesheet.setTotalOvertimeHours(timesheet.getTotalOvertimeHours() - requiredOvertimeLeave);
+                }
+            }
+            else return new ResponseEntity<>("Nu sunt suficiente ore suplimentare.", HttpStatus.EXPECTATION_FAILED);
+        }
+        holiday.setProxyUsername(request.getProxyUsername());
         try {
-            requestReturned = requestRepository.save(request);
+            holidayReturned = holidayRepository.save(holiday);
         } catch (Validator.ValidationException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
-        if (requestReturned == null)
+        if (holidayReturned == null) {
+            Request requestReturned;
+            Request requestToSave = new Request(request.getUsernameEmployee(), request.getDescription(),
+                    stringToRequestStatus(request.getStatus()), request.getSubmittedDate(), idTimesheet);
+            try {
+                requestReturned = requestRepository.save(requestToSave);
+            } catch (Validator.ValidationException exception) {
+                return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+            }
+            holiday.setIdRequest(requestReturned.getIdRequest());
+            try {
+                holidayRepository.update(holiday);
+                timesheetRepository.update(timesheet);
+            } catch (Validator.ValidationException exception) {
+                return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+            }
             return new ResponseEntity<>(HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
@@ -203,20 +270,28 @@ public class RestServices {
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
-    @GetMapping("/request/{idRequest}")
-    public ResponseEntity<Request> findOneRequest(@PathVariable String idRequest) {
-        Request request = requestRepository.findOne(idRequest);
-        if (request != null)
-            return new ResponseEntity<>(request, HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/request")
-    public ResponseEntity<List<Request>> getRequests() {
+    @GetMapping("/request/{usernameEmployee}")
+    public ResponseEntity<List<RequestDTO>> getRequests(@PathVariable String usernameEmployee) {
         List<Request> list = requestRepository.findAll();
-        if (list.isEmpty())
+        List<RequestDTO> requestDTOList = new ArrayList<>();
+        list.forEach(request -> {
+            if (request.getUsernameEmployee().equals(usernameEmployee)) {
+                RequestDTO requestDTO = new RequestDTO();
+                requestDTO.setDescription(request.getDescription());
+                requestDTO.setStatus(Utils.requestStatusToString(request.getStatus()));
+                requestDTO.setSubmittedDate(request.getSubmittedDate());
+                holidayRepository.findAll().forEach(holiday -> {
+                    if (holiday.getIdRequest() != null && holiday.getIdRequest().equals(request.getIdRequest())) {
+                        requestDTO.setType(Utils.holidayTypeToString(holiday.getType()));
+                    }
+                });
+                requestDTOList.add(requestDTO);
+            }
+        });
+        if (requestDTOList.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        requestDTOList.sort(Comparator.comparing(RequestDTO::getSubmittedDate).reversed());
+        return new ResponseEntity<>(requestDTOList, HttpStatus.OK);
     }
 
 
@@ -307,6 +382,8 @@ public class RestServices {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+
+
     //HolidayServices
     @PostMapping("/holiday")
     public ResponseEntity<String> saveHoliday(@RequestBody Holiday holiday) {
@@ -343,21 +420,64 @@ public class RestServices {
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
-    @GetMapping("/holiday/{idHoliday}")
-    public ResponseEntity<Holiday> findOneHoliday(@PathVariable String idHoliday) {
-        Holiday holiday = holidayRepository.findOne(idHoliday);
-        if (holiday != null)
-            return new ResponseEntity<>(holiday, HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/summaryHoliday/{usernameEmployee}")
+    public ResponseEntity<SummaryHolidayDTO> getSummaryHoliday(@PathVariable String usernameEmployee) {
+        SummaryHolidayDTO summaryHolidayDTO = new SummaryHolidayDTO();
+        AtomicInteger daysTaken = new AtomicInteger();
+        AtomicInteger medicalLeave = new AtomicInteger();
+        AtomicInteger otherLeave = new AtomicInteger();
+        AtomicInteger overtimeLeave = new AtomicInteger();
+        holidayRepository.findAll().forEach(holiday -> {
+            if (holiday.getUsernameEmployee().equals(usernameEmployee) && requestRepository.findOne(String.valueOf(holiday.getIdRequest())).getStatus() != RequestStatus.PENDING)  {
+                HolidayDTO holidayDTO = new HolidayDTO();
+                holidayDTO.setFromDate(holiday.getFromDate());
+                holidayDTO.setToDate(holiday.getToDate());
+                holidayDTO.setNumberOfDays((int) DAYS.between(holiday.getFromDate(), holiday.getToDate()));
+                if (holiday.getType() == HolidayType.MEDICAL) {
+                    medicalLeave.addAndGet(holidayDTO.getNumberOfDays());
+                }
+                if (OTHER_TYPES.contains(holiday.getType()))
+                    otherLeave.addAndGet(holidayDTO.getNumberOfDays());
+                if (holiday.getType() == HolidayType.OVERTIME_LEAVE)
+                    overtimeLeave.addAndGet(holiday.getOvertimeLeave());
+                daysTaken.addAndGet(holidayDTO.getNumberOfDays());
+            }
+        });
+        summaryHolidayDTO.setMedicalLeave(medicalLeave.get());
+        summaryHolidayDTO.setDaysTaken(daysTaken.get());
+        summaryHolidayDTO.setOtherLeave(otherLeave.get());
+        summaryHolidayDTO.setOvertimeLeave(overtimeLeave.get());
+        summaryHolidayDTO.setDaysAvailable(contractRepository.findOne(usernameEmployee).getDaysOff());
+        return new ResponseEntity<>(summaryHolidayDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/holiday")
-    public ResponseEntity<List<Holiday>> getHolidays() {
-        List<Holiday> list = holidayRepository.findAll();
-        if (list.isEmpty())
+    @GetMapping("/holiday/{usernameEmployee}")
+    public ResponseEntity<List<HolidayDTO>> getHolidays(@PathVariable String usernameEmployee) {
+        List<HolidayDTO> holidayDTOList = new ArrayList<>();
+        holidayRepository.findAll().forEach(holiday -> {
+            if (holiday.getUsernameEmployee().equals(usernameEmployee) ) {
+                HolidayDTO holidayDTO = new HolidayDTO();
+                holidayDTO.setFromDate(holiday.getFromDate());
+                holidayDTO.setToDate(holiday.getToDate());
+                holidayDTO.setNumberOfDays((int) DAYS.between(holiday.getFromDate(), holiday.getToDate()));
+                holidayDTO.setProxyUsername(holiday.getProxyUsername());
+                holidayDTO.setType(Utils.holidayTypeToString(holiday.getType()));
+                if (holiday.getIdRequest() != null)
+                    holidayDTO.setStatus(Utils.requestStatusToString(requestRepository.
+                            findOne(String.valueOf(holiday.getIdRequest())).getStatus()));
+                if (holiday.getType() == HolidayType.MEDICAL) {
+                    holidayDTO.setStatus("ACCEPTATĂ");
+                }
+                holidayDTOList.add(holidayDTO);
+            }
+        });
+        if (holidayDTOList.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        holidayDTOList.sort(Comparator.comparing(HolidayDTO::getFromDate).reversed());
+        return new ResponseEntity<>(holidayDTOList, HttpStatus.OK);
     }
+
+
 
     //TimesheetServices
     @PostMapping("/timesheet")
@@ -405,7 +525,7 @@ public class RestServices {
         timesheetDTO.setHomeOfficeHours(timesheet.getHomeOfficeHours());
         timesheetDTO.setRequiredHours(timesheet.getRequiredHours());
         timesheetDTO.setOvertimeHours(timesheet.getOvertimeHours());
-        timesheetDTO.setTotalOvertimeLeave(timesheet.getTotalOvertimeLeave());
+        timesheetDTO.setTotalOvertimeLeave(timesheet.getTotalOvertimeHours());
         if (timesheet != null)
             return new ResponseEntity<>(timesheetDTO, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -419,18 +539,36 @@ public class RestServices {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+
+
     //ClockingServices
     @PostMapping("/clocking")
     public ResponseEntity<String> saveClocking(@RequestBody Clocking clocking) {
         Clocking clockingReturned;
         clocking.setIdClocking(clocking.getUsernameEmployee()+clocking.getFromHour().getMonthValue()+clocking.getFromHour().getDayOfMonth());
+        clocking.setIdTimesheet(clocking.getUsernameEmployee()+clocking.getFromHour().getYear()+clocking.getFromHour().getMonthValue());
         try {
             clockingReturned = clockingRepository.save(clocking);
         } catch (Validator.ValidationException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
-        if (clockingReturned == null)
+        if (clockingReturned == null) {
+            Timesheet timesheet = timesheetRepository.findOne(clocking.getUsernameEmployee() +
+                    clocking.getFromHour().getYear() + clocking.getFromHour().getMonthValue());
+            int numberOfHours = Integer.parseInt(contractRepository.findOne(clocking.getUsernameEmployee()).getType().toString().split("_")[2]);
+            long clockingHours = HOURS.between(clocking.getFromHour(), clocking.getToHour());
+            if (!clocking.getType().equals("Normal"))
+                timesheet.setHomeOfficeHours(clockingHours + timesheet.getHomeOfficeHours());
+            timesheet.setWorkedHours(clockingHours + timesheet.getWorkedHours());
+            if (numberOfHours <= clockingHours)
+                timesheet.setOvertimeHours(clockingHours - numberOfHours);
+            try {
+                timesheetRepository.update(timesheet);
+            } catch (Validator.ValidationException exception) {
+                return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+            }
             return new ResponseEntity<>(HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
@@ -445,6 +583,7 @@ public class RestServices {
     @PutMapping("/clocking")
     public ResponseEntity<String> updateClocking(@RequestBody Clocking clocking) {
         Clocking clockingReturned;
+        clocking.setIdClocking(clocking.getUsernameEmployee()+clocking.getToHour().getMonthValue()+clocking.getToHour().getDayOfMonth());
         try {
             clockingReturned = clockingRepository.update(clocking);
         } catch (Validator.ValidationException exception) {
@@ -455,19 +594,31 @@ public class RestServices {
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
-    @GetMapping("/clocking/{idClocking}")
-    public ResponseEntity<Clocking> findOneClocking(@PathVariable String idClocking) {
-        Clocking clocking = clockingRepository.findOne(idClocking);
-        if (clocking != null)
-            return new ResponseEntity<>(clocking, HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+    @GetMapping("/clocking/{usernameEmployee}")
+    public ResponseEntity<List<ClockingDTO>> getAllClocking(@PathVariable String usernameEmployee) {
+        List<ClockingDTO> clockingDTOList = new ArrayList<>();
+        clockingRepository.findAll().forEach(clocking -> {
+            if (clocking.getUsernameEmployee().equals(usernameEmployee)) {
+                ClockingDTO clockingDTO = new ClockingDTO();
+                clockingDTO.setDay(clocking.getFromHour().getDayOfMonth());
 
-    @GetMapping("/clocking")
-    public ResponseEntity<List<Clocking>> getAllClocking() {
-        List<Clocking> list = clockingRepository.findAll();
-        if (list.isEmpty())
+                String format = "HH:mm";
+                clockingDTO.setFromHour(clocking.getFromHour().toLocalTime().format(DateTimeFormatter.ofPattern(format)));
+                clockingDTO.setToHour(clocking.getToHour().toLocalTime().format(DateTimeFormatter.ofPattern(format)));
+                LocalTime workedHours =  clocking.getToHour().toLocalTime().minusNanos(clocking.getFromHour().
+                        toLocalTime().toNanoOfDay());
+                clockingDTO.setWorkedHours(workedHours.format(DateTimeFormatter.ofPattern(format)));
+                Contract contract = contractRepository.findOne(usernameEmployee);
+                int hoursPerDay = Integer.parseInt(contract.getType().toString().split("_")[2]);
+                if (workedHours.isAfter(LocalTime.of(hoursPerDay,0)))
+                    clockingDTO.setOvertimeHours(workedHours.minusNanos(LocalTime.of(hoursPerDay,0).
+                            toNanoOfDay()).format(DateTimeFormatter.ofPattern(format)));
+                clockingDTOList.add(clockingDTO);
+            }
+        });
+        if (clockingDTOList.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        clockingDTOList.sort(Comparator.comparing(ClockingDTO::getDay).reversed());
+        return new ResponseEntity<>(clockingDTOList, HttpStatus.OK);
     }
 }

@@ -27,13 +27,13 @@ public class EmployeeValidator implements Validator<Employee> {
         if (employee.getPassword() == null || employee.getPassword().equals("")) {
             message += "Parola invalida.\n";
         }
-        if (employee.getPassword() == null || employee.getPassword().length() != 10) {
+        if (employee.getPersonalNumber() == null || employee.getPersonalNumber().length() != 10) {
             message += "Cod numeric invalid.\n";
         }
         if (employee.getAdminRole() != null && !employee.getAdminRole().toString().equals("GROUP_LEADER") &&
                 !employee.getAdminRole().toString().equals("HR_EMPLOYEE") &&
                 !employee.getAdminRole().toString().equals("HR_RESPONSIVE_DEPARTMENT"))
-            message += "Rolul trebuie sa fie GROUP_LEADER, HR_EMPLOYEE sau HR_RESPONSIVE_DEPARTMENT.";
+            message += "Rolul trebuie sa fie ADMIN, GROUP_LEADER, HR_EMPLOYEE sau HR_RESPONSIVE_DEPARTMENT.";
         if (employee.getFirstName() == null || employee.getFirstName().equals("")) {
             message += "Prenumele nu poate fi vid.\n";
         }
@@ -54,12 +54,6 @@ public class EmployeeValidator implements Validator<Employee> {
         }
         if (employee.getGender() == null || employee.getGender().equals("null")) {
             message += "Gen invalid.\n";
-        }
-        if (employee.getBankName() == null || employee.getBankName().equals("null")) {
-            message += "Nume banca invalid.\n";
-        }
-        if (employee.getBankAccountNumber() == null || employee.getBankAccountNumber().length()!=24) {
-            message += "IBAN invalid.\n";
         }
         if (!message.equals("")) {
             throw new Validator.ValidationException(message);

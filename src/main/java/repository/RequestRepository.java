@@ -29,12 +29,12 @@ public class RequestRepository implements CrudRepository<String, Request> {
             throw new Validator.ValidationException(exception.getMessage());
         }
         if (findOne(String.valueOf(entity.getIdRequest())) != null)
-            return entity;
+            return null;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             session.save(entity);
             session.getTransaction().commit();
-            return null;
+            return entity;
         }
     }
 

@@ -1,4 +1,4 @@
-package domain.dtos;
+package domain.dtos.response;
 
 public class PayslipDTO {
     private int year;

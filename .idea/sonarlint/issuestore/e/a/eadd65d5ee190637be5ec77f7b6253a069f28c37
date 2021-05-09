@@ -1,0 +1,7 @@
+
+g	java:S117¨"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šŠ»
+g	java:S117°"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä†½ä
+l	java:S117¸"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ‡ôøÿÿÿÿ
+h	java:S116"NRename this field "CAS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›¾Áøÿÿÿÿ
+d	java:S116"ORename this field "CASS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’ğ‚¾
+b	java:S116"MRename this field "IV" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À´ã½

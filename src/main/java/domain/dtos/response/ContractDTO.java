@@ -1,4 +1,4 @@
-package domain.dtos;
+package domain.dtos.response;
 
 import java.time.LocalDate;
 

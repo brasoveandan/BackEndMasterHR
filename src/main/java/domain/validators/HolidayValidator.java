@@ -12,8 +12,6 @@ public class HolidayValidator implements Validator<Holiday> {
             message += "Nume de utilizator invalid.";
         if (entity.getIdRequest() < 0)
             message += "Id cerere invalid.";
-        if (entity.getIdTimesheet() == null || entity.getIdTimesheet().equals(""))
-            message += "Id cerere invalid.";
         if (entity.getFromDate().isAfter(entity.getToDate()))
             message += "Data de inceput trebuie sa fie inaintea datei de sfarsit.";
         if (entity.getFromDate().isAfter(entity.getToDate()))
@@ -23,8 +21,8 @@ public class HolidayValidator implements Validator<Holiday> {
             message += "Data invalida.";
         if (!entity.getType().toString().equals("BLOOD_DONATIONS") && !entity.getType().toString().equals("MARRIAGE")
                 && !entity.getType().toString().equals("NORMAL") && !entity.getType().toString().equals("FUNERAL")
-                && !entity.getType().toString().equals("MEDICAL"))
-            message += "Tipul concediului trebuie sa fie BLOOD_DONATIONS, MARRIAGE, FUNERAL, MEDICAL sau NORMAL.";
+                && !entity.getType().toString().equals("MEDICAL") && !entity.getType().toString().equals("OVERTIME_LEAVE"))
+            message += "Tipul concediului trebuie sa fie BLOOD_DONATIONS, MARRIAGE, FUNERAL, MEDICAL, OVERTIME_LEAVE sau NORMAL.";
         if (!message.equals("")) {
             throw new Validator.ValidationException(message);
         }

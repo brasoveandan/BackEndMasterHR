@@ -26,6 +26,8 @@ public class ContractValidator implements Validator<Contract> {
             message += "Procent spor invalid.";
         if (entity.getTicketValue() < 0)
             message += "Valoare tichet de masa invalida.";
+        if (entity.getTicketValue() < 0)
+            message += "Numarul de zile libere este invalid.";
         if (!message.equals("")) {
             throw new Validator.ValidationException(message);
         }

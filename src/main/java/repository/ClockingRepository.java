@@ -27,7 +27,9 @@ public class ClockingRepository implements CrudRepository<String, Clocking> {
         } catch (Validator.ValidationException exception) {
             throw new Validator.ValidationException(exception.getMessage());
         }
-        if (findOne(String.valueOf(entity.getIdClocking())) != null)
+        if (entity.getReason() != null && !entity.getReason().equals(""))
+            delete(entity.getIdClocking());
+        if (findOne(entity.getIdClocking()) != null)
             return entity;
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -56,13 +58,15 @@ public class ClockingRepository implements CrudRepository<String, Clocking> {
     public Clocking update(Clocking entity) throws Validator.ValidationException {
         if (entity == null)
             throw new IllegalArgumentException();
-        if (findOne(entity.getIdClocking()) == null )
+        Clocking clocking = findOne(entity.getIdClocking());
+        if (clocking == null)
             return entity;
         try {
-            clockingValidator.validate(entity);
+            clocking.setToHour(entity.getToHour());
+            clockingValidator.validate(clocking);
             try (Session session = sessionFactory.openSession()) {
                 session.beginTransaction();
-                session.update(entity);
+                session.update(clocking);
                 session.getTransaction().commit();
                 return null;
             }

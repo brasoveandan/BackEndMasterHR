@@ -24,6 +24,7 @@
         <property name="overtimeIncreasePercent" column="overtimeIncreasePercent"/>
         <property name="taxExempt" column="taxExempt"/>
         <property name="ticketValue" column="ticketValue"/>
+        <property name="daysOff" column="daysOff"/>
     </class>
 
 </hibernate-mapping>

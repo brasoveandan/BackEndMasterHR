@@ -8,11 +8,11 @@ import java.util.Objects;
 public class Holiday {
     private String idHoliday;
     private String usernameEmployee;
-    private int idRequest;
+    private Integer idRequest;
     private String idTimesheet;
     private LocalDate fromDate;
     private LocalDate toDate;
-    private int daysLeft;
+    private int overtimeLeave;
     private HolidayType type;
     private String proxyUsername;
 
@@ -36,11 +36,11 @@ public class Holiday {
         this.usernameEmployee = usernameEmployee;
     }
 
-    public int getIdRequest() {
+    public Integer getIdRequest() {
         return idRequest;
     }
 
-    public void setIdRequest(int idRequest) {
+    public void setIdRequest(Integer idRequest) {
         this.idRequest = idRequest;
     }
 
@@ -68,12 +68,12 @@ public class Holiday {
         this.toDate = toDate;
     }
 
-    public int getDaysLeft() {
-        return daysLeft;
+    public int getOvertimeLeave() {
+        return overtimeLeave;
     }
 
-    public void setDaysLeft(int daysOff) {
-        this.daysLeft = daysOff;
+    public void setOvertimeLeave(int daysOff) {
+        this.overtimeLeave = daysOff;
     }
 
     public HolidayType getType() {
@@ -97,12 +97,12 @@ public class Holiday {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Holiday holiday = (Holiday) o;
-        return idRequest == holiday.idRequest && daysLeft == holiday.daysLeft && Objects.equals(idHoliday, holiday.idHoliday) && Objects.equals(usernameEmployee, holiday.usernameEmployee) && Objects.equals(idTimesheet, holiday.idTimesheet) && Objects.equals(fromDate, holiday.fromDate) && Objects.equals(toDate, holiday.toDate) && type == holiday.type && Objects.equals(proxyUsername, holiday.proxyUsername);
+        return idRequest == holiday.idRequest && overtimeLeave == holiday.overtimeLeave && Objects.equals(idHoliday, holiday.idHoliday) && Objects.equals(usernameEmployee, holiday.usernameEmployee) && Objects.equals(idTimesheet, holiday.idTimesheet) && Objects.equals(fromDate, holiday.fromDate) && Objects.equals(toDate, holiday.toDate) && type == holiday.type && Objects.equals(proxyUsername, holiday.proxyUsername);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idHoliday, usernameEmployee, idRequest, idTimesheet, fromDate, toDate, daysLeft, type, proxyUsername);
+        return Objects.hash(idHoliday, usernameEmployee, idRequest, idTimesheet, fromDate, toDate, overtimeLeave, type, proxyUsername);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class Holiday {
                 ", idTimesheet='" + idTimesheet + '\'' +
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
-                ", daysLeft=" + daysLeft +
+                ", overtimeLeave=" + overtimeLeave +
                 ", type=" + type +
                 ", proxyUsername='" + proxyUsername + '\'' +
                 '}';

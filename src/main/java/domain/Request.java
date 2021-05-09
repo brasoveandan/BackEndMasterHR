@@ -17,6 +17,14 @@ public class Request {
         //default constructor
     }
 
+    public Request(String usernameEmployee, String description, RequestStatus status, LocalDate submittedDate, String idTimesheet) {
+        this.usernameEmployee = usernameEmployee;
+        this.description = description;
+        this.status = status;
+        this.submittedDate = submittedDate;
+        this.idTimesheet = idTimesheet;
+    }
+
     public int getIdRequest() {
         return idRequest;
     }

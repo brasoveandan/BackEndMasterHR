@@ -15,7 +15,7 @@
         <property name="homeOfficeHours" type="float" column="homeOfficeHours"/>
         <property name="requiredHours" type="float" column="requiredHours"/>
         <property name="overtimeHours" type="float" column="overtimeHours"/>
-        <property name="totalOvertimeLeave" type="float" column="totalOvertimeLeave"/>
+        <property name="totalOvertimeHours" type="float" column="totalOvertimeHours"/>
     </class>
 
 </hibernate-mapping>

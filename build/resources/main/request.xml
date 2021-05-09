@@ -19,7 +19,7 @@
                 <param name="useNamed">true</param>
             </type>
         </property>
-        <property name="submittedDate" column="submittedDate"/>
+        <property name="submittedDate" type="org.hibernate.type.LocalDateType" column="submittedDate"/>
         <property name="idTimesheet" column="idTimesheet"/>
 
     </class>

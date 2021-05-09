@@ -10,8 +10,9 @@
         <id name="idClocking" column="idClocking"/>
         <property name="idTimesheet" column="idTimesheet"/>
         <property name="usernameEmployee" column="usernameEmployee"/>
-        <property name="fromHour" column="fromHour"/>
-        <property name="toHour" column="toHour"/>
+        <property name="fromHour" type="org.hibernate.type.LocalDateTimeType" column="fromHour"/>
+        <property name="toHour" type="org.hibernate.type.LocalDateTimeType" column="toHour"/>
+        <property name="reason" column="reason"/>
     </class>
 
 </hibernate-mapping>

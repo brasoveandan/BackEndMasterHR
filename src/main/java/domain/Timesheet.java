@@ -11,7 +11,7 @@ public class Timesheet {
     private float homeOfficeHours;
     private float requiredHours;
     private float overtimeHours;
-    private float totalOvertimeLeave;
+    private float totalOvertimeHours;
 
     public Timesheet() {
         //default constructor
@@ -81,12 +81,12 @@ public class Timesheet {
         this.overtimeHours = overtimeHours;
     }
 
-    public float getTotalOvertimeLeave() {
-        return totalOvertimeLeave;
+    public float getTotalOvertimeHours() {
+        return totalOvertimeHours;
     }
 
-    public void setTotalOvertimeLeave(float totalOvertimeLeave) {
-        this.totalOvertimeLeave = totalOvertimeLeave;
+    public void setTotalOvertimeHours(float totalOvertimeHours) {
+        this.totalOvertimeHours = totalOvertimeHours;
     }
 
     @Override
@@ -94,12 +94,12 @@ public class Timesheet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Timesheet timesheet = (Timesheet) o;
-        return year == timesheet.year && month == timesheet.month && Float.compare(timesheet.workedHours, workedHours) == 0 && Float.compare(timesheet.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(timesheet.requiredHours, requiredHours) == 0 && Float.compare(timesheet.overtimeHours, overtimeHours) == 0 && Float.compare(timesheet.totalOvertimeLeave, totalOvertimeLeave) == 0 && Objects.equals(idTimesheet, timesheet.idTimesheet) && Objects.equals(usernameEmployee, timesheet.usernameEmployee);
+        return year == timesheet.year && month == timesheet.month && Float.compare(timesheet.workedHours, workedHours) == 0 && Float.compare(timesheet.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(timesheet.requiredHours, requiredHours) == 0 && Float.compare(timesheet.overtimeHours, overtimeHours) == 0 && Float.compare(timesheet.totalOvertimeHours, totalOvertimeHours) == 0 && Objects.equals(idTimesheet, timesheet.idTimesheet) && Objects.equals(usernameEmployee, timesheet.usernameEmployee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idTimesheet, usernameEmployee, year, month, workedHours, homeOfficeHours, requiredHours, overtimeHours, totalOvertimeLeave);
+        return Objects.hash(idTimesheet, usernameEmployee, year, month, workedHours, homeOfficeHours, requiredHours, overtimeHours, totalOvertimeHours);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Timesheet {
                 ", homeOfficeHours=" + homeOfficeHours +
                 ", requiredHours=" + requiredHours +
                 ", overtimeHours=" + overtimeHours +
-                ", totalOvertimeLeave=" + totalOvertimeLeave +
+                ", totalOvertimeLeave=" + totalOvertimeHours +
                 '}';
     }
 }

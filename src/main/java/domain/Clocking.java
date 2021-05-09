@@ -1,5 +1,6 @@
 package domain;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -9,6 +10,8 @@ public class Clocking {
     private String usernameEmployee;
     private LocalDateTime fromHour;
     private LocalDateTime toHour;
+    private String reason;
+    private String type;
 
     public Clocking() {
         //default constructor
@@ -54,27 +57,45 @@ public class Clocking {
         this.toHour = toHour;
     }
 
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Clocking clocking = (Clocking) o;
-        return idClocking == clocking.idClocking && idTimesheet == clocking.idTimesheet && Objects.equals(usernameEmployee, clocking.usernameEmployee) && Objects.equals(fromHour, clocking.fromHour) && Objects.equals(toHour, clocking.toHour);
+        return Objects.equals(idClocking, clocking.idClocking) && Objects.equals(idTimesheet, clocking.idTimesheet) && Objects.equals(usernameEmployee, clocking.usernameEmployee) && Objects.equals(fromHour, clocking.fromHour) && Objects.equals(toHour, clocking.toHour) && Objects.equals(reason, clocking.reason) && Objects.equals(type, clocking.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idClocking, idTimesheet, usernameEmployee, fromHour, toHour);
+        return Objects.hash(idClocking, idTimesheet, usernameEmployee, fromHour, toHour, reason, type);
     }
 
     @Override
     public String toString() {
         return "Clocking{" +
-                "idClocking=" + idClocking +
-                ", idTimesheet=" + idTimesheet +
+                "idClocking='" + idClocking + '\'' +
+                ", idTimesheet='" + idTimesheet + '\'' +
                 ", usernameEmployee='" + usernameEmployee + '\'' +
                 ", fromHour=" + fromHour +
                 ", toHour=" + toHour +
+                ", reason='" + reason + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

@@ -17,6 +17,7 @@ public class Contract {
     private int overtimeIncreasePercent;
     private boolean taxExempt;
     private float ticketValue;
+    private int daysOff;
 
     public Contract() {
     }
@@ -109,17 +110,25 @@ public class Contract {
         this.ticketValue = ticketValue;
     }
 
+    public int getDaysOff() {
+        return daysOff;
+    }
+
+    public void setDaysOff(int daysOff) {
+        this.daysOff = daysOff;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contract contract = (Contract) o;
-        return Float.compare(contract.baseSalary, baseSalary) == 0 && overtimeIncreasePercent == contract.overtimeIncreasePercent && taxExempt == contract.taxExempt && Float.compare(contract.ticketValue, ticketValue) == 0 && Objects.equals(usernameEmployee, contract.usernameEmployee) && Objects.equals(companyName, contract.companyName) && Objects.equals(hireDate, contract.hireDate) && type == contract.type && Objects.equals(expirationDate, contract.expirationDate) && Objects.equals(department, contract.department) && Objects.equals(position, contract.position);
+        return Float.compare(contract.baseSalary, baseSalary) == 0 && overtimeIncreasePercent == contract.overtimeIncreasePercent && taxExempt == contract.taxExempt && Float.compare(contract.ticketValue, ticketValue) == 0 && daysOff == contract.daysOff && Objects.equals(usernameEmployee, contract.usernameEmployee) && Objects.equals(companyName, contract.companyName) && Objects.equals(hireDate, contract.hireDate) && type == contract.type && Objects.equals(expirationDate, contract.expirationDate) && Objects.equals(department, contract.department) && Objects.equals(position, contract.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usernameEmployee, companyName, baseSalary, hireDate, type, expirationDate, department, position, overtimeIncreasePercent, taxExempt, ticketValue);
+        return Objects.hash(usernameEmployee, companyName, baseSalary, hireDate, type, expirationDate, department, position, overtimeIncreasePercent, taxExempt, ticketValue, daysOff);
     }
 
     @Override
@@ -136,6 +145,7 @@ public class Contract {
                 ", overtimeIncreasePercent=" + overtimeIncreasePercent +
                 ", taxExempt=" + taxExempt +
                 ", ticketValue=" + ticketValue +
+                ", daysOff=" + daysOff +
                 '}';
     }
 }

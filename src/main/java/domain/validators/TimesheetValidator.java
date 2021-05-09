@@ -21,7 +21,7 @@ public class TimesheetValidator implements Validator<Timesheet> {
             message += "Numarul de ore lucrate prin telemunca nu poate fi negativ.";
         if (entity.getRequiredHours() < 0)
             message += "Numarul de ore necesare nu poate fi negativ.";
-        if (entity.getTotalOvertimeLeave() < 0)
+        if (entity.getTotalOvertimeHours() < 0)
             message += "Numarul de ore libere luate din orele suplimentare nu poate fi negativ.";
         if (!message.equals("")) {
             throw new Validator.ValidationException(message);
