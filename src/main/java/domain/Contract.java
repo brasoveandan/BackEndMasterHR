@@ -9,6 +9,7 @@ public class Contract {
     private String usernameEmployee;
     private String companyName;
     private float baseSalary;
+    private String currency;
     private LocalDate hireDate;
     private ContractType type;
     private LocalDate expirationDate;
@@ -44,6 +45,14 @@ public class Contract {
 
     public void setBaseSalary(float grossSalary) {
         this.baseSalary = grossSalary;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public LocalDate getHireDate() {
@@ -123,12 +132,12 @@ public class Contract {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contract contract = (Contract) o;
-        return Float.compare(contract.baseSalary, baseSalary) == 0 && overtimeIncreasePercent == contract.overtimeIncreasePercent && taxExempt == contract.taxExempt && Float.compare(contract.ticketValue, ticketValue) == 0 && daysOff == contract.daysOff && Objects.equals(usernameEmployee, contract.usernameEmployee) && Objects.equals(companyName, contract.companyName) && Objects.equals(hireDate, contract.hireDate) && type == contract.type && Objects.equals(expirationDate, contract.expirationDate) && Objects.equals(department, contract.department) && Objects.equals(position, contract.position);
+        return Float.compare(contract.baseSalary, baseSalary) == 0 && overtimeIncreasePercent == contract.overtimeIncreasePercent && taxExempt == contract.taxExempt && Float.compare(contract.ticketValue, ticketValue) == 0 && daysOff == contract.daysOff && Objects.equals(usernameEmployee, contract.usernameEmployee) && Objects.equals(companyName, contract.companyName) && Objects.equals(currency, contract.currency) && Objects.equals(hireDate, contract.hireDate) && type == contract.type && Objects.equals(expirationDate, contract.expirationDate) && Objects.equals(department, contract.department) && Objects.equals(position, contract.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(usernameEmployee, companyName, baseSalary, hireDate, type, expirationDate, department, position, overtimeIncreasePercent, taxExempt, ticketValue, daysOff);
+        return Objects.hash(usernameEmployee, companyName, baseSalary, currency, hireDate, type, expirationDate, department, position, overtimeIncreasePercent, taxExempt, ticketValue, daysOff);
     }
 
     @Override
@@ -137,6 +146,7 @@ public class Contract {
                 "usernameEmployee='" + usernameEmployee + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", baseSalary=" + baseSalary +
+                ", currency='" + currency + '\'' +
                 ", hireDate=" + hireDate +
                 ", type=" + type +
                 ", expirationDate=" + expirationDate +

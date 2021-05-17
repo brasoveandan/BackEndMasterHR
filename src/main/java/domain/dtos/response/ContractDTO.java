@@ -11,6 +11,7 @@ public class ContractDTO {
     private String socialSecurityNumber;
     private String companyName;
     private float baseSalary;
+    private String currency;
     private LocalDate hireDate;
     private String type;
     private LocalDate expirationDate;
@@ -88,6 +89,14 @@ public class ContractDTO {
 
     public void setBaseSalary(float baseSalary) {
         this.baseSalary = baseSalary;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public LocalDate getHireDate() {
@@ -189,6 +198,7 @@ public class ContractDTO {
                 ", socialSecurityNumber='" + socialSecurityNumber + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", baseSalary=" + baseSalary +
+                ", currency='" + currency + '\'' +
                 ", hireDate=" + hireDate +
                 ", type='" + type + '\'' +
                 ", expirationDate=" + expirationDate +

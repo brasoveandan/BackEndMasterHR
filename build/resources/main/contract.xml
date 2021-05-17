@@ -10,6 +10,7 @@
         <id name="usernameEmployee" column="usernameEmployee"/>
         <property name="companyName" column="companyName"/>
         <property name="baseSalary" type="float" column="baseSalary"/>
+        <property name="currency" column="currency"/>
         <property name="hireDate" column="hireDate"/>
         <property name="type" column="type">
             <type name="org.hibernate.type.EnumType">

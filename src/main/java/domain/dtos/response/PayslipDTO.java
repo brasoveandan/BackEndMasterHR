@@ -10,6 +10,7 @@ public class PayslipDTO {
     private String personalNumber;
     private String department;
     private String position;
+    private String currency;
     private float baseSalary;
     private float grossSalary;
     private float overtimeIncreases;
@@ -95,6 +96,14 @@ public class PayslipDTO {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public float getBaseSalary() {
@@ -221,6 +230,7 @@ public class PayslipDTO {
                 ", personalNumber='" + personalNumber + '\'' +
                 ", department='" + department + '\'' +
                 ", position='" + position + '\'' +
+                ", currency='" + currency + '\'' +
                 ", baseSalary=" + baseSalary +
                 ", grossSalary=" + grossSalary +
                 ", overtimeIncreases=" + overtimeIncreases +

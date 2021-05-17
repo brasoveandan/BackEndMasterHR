@@ -103,6 +103,7 @@ public class RestServices {
     @GetMapping("/employee")
     public ResponseEntity<List<Employee>> getEmployees() {
         List<Employee> list = employeeRepository.findAll();
+        list.sort(Comparator.comparing(Employee::getUsername));
         if (list.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(list, HttpStatus.OK);
@@ -165,6 +166,7 @@ public class RestServices {
             contractDTO.setDepartment(contract.getDepartment());
             contractDTO.setPosition(contract.getPosition());
             contractDTO.setBaseSalary(contract.getBaseSalary());
+            contractDTO.setCurrency(contract.getCurrency());
             contractDTO.setHireDate(contract.getHireDate());
             contractDTO.setTaxExempt(contract.isTaxExempt());
             contractDTO.setOvertimeIncreasePercent(contract.getOvertimeIncreasePercent());
@@ -356,6 +358,7 @@ public class RestServices {
         payslipDTO.setPosition(contract.getPosition());
         payslipDTO.setTaxExempt(contract.isTaxExempt());
         payslipDTO.setBaseSalary(contract.getBaseSalary());
+        payslipDTO.setCurrency(contract.getCurrency());
 
         Employee employee = employeeRepository.findOne(payslip.getUsernameEmployee());
         payslipDTO.setFirstName(employee.getFirstName());
@@ -379,6 +382,7 @@ public class RestServices {
         List<Payslip> list = payslipRepository.findAll();
         if (list.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        list.sort(Comparator.comparing(Payslip::getIdPayslip).reversed());
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
