@@ -6,7 +6,6 @@
 <hibernate-configuration>
     <session-factory>
         <property name="dialect">utils.SQLiteDialect</property>
-
         <property name="connection.driver_class">org.sqlite.JDBC</property>
         <property name="connection.url">jdbc:sqlite:D:\Facultate\Anul III\BackEndMasterHR\DatabaseMasterHR</property>
         <property name="hibernate.jdbc.time_zone">Europe/Bucharest</property>
@@ -27,6 +26,5 @@
         <mapping resource="holiday.xml"/>
         <mapping resource="timesheet.xml"/>
         <mapping resource="clocking.xml"/>
-
     </session-factory>
 </hibernate-configuration>

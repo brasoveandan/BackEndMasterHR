@@ -5,7 +5,6 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-
     <class name="domain.Contract" table="Contract">
         <id name="usernameEmployee" column="usernameEmployee"/>
         <property name="companyName" column="companyName"/>
@@ -27,5 +26,4 @@
         <property name="ticketValue" column="ticketValue"/>
         <property name="daysOff" column="daysOff"/>
     </class>
-
 </hibernate-mapping>

@@ -32,8 +32,8 @@ public class EmployeeValidator implements Validator<Employee> {
         }
         if (employee.getAdminRole() != null && !employee.getAdminRole().toString().equals("GROUP_LEADER") &&
                 !employee.getAdminRole().toString().equals("HR_EMPLOYEE") &&
-                !employee.getAdminRole().toString().equals("HR_RESPONSIVE_DEPARTMENT"))
-            message += "Rolul trebuie sa fie ADMIN, GROUP_LEADER, HR_EMPLOYEE sau HR_RESPONSIVE_DEPARTMENT.";
+                !employee.getAdminRole().toString().equals("DEFAULT"))
+            message += "Rolul trebuie sa fie ADMIN, GROUP_LEADER, HR_EMPLOYEE sau DEFAULT.";
         if (employee.getFirstName() == null || employee.getFirstName().equals("")) {
             message += "Prenumele nu poate fi vid.\n";
         }

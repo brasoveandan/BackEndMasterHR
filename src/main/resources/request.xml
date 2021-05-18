@@ -5,7 +5,6 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-
     <class name="domain.Request" table="Request">
         <id name="idRequest" column="idRequest">
             <generator class="identity" />
@@ -19,9 +18,8 @@
                 <param name="useNamed">true</param>
             </type>
         </property>
-        <property name="submittedDate" type="org.hibernate.type.LocalDateType" column="submittedDate"/>
+        <property name="submittedDate" type="org.hibernate.type.LocalDateType"
+                  column="submittedDate"/>
         <property name="idTimesheet" column="idTimesheet"/>
-
     </class>
-
 </hibernate-mapping>

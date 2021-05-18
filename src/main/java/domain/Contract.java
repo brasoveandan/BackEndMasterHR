@@ -21,6 +21,7 @@ public class Contract {
     private int daysOff;
 
     public Contract() {
+        //do nothing
     }
 
     public String getUsernameEmployee() {

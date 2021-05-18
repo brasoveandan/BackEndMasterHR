@@ -1311,7 +1311,7 @@
 											"top": 566.5,
 											"width": 177,
 											"height": 13,
-											"text": "View all timesheet details"
+											"text": "View timesheet details"
 										},
 										{
 											"_type": "LabelView",
@@ -2140,7 +2140,7 @@
 									"font": "Arial;13;0",
 									"left": 769.5,
 									"top": 499.5,
-									"width": 160.28076171875,
+									"width": 159,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N5Gc5tEggCo="
@@ -2306,7 +2306,7 @@
 											"top": 694.5,
 											"width": 124,
 											"height": 13,
-											"text": "Search all clockings"
+											"text": "Search clockings"
 										},
 										{
 											"_type": "LabelView",
@@ -2339,7 +2339,7 @@
 									"font": "Arial;13;0",
 									"left": 772,
 									"top": 687.5,
-									"width": 135.00439453125,
+									"width": 134,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N5H/YNF+hZk="
@@ -9428,7 +9428,7 @@
 											"top": 510.5,
 											"width": 177,
 											"height": 13,
-											"text": "View all timesheet details"
+											"text": "View timesheet details"
 										},
 										{
 											"_type": "LabelView",
@@ -10257,7 +10257,7 @@
 									"font": "Arial;13;0",
 									"left": 769.5,
 									"top": 475.5,
-									"width": 160.28076171875,
+									"width": 159,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N944JfeHnsI="
@@ -10423,7 +10423,7 @@
 											"top": 622.5,
 											"width": 124,
 											"height": 13,
-											"text": "Search all clockings"
+											"text": "Search clockings"
 										},
 										{
 											"_type": "LabelView",
@@ -10456,7 +10456,7 @@
 									"font": "Arial;13;0",
 									"left": 844,
 									"top": 615.5,
-									"width": 135.00439453125,
+									"width": 134,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N944JfeSkX0="
@@ -13730,7 +13730,7 @@
 									"font": "Arial;13;0",
 									"left": 661.5,
 									"top": 612.5,
-									"width": 103.919921875,
+									"width": 103,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N+Akfg7pySY="
@@ -13929,7 +13929,7 @@
 									"font": "Arial;13;0",
 									"left": 654.5,
 									"top": 676.5,
-									"width": 106.814453125,
+									"width": 106,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N+DvGhAodY0="
@@ -17779,7 +17779,7 @@
 											"top": 566.5,
 											"width": 177,
 											"height": 13,
-											"text": "View all timesheet details"
+											"text": "View timesheet details"
 										},
 										{
 											"_type": "LabelView",
@@ -18608,7 +18608,7 @@
 									"font": "Arial;13;0",
 									"left": 769.5,
 									"top": 499.5,
-									"width": 160.28076171875,
+									"width": 159,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N+JP3iL42VE="
@@ -18774,7 +18774,7 @@
 											"top": 678.5,
 											"width": 124,
 											"height": 13,
-											"text": "Search all clockings"
+											"text": "Search clockings"
 										},
 										{
 											"_type": "LabelView",
@@ -18807,7 +18807,7 @@
 									"font": "Arial;13;0",
 									"left": 668,
 									"top": 671.5,
-									"width": 135.00439453125,
+									"width": 134,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N+JP3iMDSM4="
@@ -21879,7 +21879,7 @@
 									"font": "Arial;13;0",
 									"left": 892,
 									"top": 667.5,
-									"width": 212.25537109375,
+									"width": 212,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N+P4cixsiXI="
@@ -26534,7 +26534,7 @@
 									"font": "Arial;13;0",
 									"left": 408,
 									"top": 396.5,
-									"width": 153.03173828125,
+									"width": 152,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N/uXedXlNXQ="
@@ -26730,7 +26730,7 @@
 									"font": "Arial;13;0",
 									"left": 698.5,
 									"top": 500.5,
-									"width": 88.7236328125,
+									"width": 88,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N/vHlNeTpCo="
@@ -27019,7 +27019,7 @@
 									"font": "Arial;13;0",
 									"left": 774.5,
 									"top": 404.5,
-									"width": 107.5126953125,
+									"width": 107,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N/vQ5df87uw="
@@ -27313,7 +27313,7 @@
 									"font": "Arial;13;0",
 									"left": 693.5,
 									"top": 292.5,
-									"width": 102.47265625,
+									"width": 101,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5N/vZ5Nhl3L0="
@@ -28145,7 +28145,7 @@
 									"font": "Arial;13;0",
 									"left": 429,
 									"top": 532.5,
-									"width": 100.0732421875,
+									"width": 99,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5OACQueBmQ7A="
@@ -28882,7 +28882,7 @@
 									"font": "Arial;13;0",
 									"left": 630.5,
 									"top": 588.5,
-									"width": 106.814453125,
+									"width": 106,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF5OADaF+PXtQc="
@@ -46182,12 +46182,12 @@
 										"$ref": "AAAAAAF4LBlzEi25IwU="
 									},
 									"font": "Arial;13;0",
-									"left": 1075,
+									"left": 1096,
 									"top": 522,
 									"width": 61.05810546875,
 									"height": 13,
-									"alpha": -0.711459320500015,
-									"distance": 41.182520563948,
+									"alpha": 5.074098226365462,
+									"distance": 40.607881008493905,
 									"hostEdge": {
 										"$ref": "AAAAAAF4LBlzEi27l68="
 									},

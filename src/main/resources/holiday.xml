@@ -5,7 +5,6 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-
     <class name="domain.Holiday" table="Holiday">
         <id name="idHoliday" column="idHoliday"/>
         <property name="usernameEmployee" column="usernameEmployee"/>
@@ -23,5 +22,4 @@
         </property>
         <property name="proxyUsername" column="proxyUsername"/>
     </class>
-
 </hibernate-mapping>
