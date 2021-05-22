@@ -3,12 +3,30 @@ package domain.dtos.response;
 import java.time.LocalDate;
 
 public class HolidayDTO {
+    private int idRequest;
+    private String user;
     private LocalDate fromDate;
     private LocalDate toDate;
     private int numberOfDays;
     private String type;
     private String proxyUsername;
     private String status;
+
+    public int getIdRequest() {
+        return idRequest;
+    }
+
+    public void setIdRequest(int idRequest) {
+        this.idRequest = idRequest;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public LocalDate getFromDate() {
         return fromDate;
@@ -58,12 +76,12 @@ public class HolidayDTO {
         this.status = status;
     }
 
-
-
     @Override
     public String toString() {
         return "HolidayDTO{" +
-                "fromDate=" + fromDate +
+                "idRequest=" + idRequest +
+                ", user='" + user + '\'' +
+                ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
                 ", numberOfDays=" + numberOfDays +
                 ", type='" + type + '\'' +

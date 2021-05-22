@@ -1,6 +1,8 @@
 package utils;
 
-import domain.enums.AdminRole;
+import domain.Contract;
+import domain.Employee;
+import domain.dtos.response.ContractDTO;
 import domain.enums.ContractType;
 import domain.enums.HolidayType;
 import domain.enums.RequestStatus;
@@ -82,5 +84,37 @@ public class Utils {
             default:
                 return ContractType.FULL_TIME_8;
         }
+    }
+
+    public static Contract contractDTOToContract(ContractDTO contractDTO) {
+        Contract contract = new Contract();
+        contract.setUsernameEmployee(contractDTO.getUsername());
+        contract.setCompanyName(contractDTO.getCompanyName());
+        contract.setBaseSalary(contractDTO.getBaseSalary());
+        contract.setCurrency(contractDTO.getCurrency());
+        contract.setHireDate(contractDTO.getHireDate());
+        contract.setType(Utils.stringToContractType(contractDTO.getType()));
+        contract.setExpirationDate(contractDTO.getExpirationDate());
+        contract.setDepartment(contractDTO.getDepartment());
+        contract.setPosition(contractDTO.getPosition());
+        contract.setOvertimeIncreasePercent(contractDTO.getOvertimeIncreasePercent());
+        contract.setTaxExempt(contractDTO.isTaxExempt());
+        contract.setDaysOff(contractDTO.getDaysOff());
+        contract.setTicketValue(contractDTO.getTicketValue());
+        return contract;
+    }
+
+    public static Employee contractDTOToEmployee(ContractDTO contractDTO, Employee employee) {
+        employee.setPersonalNumber(contractDTO.getPersonalNumber());
+        employee.setFirstName(contractDTO.getFirstName());
+        employee.setLastName(contractDTO.getLastName());
+        employee.setMail(contractDTO.getMail());
+        employee.setPhoneNumber(contractDTO.getPhoneNumber());
+        employee.setSocialSecurityNumber(contractDTO.getSocialSecurityNumber());
+        employee.setBirthday(contractDTO.getBirthday());
+        employee.setGender(contractDTO.getGender());
+        employee.setBankName(contractDTO.getBankName());
+        employee.setBankAccountNumber(contractDTO.getBankAccountNumber());
+        return employee;
     }
 }

@@ -11,6 +11,7 @@ import domain.validators.Validator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.sqlite.SQLiteException;
 import repository.*;
 import utils.Utils;
 
@@ -112,15 +113,35 @@ public class RestServices {
 
     //ContractServices
     @PostMapping("/contract")
-    public ResponseEntity<String> saveContract(@RequestBody Contract contract) {
-        Contract contract1;
+    public ResponseEntity<String> saveContract(@RequestBody ContractDTO contractDTO) {
+        Employee employeeReturned;
+        Employee employee = employeeRepository.findOne(contractDTO.getUsername());
+        employee.setPersonalNumber(employee.getPersonalNumber());
+        employee.setFirstName(contractDTO.getFirstName());
+        employee.setLastName(contractDTO.getLastName());
+        employee.setMail(contractDTO.getMail());
+        employee.setPhoneNumber(contractDTO.getPhoneNumber());
+        employee.setSocialSecurityNumber(contractDTO.getSocialSecurityNumber());
+        employee.setBirthday(contractDTO.getBirthday());
+        employee.setGender(contractDTO.getGender());
+        employee.setBankName(contractDTO.getBankName());
+        employee.setBankAccountNumber(contractDTO.getBankAccountNumber());
         try {
-            contract1 = contractRepository.save(contract);
+            employeeReturned = employeeRepository.update(employee);
         } catch (Validator.ValidationException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
-        if (contract1 == null)
-            return new ResponseEntity<>(HttpStatus.OK);
+        if (employeeReturned == null) {
+            Contract contractReturned;
+            Contract contract = Utils.contractDTOToContract(contractDTO);
+            try {
+                contractReturned = contractRepository.save(contract);
+            } catch (Validator.ValidationException exception) {
+                return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+            }
+            if (contractReturned == null)
+                return new ResponseEntity<>(HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
@@ -133,15 +154,25 @@ public class RestServices {
     }
 
     @PutMapping("/contract")
-    public ResponseEntity<String> updateContract(@RequestBody Contract contract) {
-        Contract contractReturned;
+    public ResponseEntity<String> updateContract(@RequestBody ContractDTO contractDTO) {
+        Employee employeeReturned;
+        Employee employee = Utils.contractDTOToEmployee(contractDTO, employeeRepository.findOne(contractDTO.getUsername()));
         try {
-            contractReturned = contractRepository.update(contract);
+            employeeReturned = employeeRepository.update(employee);
         } catch (Validator.ValidationException exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
-        if (contractReturned == null)
-            return new ResponseEntity<>(HttpStatus.OK);
+        if (employeeReturned == null) {
+            Contract contractReturned;
+            Contract contract = Utils.contractDTOToContract(contractDTO);
+            try {
+                contractReturned = contractRepository.update(contract);
+            } catch (Validator.ValidationException exception) {
+                return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+            }
+            if (contractReturned == null)
+                return new ResponseEntity<>(HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
@@ -149,43 +180,35 @@ public class RestServices {
     public ResponseEntity<ContractDTO> findOneContract(@PathVariable String usernameEmployee) {
         Employee employee = employeeRepository.findOne(usernameEmployee);
         Contract contract = contractRepository.findOne(usernameEmployee);
-        ContractDTO contractDTO = new ContractDTO();
         if (contract != null) {
-            contractDTO.setLastName(employee.getLastName());
-            contractDTO.setFirstName(employee.getFirstName());
-            contractDTO.setPersonalNumber(employee.getPersonalNumber());
-            contractDTO.setMail(employee.getMail());
-            contractDTO.setPhoneNumber(employee.getPhoneNumber());
-            contractDTO.setSocialSecurityNumber(employee.getSocialSecurityNumber());
-            contractDTO.setBirthday(employee.getBirthday());
-            contractDTO.setGender(employee.getGender());
-            contractDTO.setBankName(employee.getBankName());
-            contractDTO.setBankAccountNumber(employee.getBankAccountNumber());
-            contractDTO.setCompanyName(contract.getCompanyName());
-            contractDTO.setDepartment(contract.getDepartment());
-            contractDTO.setPosition(contract.getPosition());
-            contractDTO.setBaseSalary(contract.getBaseSalary());
-            contractDTO.setCurrency(contract.getCurrency());
-            contractDTO.setHireDate(contract.getHireDate());
-            contractDTO.setTaxExempt(contract.isTaxExempt());
-            contractDTO.setOvertimeIncreasePercent(contract.getOvertimeIncreasePercent());
-            contractDTO.setExpirationDate(contract.getExpirationDate());
-            if (contract.getType() == ContractType.FULL_TIME_8)
-                contractDTO.setType("Permanent");
-            if (contract.getType() == ContractType.PART_TIME_6)
-                contractDTO.setType("Student 6 ore");
-            if (contract.getType() == ContractType.PART_TIME_4)
-                contractDTO.setType("Student 4 ore");
+            ContractDTO contractDTO = new ContractDTO(employee.getLastName(), employee.getFirstName(), employee.getPersonalNumber(),
+                    employee.getMail(), employee.getPhoneNumber(), employee.getSocialSecurityNumber(), contract.getCompanyName(), contract.getBaseSalary(), contract.getCurrency(), contract.getHireDate(),
+                    contract.getExpirationDate(), contract.getDepartment(), contract.getPosition(),
+                    employee.getBirthday(), employee.getGender(), employee.getBankName(), employee.getBankAccountNumber(),
+                    contract.getOvertimeIncreasePercent(), contract.isTaxExempt(), contract.getTicketValue(), contract.getDaysOff());
+            contractDTO.setType(Utils.contractTypeToString(contract.getType()));
             return new ResponseEntity<>(contractDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/contract")
-    public ResponseEntity<List<Contract>> getContracts() {
-        List<Contract> list = contractRepository.findAll();
+    public ResponseEntity<List<ContractDTO>> getContracts() {
+        List<ContractDTO> list = new ArrayList<>();
+        contractRepository.findAll().forEach(contract -> {
+            Employee employee = employeeRepository.findOne(contract.getUsernameEmployee());
+            ContractDTO contractDTO = new ContractDTO(employee.getLastName(), employee.getFirstName(), employee.getPersonalNumber(),
+                    employee.getMail(), employee.getPhoneNumber(), employee.getSocialSecurityNumber(), contract.getCompanyName(), contract.getBaseSalary(),
+                    contract.getCurrency(), contract.getHireDate(), contract.getExpirationDate(), contract.getDepartment(), contract.getPosition(),
+                    employee.getBirthday(), employee.getGender(), employee.getBankName(), employee.getBankAccountNumber(),
+                    contract.getOvertimeIncreasePercent(), contract.isTaxExempt(), contract.getTicketValue(), contract.getDaysOff());
+            contractDTO.setUsername(employee.getUsername());
+            contractDTO.setType(Utils.contractTypeToString(contract.getType()));
+            list.add(contractDTO);
+        });
         if (list.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        list.sort(Comparator.comparing(ContractDTO::getUsername).thenComparing(ContractDTO::getPersonalNumber));
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
@@ -261,6 +284,9 @@ public class RestServices {
     @PutMapping("/request")
     public ResponseEntity<String> updateRequest(@RequestBody Request request) {
         Request requestReturned;
+        RequestStatus requestStatus = request.getStatus();
+        request = requestRepository.findOne(String.valueOf(request.getIdRequest()));
+        request.setStatus(requestStatus);
         try {
             requestReturned = requestRepository.update(request);
         } catch (Validator.ValidationException exception) {
@@ -293,96 +319,6 @@ public class RestServices {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         requestDTOList.sort(Comparator.comparing(RequestDTO::getSubmittedDate).reversed());
         return new ResponseEntity<>(requestDTOList, HttpStatus.OK);
-    }
-
-
-
-    //PayslipServices
-    @PostMapping("/payslip")
-    public ResponseEntity<String> savePayslip(@RequestBody Payslip payslip) {
-        Payslip payslipReturned;
-        payslip.setIdPayslip(payslip.getUsernameEmployee() + payslip.getYear() + payslip.getMonth());
-        try {
-            payslipReturned = payslipRepository.save(payslip);
-        } catch (Validator.ValidationException exception) {
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
-        }
-        if (payslipReturned == null)
-            return new ResponseEntity<>(HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.CONFLICT);
-    }
-
-    @DeleteMapping("payslip/{idPayslip}")
-    public ResponseEntity<String> deletePayslip(@PathVariable String idPayslip) {
-        Payslip payslip = payslipRepository.delete(idPayslip);
-        if (payslip == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PutMapping("/payslip")
-    public ResponseEntity<String> updatePayslip(@RequestBody Payslip payslip) {
-        Payslip payslipReturned;
-        try {
-            payslipReturned = payslipRepository.update(payslip);
-        } catch (Validator.ValidationException exception) {
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
-        }
-        if (payslipReturned == null)
-            return new ResponseEntity<>(HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.CONFLICT);
-    }
-
-    @GetMapping("/payslip/{idPayslip}")
-    public ResponseEntity<PayslipDTO> findOnePayslip(@PathVariable String idPayslip) {
-        PayslipDTO payslipDTO = new PayslipDTO();
-        Payslip payslip = payslipRepository.findOne(idPayslip);
-        payslipDTO.setYear(payslip.getYear());
-        payslipDTO.setMonth(payslip.getMonth());
-        payslipDTO.setIdPayslip(payslip.getIdPayslip());
-        payslipDTO.setGrossSalary(payslip.getGrossSalary());
-        payslipDTO.setWorkedHours(payslip.getWorkedHours());
-        payslipDTO.setHomeOfficeHours(payslip.getHomeOfficeHours());
-        payslipDTO.setRequiredHours(payslip.getRequiredHours());
-        payslipDTO.setNetSalary(payslip.getNetSalary());
-        payslipDTO.setIncreases(payslip.getIncreases());
-        payslipDTO.setOvertimeIncreases(payslip.getOvertimeIncreases());
-        payslipDTO.setTicketsValue(payslip.getTicketsValue());
-        payslipDTO.setOvertimeHours(payslip.getWorkedHours() + payslip.getHomeOfficeHours() - payslip.getRequiredHours());
-
-
-        Contract contract = contractRepository.findOne(payslip.getUsernameEmployee());
-        payslipDTO.setCompanyName(contract.getCompanyName());
-        payslipDTO.setDepartment(contract.getDepartment());
-        payslipDTO.setPosition(contract.getPosition());
-        payslipDTO.setTaxExempt(contract.isTaxExempt());
-        payslipDTO.setBaseSalary(contract.getBaseSalary());
-        payslipDTO.setCurrency(contract.getCurrency());
-
-        Employee employee = employeeRepository.findOne(payslip.getUsernameEmployee());
-        payslipDTO.setFirstName(employee.getFirstName());
-        payslipDTO.setLastName(employee.getLastName());
-        payslipDTO.setPersonalNumber(employee.getPersonalNumber());
-
-
-        //calculate taxes
-        float total = payslip.getGrossSalary() + payslip.getTicketsValue();
-        payslipDTO.setCAS(25 *  total / 100);
-        payslipDTO.setCASS(10 * total / 100);
-        payslipDTO.setIV(10 *  total / 100);
-
-        if (payslip != null)
-            return new ResponseEntity<>(payslipDTO, HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/payslip")
-    public ResponseEntity<List<Payslip>> getPayslips() {
-        List<Payslip> list = payslipRepository.findAll();
-        if (list.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        list.sort(Comparator.comparing(Payslip::getIdPayslip).reversed());
-        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 
@@ -478,6 +414,123 @@ public class RestServices {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         holidayDTOList.sort(Comparator.comparing(HolidayDTO::getFromDate).reversed());
         return new ResponseEntity<>(holidayDTOList, HttpStatus.OK);
+    }
+
+    @GetMapping("/holidayRequest/{usernameEmployee}")
+    public ResponseEntity<List<HolidayDTO>> getAllHolidayRequests(@PathVariable String usernameEmployee) {
+        List<HolidayDTO> holidayDTOList = new ArrayList<>();
+        String department = contractRepository.findOne(usernameEmployee).getDepartment();
+        holidayRepository.findAll().forEach(holiday -> {
+            if (contractRepository.findOne(holiday.getUsernameEmployee()).getDepartment().equals(department)) {
+                HolidayDTO holidayDTO = new HolidayDTO();
+                holidayDTO.setIdRequest(holiday.getIdRequest());
+                holidayDTO.setUser(holiday.getUsernameEmployee());
+                holidayDTO.setFromDate(holiday.getFromDate());
+                holidayDTO.setToDate(holiday.getToDate());
+                holidayDTO.setNumberOfDays((int) DAYS.between(holiday.getFromDate(), holiday.getToDate()));
+                holidayDTO.setProxyUsername(holiday.getProxyUsername());
+                holidayDTO.setType(Utils.holidayTypeToString(holiday.getType()));
+                if (holiday.getIdRequest() != null)
+                    holidayDTO.setStatus(Utils.requestStatusToString(requestRepository.
+                            findOne(String.valueOf(holiday.getIdRequest())).getStatus()));
+                if (holiday.getType() == HolidayType.MEDICAL) {
+                    holidayDTO.setStatus("ACCEPTATĂ");
+                }
+                holidayDTOList.add(holidayDTO);
+            }
+        });
+        if (holidayDTOList.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        holidayDTOList.sort(Comparator.comparing(HolidayDTO::getFromDate).reversed().thenComparing(HolidayDTO::getStatus));
+        return new ResponseEntity<>(holidayDTOList, HttpStatus.OK);
+    }
+
+
+
+    //PayslipServices
+    @PostMapping("/payslip")
+    public ResponseEntity<String> savePayslip(@RequestBody Payslip payslip) {
+        Payslip payslipReturned;
+        payslip.setIdPayslip(payslip.getUsernameEmployee() + payslip.getYear() + payslip.getMonth());
+        try {
+            payslipReturned = payslipRepository.save(payslip);
+        } catch (Validator.ValidationException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
+        if (payslipReturned == null)
+            return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
+
+    @DeleteMapping("payslip/{idPayslip}")
+    public ResponseEntity<String> deletePayslip(@PathVariable String idPayslip) {
+        Payslip payslip = payslipRepository.delete(idPayslip);
+        if (payslip == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/payslip")
+    public ResponseEntity<String> updatePayslip(@RequestBody Payslip payslip) {
+        Payslip payslipReturned;
+        try {
+            payslipReturned = payslipRepository.update(payslip);
+        } catch (Validator.ValidationException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
+        if (payslipReturned == null)
+            return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
+
+    @GetMapping("/payslip/{idPayslip}")
+    public ResponseEntity<PayslipDTO> findOnePayslip(@PathVariable String idPayslip) {
+        PayslipDTO payslipDTO = new PayslipDTO();
+        Payslip payslip = payslipRepository.findOne(idPayslip);
+        if (payslip != null) {
+            payslipDTO.setYear(payslip.getYear());
+            payslipDTO.setMonth(payslip.getMonth());
+            payslipDTO.setIdPayslip(payslip.getIdPayslip());
+            payslipDTO.setGrossSalary(payslip.getGrossSalary());
+            payslipDTO.setWorkedHours(payslip.getWorkedHours());
+            payslipDTO.setHomeOfficeHours(payslip.getHomeOfficeHours());
+            payslipDTO.setRequiredHours(payslip.getRequiredHours());
+            payslipDTO.setNetSalary(payslip.getNetSalary());
+            payslipDTO.setIncreases(payslip.getIncreases());
+            payslipDTO.setOvertimeIncreases(payslip.getOvertimeIncreases());
+            payslipDTO.setTicketsValue(payslip.getTicketsValue());
+            payslipDTO.setOvertimeHours(payslip.getWorkedHours() + payslip.getHomeOfficeHours() - payslip.getRequiredHours());
+
+            Contract contract = contractRepository.findOne(payslip.getUsernameEmployee());
+            payslipDTO.setCompanyName(contract.getCompanyName());
+            payslipDTO.setDepartment(contract.getDepartment());
+            payslipDTO.setPosition(contract.getPosition());
+            payslipDTO.setTaxExempt(contract.isTaxExempt());
+            payslipDTO.setBaseSalary(contract.getBaseSalary());
+            payslipDTO.setCurrency(contract.getCurrency());
+
+            Employee employee = employeeRepository.findOne(payslip.getUsernameEmployee());
+            payslipDTO.setFirstName(employee.getFirstName());
+            payslipDTO.setLastName(employee.getLastName());
+            payslipDTO.setPersonalNumber(employee.getPersonalNumber());
+
+            //calculate taxes
+            float total = payslip.getGrossSalary() + payslip.getTicketsValue();
+            payslipDTO.setCAS(25 *  total / 100);
+            payslipDTO.setCASS(10 * total / 100);
+            payslipDTO.setIV(10 *  total / 100);
+            return new ResponseEntity<>(payslipDTO, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/payslip")
+    public ResponseEntity<List<Payslip>> getPayslips() {
+        List<Payslip> list = payslipRepository.findAll();
+        if (list.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        list.sort(Comparator.comparing(Payslip::getIdPayslip).reversed());
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 

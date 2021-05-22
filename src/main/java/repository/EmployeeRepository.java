@@ -23,7 +23,7 @@ public class EmployeeRepository implements CrudRepository<String, Employee> {
         if (entity == null)
             throw new IllegalArgumentException();
         try {
-            employeeValidator.validate(entity);
+            employeeValidator.validateForAdmin(entity);
         } catch (Validator.ValidationException exception) {
             throw new Validator.ValidationException(exception.getMessage());
         }

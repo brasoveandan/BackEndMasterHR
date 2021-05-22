@@ -3,6 +3,7 @@ package domain.dtos.response;
 import java.time.LocalDate;
 
 public class ContractDTO {
+    private String username;
     private String firstName;
     private String lastName;
     private String personalNumber;
@@ -23,8 +24,45 @@ public class ContractDTO {
     private String bankAccountNumber;
     private int overtimeIncreasePercent;
     private boolean taxExempt;
+    private float ticketValue;
+    private int daysOff;
 
     public ContractDTO() {
+    }
+
+    public ContractDTO(String firstName, String lastName, String personalNumber, String mail, String phoneNumber, String socialSecurityNumber,
+                       String companyName, float baseSalary, String currency, LocalDate hireDate, LocalDate expirationDate, String department,
+                       String position, String birthday, String gender, String bankName, String bankAccountNumber, int overtimeIncreasePercent,
+                       boolean taxExempt, float ticketValue, int daysOff) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.personalNumber = personalNumber;
+        this.mail = mail;
+        this.phoneNumber = phoneNumber;
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.companyName = companyName;
+        this.baseSalary = baseSalary;
+        this.currency = currency;
+        this.hireDate = hireDate;
+        this.expirationDate = expirationDate;
+        this.department = department;
+        this.position = position;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.bankName = bankName;
+        this.bankAccountNumber = bankAccountNumber;
+        this.overtimeIncreasePercent = overtimeIncreasePercent;
+        this.taxExempt = taxExempt;
+        this.ticketValue = ticketValue;
+        this.daysOff = daysOff;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -187,10 +225,27 @@ public class ContractDTO {
         this.taxExempt = taxExempt;
     }
 
+    public float getTicketValue() {
+        return ticketValue;
+    }
+
+    public void setTicketValue(float ticketValue) {
+        this.ticketValue = ticketValue;
+    }
+
+    public int getDaysOff() {
+        return daysOff;
+    }
+
+    public void setDaysOff(int daysOff) {
+        this.daysOff = daysOff;
+    }
+
     @Override
     public String toString() {
         return "ContractDTO{" +
-                "firstName='" + firstName + '\'' +
+                "username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", personalNumber='" + personalNumber + '\'' +
                 ", mail='" + mail + '\'' +
@@ -210,6 +265,8 @@ public class ContractDTO {
                 ", bankAccountNumber='" + bankAccountNumber + '\'' +
                 ", overtimeIncreasePercent=" + overtimeIncreasePercent +
                 ", taxExempt=" + taxExempt +
+                ", ticketValue=" + ticketValue +
+                ", daysOff=" + daysOff +
                 '}';
     }
 }

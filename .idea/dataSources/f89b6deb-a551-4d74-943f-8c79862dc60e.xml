@@ -1512,12 +1512,10 @@
     <column id="531" parent="172" name="phoneNumber">
       <Position>8</Position>
       <DataType>varchar(10)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="532" parent="172" name="socialSecurityNumber">
       <Position>9</Position>
       <DataType>varchar(13)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="533" parent="172" name="birthday">
       <Position>10</Position>

@@ -18,6 +18,35 @@ public class EmployeeValidator implements Validator<Employee> {
         return pat.matcher(email).matches();
     }
 
+    public void validateForAdmin(Employee employee) throws ValidationException {
+        String message = "";
+        if (employee.getUsername() == null || employee.getUsername().equals("")) {
+            message += "Nume de utilizator invalid.\n";
+        }
+        if (employee.getPassword() == null || employee.getPassword().equals("")) {
+            message += "Parola invalida.\n";
+        }
+        if (employee.getPersonalNumber() == null || employee.getPersonalNumber().length() != 10) {
+            message += "Cod numeric invalid.\n";
+        }
+        if (employee.getAdminRole() != null && !employee.getAdminRole().toString().equals("GROUP_LEADER") &&
+                !employee.getAdminRole().toString().equals("HR_EMPLOYEE") &&
+                !employee.getAdminRole().toString().equals("DEFAULT"))
+            message += "Rolul trebuie sa fie ADMIN, GROUP_LEADER, HR_EMPLOYEE sau DEFAULT.";
+        if (employee.getFirstName() == null || employee.getFirstName().equals("")) {
+            message += "Prenumele nu poate fi vid.\n";
+        }
+        if (employee.getLastName() == null || employee.getLastName().equals("")) {
+            message += "Numele nu poate fi vid.\n";
+        }
+        if (!mailValidation(employee.getMail())) {
+            message += "E-mail invalid.\n";
+        }
+        if (!message.equals("")) {
+            throw new Validator.ValidationException(message);
+        }
+    }
+
     @Override
     public void validate(Employee employee) throws ValidationException {
         String message="";

@@ -14,8 +14,8 @@ public class ContractValidator implements Validator<Contract> {
             message += "Salariul este invalid.";
         if (entity.getHireDate() == null)
             message += "Data de angajare invalida.";
-        if (!entity.getType().toString().equals("FULL_TIME") && !entity.getType().toString().equals("PART_TIME_6") && !entity.getType().toString().equals("PART_TIME_4"))
-            message += "Rolul trebuie sa fie FULL_TIME, PART_TIME_6 sau PART_TIME_4.";
+        if (!entity.getType().toString().equals("FULL_TIME_8") && !entity.getType().toString().equals("PART_TIME_6") && !entity.getType().toString().equals("PART_TIME_4"))
+            message += "Tipul contractului trebuie sa fie FULL_TIME_8, PART_TIME_6 sau PART_TIME_4.";
         if (entity.getExpirationDate() != null && entity.getHireDate() != null && entity.getHireDate().isAfter(entity.getExpirationDate()))
             message += "Data de angajare trebuie sa fie inainte datei de expirare a contractului.";
         if (entity.getDepartment() == null || entity.getDepartment().equals(""))
