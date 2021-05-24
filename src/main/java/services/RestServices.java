@@ -4,14 +4,13 @@ import domain.*;
 import domain.dtos.request.RequestDTO;
 import domain.dtos.request.RequestHolidayDTO;
 import domain.dtos.response.*;
-import domain.enums.ContractType;
+import domain.enums.AdminRole;
 import domain.enums.HolidayType;
 import domain.enums.RequestStatus;
 import domain.validators.Validator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.sqlite.SQLiteException;
 import repository.*;
 import utils.Utils;
 
@@ -102,7 +101,11 @@ public class RestServices {
 
     @GetMapping("/employee")
     public ResponseEntity<List<Employee>> getEmployees() {
-        List<Employee> list = employeeRepository.findAll();
+        List<Employee> list = new ArrayList<>();
+        employeeRepository.findAll().forEach(employee -> {
+            if (employee.getAdminRole() != AdminRole.ADMIN)
+                list.add(employee);
+        });
         list.sort(Comparator.comparing(Employee::getUsername));
         if (list.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -386,7 +389,7 @@ public class RestServices {
         summaryHolidayDTO.setDaysTaken(daysTaken.get());
         summaryHolidayDTO.setOtherLeave(otherLeave.get());
         summaryHolidayDTO.setOvertimeLeave(overtimeLeave.get());
-        summaryHolidayDTO.setDaysAvailable(contractRepository.findOne(usernameEmployee).getDaysOff());
+        summaryHolidayDTO.setDaysAvailable((contractRepository.findOne(usernameEmployee) == null) ? 0 : contractRepository.findOne(usernameEmployee).getDaysOff());
         return new ResponseEntity<>(summaryHolidayDTO, HttpStatus.OK);
     }
 
@@ -419,7 +422,7 @@ public class RestServices {
     @GetMapping("/holidayRequest/{usernameEmployee}")
     public ResponseEntity<List<HolidayDTO>> getAllHolidayRequests(@PathVariable String usernameEmployee) {
         List<HolidayDTO> holidayDTOList = new ArrayList<>();
-        String department = contractRepository.findOne(usernameEmployee).getDepartment();
+        String department = contractRepository.findOne(usernameEmployee) == null ? "" : contractRepository.findOne(usernameEmployee).getDepartment();
         holidayRepository.findAll().forEach(holiday -> {
             if (contractRepository.findOne(holiday.getUsernameEmployee()).getDepartment().equals(department)) {
                 HolidayDTO holidayDTO = new HolidayDTO();
@@ -559,8 +562,11 @@ public class RestServices {
     }
 
     @PutMapping("/timesheet")
-    public ResponseEntity<String> updateTimesheet(@RequestBody Timesheet timesheet) {
+    public ResponseEntity<String> updateTimesheet(@RequestBody TimesheetDTO timesheetDTO) {
         Timesheet timesheetReturned;
+        String timesheetID = timesheetDTO.getUsernameEmployee() + timesheetDTO.getYear() + timesheetDTO.getMonth();
+        Timesheet timesheet = timesheetRepository.findOne(timesheetID);
+        timesheet.setStatus(timesheetDTO.getStatus());
         try {
             timesheetReturned = timesheetRepository.update(timesheet);
         } catch (Validator.ValidationException exception) {
@@ -575,21 +581,37 @@ public class RestServices {
     public ResponseEntity<TimesheetDTO> findOneTimesheet(@PathVariable String idTimesheet) {
         TimesheetDTO timesheetDTO = new TimesheetDTO();
         Timesheet timesheet = timesheetRepository.findOne(idTimesheet);
-        timesheetDTO.setYear(timesheet.getYear());
-        timesheetDTO.setMonth(timesheet.getMonth());
-        timesheetDTO.setWorkedHours(timesheet.getWorkedHours());
-        timesheetDTO.setHomeOfficeHours(timesheet.getHomeOfficeHours());
-        timesheetDTO.setRequiredHours(timesheet.getRequiredHours());
-        timesheetDTO.setOvertimeHours(timesheet.getOvertimeHours());
-        timesheetDTO.setTotalOvertimeLeave(timesheet.getTotalOvertimeHours());
-        if (timesheet != null)
+        if (timesheet != null) {
+            timesheetDTO.setYear(timesheet.getYear());
+            timesheetDTO.setMonth(timesheet.getMonth());
+            timesheetDTO.setWorkedHours(timesheet.getWorkedHours());
+            timesheetDTO.setHomeOfficeHours(timesheet.getHomeOfficeHours());
+            timesheetDTO.setRequiredHours(timesheet.getRequiredHours());
+            timesheetDTO.setOvertimeHours(timesheet.getOvertimeHours());
+            timesheetDTO.setTotalOvertimeHours(timesheet.getTotalOvertimeHours());
             return new ResponseEntity<>(timesheetDTO, HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/timesheet")
-    public ResponseEntity<List<Timesheet>> getTimesheet() {
-        List<Timesheet> list = timesheetRepository.findAll();
+    public ResponseEntity<List<TimesheetDTO>> getTimesheet() {
+        List<TimesheetDTO> list = new ArrayList<>();
+        timesheetRepository.findAll().forEach(timesheet -> {
+            TimesheetDTO timesheetDTO = new TimesheetDTO();
+            timesheetDTO.setUsernameEmployee(timesheet.getUsernameEmployee());
+            timesheetDTO.setPersonalNumber(employeeRepository.findOne(timesheet.getUsernameEmployee()).getPersonalNumber());
+            timesheetDTO.setDepartment(contractRepository.findOne(timesheet.getUsernameEmployee()).getDepartment());
+            timesheetDTO.setYear(timesheet.getYear());
+            timesheetDTO.setMonth(timesheet.getMonth());
+            timesheetDTO.setWorkedHours(timesheet.getWorkedHours());
+            timesheetDTO.setHomeOfficeHours(timesheet.getHomeOfficeHours());
+            timesheetDTO.setRequiredHours(timesheet.getRequiredHours());
+            timesheetDTO.setOvertimeHours(timesheet.getOvertimeHours());
+            timesheetDTO.setTotalOvertimeHours(timesheet.getTotalOvertimeHours());
+            timesheetDTO.setStatus(timesheet.getStatus());
+            list.add(timesheetDTO);
+        });
         if (list.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(list, HttpStatus.OK);

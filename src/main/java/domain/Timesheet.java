@@ -1,5 +1,7 @@
 package domain;
 
+import domain.enums.TimesheetStatus;
+
 import java.util.Objects;
 
 public class Timesheet {
@@ -12,6 +14,7 @@ public class Timesheet {
     private float requiredHours;
     private float overtimeHours;
     private float totalOvertimeHours;
+    private TimesheetStatus status;
 
     public Timesheet() {
         //default constructor
@@ -89,17 +92,25 @@ public class Timesheet {
         this.totalOvertimeHours = totalOvertimeHours;
     }
 
+    public TimesheetStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TimesheetStatus status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Timesheet timesheet = (Timesheet) o;
-        return year == timesheet.year && month == timesheet.month && Float.compare(timesheet.workedHours, workedHours) == 0 && Float.compare(timesheet.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(timesheet.requiredHours, requiredHours) == 0 && Float.compare(timesheet.overtimeHours, overtimeHours) == 0 && Float.compare(timesheet.totalOvertimeHours, totalOvertimeHours) == 0 && Objects.equals(idTimesheet, timesheet.idTimesheet) && Objects.equals(usernameEmployee, timesheet.usernameEmployee);
+        return year == timesheet.year && month == timesheet.month && Float.compare(timesheet.workedHours, workedHours) == 0 && Float.compare(timesheet.homeOfficeHours, homeOfficeHours) == 0 && Float.compare(timesheet.requiredHours, requiredHours) == 0 && Float.compare(timesheet.overtimeHours, overtimeHours) == 0 && Float.compare(timesheet.totalOvertimeHours, totalOvertimeHours) == 0 && Objects.equals(idTimesheet, timesheet.idTimesheet) && Objects.equals(usernameEmployee, timesheet.usernameEmployee) && status == timesheet.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idTimesheet, usernameEmployee, year, month, workedHours, homeOfficeHours, requiredHours, overtimeHours, totalOvertimeHours);
+        return Objects.hash(idTimesheet, usernameEmployee, year, month, workedHours, homeOfficeHours, requiredHours, overtimeHours, totalOvertimeHours, status);
     }
 
     @Override
@@ -113,7 +124,8 @@ public class Timesheet {
                 ", homeOfficeHours=" + homeOfficeHours +
                 ", requiredHours=" + requiredHours +
                 ", overtimeHours=" + overtimeHours +
-                ", totalOvertimeLeave=" + totalOvertimeHours +
+                ", totalOvertimeHours=" + totalOvertimeHours +
+                ", status=" + status +
                 '}';
     }
 }

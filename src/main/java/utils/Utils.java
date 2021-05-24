@@ -6,6 +6,7 @@ import domain.dtos.response.ContractDTO;
 import domain.enums.ContractType;
 import domain.enums.HolidayType;
 import domain.enums.RequestStatus;
+import domain.enums.TimesheetStatus;
 
 public class Utils {
     public static String holidayTypeToString(HolidayType holidayType) {

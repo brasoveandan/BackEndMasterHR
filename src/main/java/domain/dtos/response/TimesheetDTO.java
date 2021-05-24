@@ -1,15 +1,44 @@
 package domain.dtos.response;
 
-import java.time.LocalDateTime;
+
+import domain.enums.TimesheetStatus;
 
 public class TimesheetDTO {
+    private String usernameEmployee;
+    private String personalNumber;
+    private String department;
     private int year;
     private int month;
     private float workedHours;
     private float homeOfficeHours;
     private float requiredHours;
     private float overtimeHours;
-    private float totalOvertimeLeave;
+    private float totalOvertimeHours;
+    private TimesheetStatus status;
+
+    public String getUsernameEmployee() {
+        return usernameEmployee;
+    }
+
+    public void setUsernameEmployee(String usernameEmployee) {
+        this.usernameEmployee = usernameEmployee;
+    }
+
+    public String getPersonalNumber() {
+        return personalNumber;
+    }
+
+    public void setPersonalNumber(String personalNumber) {
+        this.personalNumber = personalNumber;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
     public int getYear() {
         return year;
@@ -59,24 +88,36 @@ public class TimesheetDTO {
         this.overtimeHours = overtimeHours;
     }
 
-    public float getTotalOvertimeLeave() {
-        return totalOvertimeLeave;
+    public float getTotalOvertimeHours() {
+        return totalOvertimeHours;
     }
 
-    public void setTotalOvertimeLeave(float totalOvertimeLeave) {
-        this.totalOvertimeLeave = totalOvertimeLeave;
+    public void setTotalOvertimeHours(float totalOvertimeHours) {
+        this.totalOvertimeHours = totalOvertimeHours;
+    }
+
+    public TimesheetStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TimesheetStatus status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
         return "TimesheetDTO{" +
-                "year=" + year +
+                "usernameEmployee='" + usernameEmployee + '\'' +
+                ", personalNumber='" + personalNumber + '\'' +
+                ", department='" + department + '\'' +
+                ", year=" + year +
                 ", month=" + month +
                 ", workedHours=" + workedHours +
                 ", homeOfficeHours=" + homeOfficeHours +
                 ", requiredHours=" + requiredHours +
                 ", overtimeHours=" + overtimeHours +
-                ", totalOvertimeLeave=" + totalOvertimeLeave +
+                ", totalOvertimeHours=" + totalOvertimeHours +
+                ", status=" + status +
                 '}';
     }
 }

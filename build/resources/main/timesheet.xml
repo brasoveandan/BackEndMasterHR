@@ -15,5 +15,12 @@
         <property name="requiredHours" type="float" column="requiredHours"/>
         <property name="overtimeHours" type="float" column="overtimeHours"/>
         <property name="totalOvertimeHours" type="float" column="totalOvertimeHours"/>
+        <property name="status" column="status">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">domain.enums.TimesheetStatus</param>
+                <param name="type">12</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
     </class>
 </hibernate-mapping>
