@@ -1,6 +1,7 @@
 package services;
 
 import domain.*;
+import domain.dtos.request.AuthenticationRequest;
 import domain.dtos.request.RequestDTO;
 import domain.dtos.request.RequestHolidayDTO;
 import domain.dtos.response.*;
@@ -8,10 +9,17 @@ import domain.enums.AdminRole;
 import domain.enums.HolidayType;
 import domain.enums.RequestStatus;
 import domain.validators.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import repository.*;
+import services.springSecurity.JwtUtil;
+import services.springSecurity.MyUserDetailsService;
 import utils.Utils;
 
 import java.time.LocalTime;
@@ -25,7 +33,16 @@ import static utils.Utils.*;
 @CrossOrigin
 @RestController
 public class RestServices {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    private JwtUtil jwtTokenUtil = new JwtUtil();
+
+    private MyUserDetailsService userDetailsService = new MyUserDetailsService();
+
     private static final Set<HolidayType> OTHER_TYPES = Collections.unmodifiableSet(EnumSet.of(HolidayType.BLOOD_DONATION, HolidayType.MARRIAGE, HolidayType.FUNERAL));
+
     private final EmployeeRepository employeeRepository = new EmployeeRepository();
     private final ContractRepository contractRepository = new ContractRepository();
     private final RequestRepository requestRepository = new RequestRepository();
@@ -34,21 +51,45 @@ public class RestServices {
     private final TimesheetRepository timesheetRepository = new TimesheetRepository();
     private final ClockingRepository clockingRepository = new ClockingRepository();
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Employee employee){
-        Employee employeeStored = employeeRepository.findOne(employee.getUsername());
-        if (employeeStored != null) {
-            if (employee.getPassword().equals(employeeStored.getPassword())) {
-                if (employeeStored.getAdminRole() == null)
-                    return new ResponseEntity<>(new ResponseDTO("null", employeeStored.getFirstName()),HttpStatus.OK);
-                else
-                    return new ResponseEntity<>(new ResponseDTO(employeeStored.getAdminRole().toString(), employeeStored.getFirstName()),HttpStatus.OK);
-            }
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping( "/hello" )
+    public String firstPage() {
+        return "Hello World";
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest){
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+            );
+        }
+        catch (BadCredentialsException e) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        final String jwt = jwtTokenUtil.generateToken(userDetails);
+        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
+        Employee employee = employeeRepository.findOne(authenticationRequest.getUsername());
+        authenticationResponse.setAdminRole(employee.getAdminRole().toString());
+        authenticationResponse.setName(employee.getFirstName());
+        authenticationResponse.setJwt(jwt);
+        return ResponseEntity.ok(authenticationResponse);
+    }
+
+//    @PostMapping("/login")
+//    public ResponseEntity<?> login(@RequestBody Employee employee){
+//        Employee employeeStored = employeeRepository.findOne(employee.getUsername());
+//        if (employeeStored != null) {
+//            if (employee.getPassword().equals(employeeStored.getPassword())) {
+//                if (employeeStored.getAdminRole() == null)
+//                    return new ResponseEntity<>(new AuthenticationResponse("null", employeeStored.getFirstName()),HttpStatus.OK);
+//                else
+//                    return new ResponseEntity<>(new AuthenticationResponse(employeeStored.getAdminRole().toString(), employeeStored.getFirstName()),HttpStatus.OK);
+//            }
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//        }
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
 
 
     //EmployeeServices
@@ -699,4 +740,6 @@ public class RestServices {
         clockingDTOList.sort(Comparator.comparing(ClockingDTO::getDay).reversed());
         return new ResponseEntity<>(clockingDTOList, HttpStatus.OK);
     }
+
+
 }

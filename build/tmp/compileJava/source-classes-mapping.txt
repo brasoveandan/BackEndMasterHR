@@ -12,8 +12,8 @@ utils/SQLiteDialect.java
 domain/validators/Validator.java
  domain.validators.Validator
  domain.validators.Validator$ValidationException
-domain/validators/ClockingValidator.java
- domain.validators.ClockingValidator
+domain/enums/AdminRole.java
+ domain.enums.AdminRole
 utils/Utils.java
  utils.Utils
  utils.Utils$1
@@ -37,6 +37,8 @@ domain/validators/EmployeeValidator.java
  domain.validators.EmployeeValidator
 domain/Payslip.java
  domain.Payslip
+domain/validators/RequestValidator.java
+ domain.validators.RequestValidator
 domain/Contract.java
  domain.Contract
 domain/Holiday.java
@@ -45,18 +47,22 @@ repository/ContractRepository.java
  repository.ContractRepository
 services/StartServices.java
  services.StartServices
+repository/EmployeeRepository.java
+ repository.EmployeeRepository
 domain/dtos/response/PayslipDTO.java
  domain.dtos.response.PayslipDTO
 domain/validators/ContractValidator.java
  domain.validators.ContractValidator
 domain/dtos/response/HolidayDTO.java
  domain.dtos.response.HolidayDTO
-domain/dtos/response/ResponseDTO.java
- domain.dtos.response.ResponseDTO
 repository/TimesheetRepository.java
  repository.TimesheetRepository
+domain/dtos/request/AuthenticationRequest.java
+ domain.dtos.request.AuthenticationRequest
 repository/ClockingRepository.java
  repository.ClockingRepository
+domain/dtos/response/AuthenticationResponse.java
+ domain.dtos.response.AuthenticationResponse
 domain/enums/HolidayType.java
  domain.enums.HolidayType
 repository/RequestRepository.java
@@ -71,17 +77,21 @@ domain/dtos/response/ContractDTO.java
  domain.dtos.response.ContractDTO
 domain/enums/RequestStatus.java
  domain.enums.RequestStatus
+domain/validators/ClockingValidator.java
+ domain.validators.ClockingValidator
 domain/dtos/request/RequestDTO.java
  domain.dtos.request.RequestDTO
 domain/dtos/response/SummaryHolidayDTO.java
  domain.dtos.response.SummaryHolidayDTO
 utils/HibernateSession.java
  utils.HibernateSession
-repository/EmployeeRepository.java
- repository.EmployeeRepository
-domain/enums/AdminRole.java
- domain.enums.AdminRole
-domain/validators/RequestValidator.java
- domain.validators.RequestValidator
+services/springSecurity/JwtUtil.java
+ services.springSecurity.JwtUtil
+services/springSecurity/MyUserDetailsService.java
+ services.springSecurity.MyUserDetailsService
 services/RestServices.java
  services.RestServices
+services/springSecurity/WebSecurityConfig.java
+ services.springSecurity.WebSecurityConfig
+services/springSecurity/JwtRequestFilter.java
+ services.springSecurity.JwtRequestFilter

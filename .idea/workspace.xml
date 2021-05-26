@@ -11,32 +11,22 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/b/0bed2286518b323a975ce5cf9b039f708d3d8630" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/b/1b219d0d8ca253a056349007bfce0392ec6169ab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/3/4351e88a972c3f6b0a9c35ebed99407a10fa7730" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/7/67ff8b33b0f09426de6981193683d7096764bb7c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/4/740ebcafdc0a20bed3eb136582c383847c5e1cde" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/5/e5897fc6977a53e96595de1405d38dd5d7a7bb53" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/c/7c5621405aad65e1ac401cf559df4908cfc14f46" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseMasterHR" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseMasterHR" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MasterHR.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/MasterHR.mdj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/domain/Timesheet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/domain/Timesheet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/domain/dtos/response/TimesheetDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/domain/dtos/response/TimesheetDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/domain/validators/TimesheetValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/domain/validators/TimesheetValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/domain/dtos/response/ResponseDTO.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/services/RestServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/services/RestServices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/utils/Utils$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/utils/Utils$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/utils/Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/timesheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/timesheet.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Timesheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Timesheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/dtos/response/TimesheetDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/dtos/response/TimesheetDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/validators/TimesheetValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/validators/TimesheetValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/dtos/response/ResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/dtos/response/AuthenticationResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/services/RestServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/RestServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/timesheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/timesheet.xml" afterDir="false" />
     </list>
     <list id="2cc9849a-e23f-4483-ae93-bf8059999f87" name="EmployeeServices" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,8 +43,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -99,7 +89,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.data.extractors.current.export.id" value="SQL-Insert-Multirow.sql.groovy" />
     <property name="database.data.extractors.current.id" value="JSON-Groovy.json.groovy" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/services" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -118,8 +108,12 @@
       <recent name="domain.enums" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Facultate\Anul III\BackEndMasterHR\src\main\java\services" />
       <recent name="D:\Facultate\Anul III\BackEndMasterHR" />
       <recent name="D:\Facultate\Anul III\BackEndMasterHR\src\main\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="utils" />
@@ -244,6 +238,9 @@
       <workItem from="1621585600979" duration="15379000" />
       <workItem from="1621769343802" duration="8049000" />
       <workItem from="1621844641065" duration="8186000" />
+      <workItem from="1621875666268" duration="1534000" />
+      <workItem from="1621935865424" duration="11515000" />
+      <workItem from="1622015521256" duration="8338000" />
     </task>
     <task id="LOCAL-00001" summary="Version01">
       <created>1614879453592</created>
@@ -266,6 +263,17 @@
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/services/springSecurity/JwtUtil.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BackEndMasterHR$StartServices.ic" NAME="StartServices Coverage Results" MODIFIED="1620058057429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
