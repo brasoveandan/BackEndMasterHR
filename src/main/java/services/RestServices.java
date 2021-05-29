@@ -4,14 +4,18 @@ import domain.*;
 import domain.dtos.request.AuthenticationRequest;
 import domain.dtos.request.RequestDTO;
 import domain.dtos.request.RequestHolidayDTO;
+import domain.dtos.request.ResetPassword;
 import domain.dtos.response.*;
 import domain.enums.AdminRole;
 import domain.enums.HolidayType;
 import domain.enums.RequestStatus;
+import domain.validators.ResetPasswordValidator;
 import domain.validators.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +26,10 @@ import services.springSecurity.JwtUtil;
 import services.springSecurity.MyUserDetailsService;
 import utils.Utils;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -33,16 +41,14 @@ import static utils.Utils.*;
 @CrossOrigin
 @RestController
 public class RestServices {
-
+    @Autowired
+    private JavaMailSender mailSender;
     @Autowired
     private AuthenticationManager authenticationManager;
-
-    private JwtUtil jwtTokenUtil = new JwtUtil();
-
-    private MyUserDetailsService userDetailsService = new MyUserDetailsService();
+    private final JwtUtil jwtTokenUtil = new JwtUtil();
+    private final MyUserDetailsService userDetailsService = new MyUserDetailsService();
 
     private static final Set<HolidayType> OTHER_TYPES = Collections.unmodifiableSet(EnumSet.of(HolidayType.BLOOD_DONATION, HolidayType.MARRIAGE, HolidayType.FUNERAL));
-
     private final EmployeeRepository employeeRepository = new EmployeeRepository();
     private final ContractRepository contractRepository = new ContractRepository();
     private final RequestRepository requestRepository = new RequestRepository();
@@ -51,9 +57,9 @@ public class RestServices {
     private final TimesheetRepository timesheetRepository = new TimesheetRepository();
     private final ClockingRepository clockingRepository = new ClockingRepository();
 
-    @GetMapping( "/hello" )
-    public String firstPage() {
-        return "Hello World";
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
     }
 
     @PostMapping("/login")
@@ -76,20 +82,53 @@ public class RestServices {
         return ResponseEntity.ok(authenticationResponse);
     }
 
-//    @PostMapping("/login")
-//    public ResponseEntity<?> login(@RequestBody Employee employee){
-//        Employee employeeStored = employeeRepository.findOne(employee.getUsername());
-//        if (employeeStored != null) {
-//            if (employee.getPassword().equals(employeeStored.getPassword())) {
-//                if (employeeStored.getAdminRole() == null)
-//                    return new ResponseEntity<>(new AuthenticationResponse("null", employeeStored.getFirstName()),HttpStatus.OK);
-//                else
-//                    return new ResponseEntity<>(new AuthenticationResponse(employeeStored.getAdminRole().toString(), employeeStored.getFirstName()),HttpStatus.OK);
-//            }
-//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
+    @PostMapping("/sendEmail")
+    public ResponseEntity<String> sendEmail(@RequestBody String recipientEmail, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        Employee employee = employeeRepository.findOneByEmail(recipientEmail);
+        if (employee != null) {
+            final UserDetails userDetails = userDetailsService.loadUserByEmail(employee.getUsername());
+            final String jwt = jwtTokenUtil.generateToken(userDetails);
+            String link = request.getHeader("Origin") + "/reset_password?token= " + jwt;
+            String fullName = employee.getLastName() + " " + employee.getFirstName();
+
+            helper.setFrom("masterHR.contact@gmail.com", "MasterHR Support");
+            helper.setTo(recipientEmail);
+
+            String subject = "Resetare parola MasterHR";
+            String content = "<p>Salut, " + fullName + "</p>"
+                    + "<p>Pentru ati reseta parola, acceseaza link-ul de mai jos.</p>"
+                    + "<p><a href=\"" + link + "\">Schimba parola</a></p>"
+                    + "<br>"
+                    + "<p>Daca nu ai initiat tu aceasta cerere, te rugam sa ignori acest email.";
+
+            helper.setSubject(subject);
+            helper.setText(content, true);
+            mailSender.send(message);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/reset_password")
+    public ResponseEntity<String> resetPassword(@RequestBody ResetPassword resetPassword) throws Validator.ValidationException {
+        ResetPasswordValidator validator = new ResetPasswordValidator();
+        try {
+            validator.validate(resetPassword);
+        } catch (Validator.ValidationException exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
+        String usernameEmployee = jwtTokenUtil.extractUsername(resetPassword.getToken());
+        Employee employee = employeeRepository.findOne(usernameEmployee);
+        if (employee != null) {
+            employee.setPassword(resetPassword.getPassword());
+            if (employeeRepository.update(employee) == null)
+                return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
 
     //EmployeeServices
@@ -225,11 +264,27 @@ public class RestServices {
         Employee employee = employeeRepository.findOne(usernameEmployee);
         Contract contract = contractRepository.findOne(usernameEmployee);
         if (contract != null) {
-            ContractDTO contractDTO = new ContractDTO(employee.getLastName(), employee.getFirstName(), employee.getPersonalNumber(),
-                    employee.getMail(), employee.getPhoneNumber(), employee.getSocialSecurityNumber(), contract.getCompanyName(), contract.getBaseSalary(), contract.getCurrency(), contract.getHireDate(),
-                    contract.getExpirationDate(), contract.getDepartment(), contract.getPosition(),
-                    employee.getBirthday(), employee.getGender(), employee.getBankName(), employee.getBankAccountNumber(),
-                    contract.getOvertimeIncreasePercent(), contract.isTaxExempt(), contract.getTicketValue(), contract.getDaysOff());
+            ContractDTO contractDTO = new ContractDTO(employee.getLastName(),
+                    employee.getFirstName(),
+                    employee.getPersonalNumber(),
+                    employee.getMail(),
+                    employee.getPhoneNumber(),
+                    employee.getSocialSecurityNumber(),
+                    contract.getCompanyName(),
+                    contract.getBaseSalary(),
+                    contract.getCurrency(),
+                    contract.getHireDate(),
+                    contract.getExpirationDate(),
+                    contract.getDepartment(),
+                    contract.getPosition(),
+                    employee.getBirthday(),
+                    employee.getGender(),
+                    employee.getBankName(),
+                    employee.getBankAccountNumber(),
+                    contract.getOvertimeIncreasePercent(),
+                    contract.isTaxExempt(),
+                    contract.getTicketValue(),
+                    contract.getDaysOff());
             contractDTO.setType(Utils.contractTypeToString(contract.getType()));
             return new ResponseEntity<>(contractDTO, HttpStatus.OK);
         }
@@ -241,11 +296,27 @@ public class RestServices {
         List<ContractDTO> list = new ArrayList<>();
         contractRepository.findAll().forEach(contract -> {
             Employee employee = employeeRepository.findOne(contract.getUsernameEmployee());
-            ContractDTO contractDTO = new ContractDTO(employee.getLastName(), employee.getFirstName(), employee.getPersonalNumber(),
-                    employee.getMail(), employee.getPhoneNumber(), employee.getSocialSecurityNumber(), contract.getCompanyName(), contract.getBaseSalary(),
-                    contract.getCurrency(), contract.getHireDate(), contract.getExpirationDate(), contract.getDepartment(), contract.getPosition(),
-                    employee.getBirthday(), employee.getGender(), employee.getBankName(), employee.getBankAccountNumber(),
-                    contract.getOvertimeIncreasePercent(), contract.isTaxExempt(), contract.getTicketValue(), contract.getDaysOff());
+            ContractDTO contractDTO = new ContractDTO(employee.getLastName(),
+                    employee.getFirstName(),
+                    employee.getPersonalNumber(),
+                    employee.getMail(),
+                    employee.getPhoneNumber(),
+                    employee.getSocialSecurityNumber(),
+                    contract.getCompanyName(),
+                    contract.getBaseSalary(),
+                    contract.getCurrency(),
+                    contract.getHireDate(),
+                    contract.getExpirationDate(),
+                    contract.getDepartment(),
+                    contract.getPosition(),
+                    employee.getBirthday(),
+                    employee.getGender(),
+                    employee.getBankName(),
+                    employee.getBankAccountNumber(),
+                    contract.getOvertimeIncreasePercent(),
+                    contract.isTaxExempt(),
+                    contract.getTicketValue(),
+                    contract.getDaysOff());
             contractDTO.setUsername(employee.getUsername());
             contractDTO.setType(Utils.contractTypeToString(contract.getType()));
             list.add(contractDTO);
@@ -493,7 +564,7 @@ public class RestServices {
 
     //PayslipServices
     @PostMapping("/payslip")
-    public ResponseEntity<String> savePayslip(@RequestBody Payslip payslip) {
+    public ResponseEntity<String> savePayslip(@RequestBody Payslip payslip)  {
         Payslip payslipReturned;
         payslip.setIdPayslip(payslip.getUsernameEmployee() + payslip.getYear() + payslip.getMonth());
         try {
@@ -594,8 +665,9 @@ public class RestServices {
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
-    @DeleteMapping("/timesheet/{idTimesheet}")
-    public ResponseEntity<String> deleteTimesheet(@PathVariable String idTimesheet) {
+    @DeleteMapping("/timesheet")
+    public ResponseEntity<String> deleteTimesheet(@RequestParam String token, @RequestParam String year, @RequestParam String month) {
+        String idTimesheet = jwtTokenUtil.extractUsername(token) + year + month;
         Timesheet timesheet = timesheetRepository.delete(idTimesheet);
         if (timesheet == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -678,15 +750,19 @@ public class RestServices {
             long clockingHours = HOURS.between(clocking.getFromHour(), clocking.getToHour());
             if (!clocking.getType().equals("Normal"))
                 timesheet.setHomeOfficeHours(clockingHours + timesheet.getHomeOfficeHours());
-            timesheet.setWorkedHours(clockingHours + timesheet.getWorkedHours());
-            if (numberOfHours <= clockingHours)
-                timesheet.setOvertimeHours(clockingHours - numberOfHours);
-            try {
-                timesheetRepository.update(timesheet);
-            } catch (Validator.ValidationException exception) {
-                return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+            if (timesheet != null) {
+                timesheet.setWorkedHours(clockingHours + timesheet.getWorkedHours());
+                if (numberOfHours <= clockingHours)
+                    timesheet.setOvertimeHours(clockingHours - numberOfHours);
+                try {
+                    timesheetRepository.update(timesheet);
+                } catch (Validator.ValidationException exception) {
+                    return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
+                }
+                return new ResponseEntity<>(HttpStatus.OK);
             }
-            return new ResponseEntity<>(HttpStatus.OK);
+            else
+                return new ResponseEntity<>("Eroare la pontare!", HttpStatus.EXPECTATION_FAILED);
         }
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
@@ -702,6 +778,7 @@ public class RestServices {
     @PutMapping("/clocking")
     public ResponseEntity<String> updateClocking(@RequestBody Clocking clocking) {
         Clocking clockingReturned;
+        clocking.setUsernameEmployee(jwtTokenUtil.extractUsername(clocking.getUsernameEmployee()));
         clocking.setIdClocking(clocking.getUsernameEmployee()+clocking.getToHour().getMonthValue()+clocking.getToHour().getDayOfMonth());
         try {
             clockingReturned = clockingRepository.update(clocking);
@@ -740,6 +817,4 @@ public class RestServices {
         clockingDTOList.sort(Comparator.comparing(ClockingDTO::getDay).reversed());
         return new ResponseEntity<>(clockingDTOList, HttpStatus.OK);
     }
-
-
 }

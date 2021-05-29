@@ -27,7 +27,7 @@ public class EmployeeValidator implements Validator<Employee> {
             message += "Parola invalida.\n";
         }
         if (employee.getPersonalNumber() == null || employee.getPersonalNumber().length() != 10) {
-            message += "Cod numeric invalid.\n";
+            message += "Numar personal invalid.\n";
         }
         if (employee.getAdminRole() != null && !employee.getAdminRole().toString().equals("GROUP_LEADER") &&
                 !employee.getAdminRole().toString().equals("HR_EMPLOYEE") &&
@@ -40,7 +40,7 @@ public class EmployeeValidator implements Validator<Employee> {
             message += "Numele nu poate fi vid.\n";
         }
         if (!mailValidation(employee.getMail())) {
-            message += "E-mail invalid.\n";
+            message += "Email invalid.\n";
         }
         if (!message.equals("")) {
             throw new Validator.ValidationException(message);

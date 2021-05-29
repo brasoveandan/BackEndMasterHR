@@ -22,4 +22,9 @@ public class MyUserDetailsService implements UserDetailsService {
         Employee employee = employeeRepository.findOne(username);
         return new User(employee.getUsername(), employee.getPassword(), new ArrayList<>());
     }
+
+    public UserDetails loadUserByEmail(String username) throws UsernameNotFoundException {
+        Employee employee = employeeRepository.findOne(username);
+        return new User(employee.getUsername(), employee.getMail(), new ArrayList<>());
+    }
 }

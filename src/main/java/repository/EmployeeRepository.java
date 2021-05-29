@@ -88,6 +88,22 @@ public class EmployeeRepository implements CrudRepository<String, Employee> {
         }
     }
 
+    public Employee findOneByEmail(String email) {
+        if (email == null)
+            throw new IllegalArgumentException();
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            List<Employee> result = session.createQuery("select a from Employee a where mail=:mail")
+                    .setParameter("mail", email)
+                    .list();
+            session.getTransaction().commit();
+            if (!result.isEmpty())
+                return result.get(0);
+            else
+                return null;
+        }
+    }
+
     @Override
     public List<Employee> findAll() {
         try (Session session = sessionFactory.openSession()) {

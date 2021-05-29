@@ -17,7 +17,7 @@ public class JwtUtil {
     public JwtUtil() {
     }
 
-    private String SECRET_KEY = "secret";
+    private String SECRET_KEY = "bdir";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

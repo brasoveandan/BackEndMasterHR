@@ -4,6 +4,8 @@ domain/Clocking.java
  domain.Clocking
 repository/CrudRepository.java
  repository.CrudRepository
+domain/validators/RequestValidator.java
+ domain.validators.RequestValidator
 domain/dtos/request/RequestHolidayDTO.java
  domain.dtos.request.RequestHolidayDTO
 utils/SQLiteDialect.java
@@ -12,8 +14,8 @@ utils/SQLiteDialect.java
 domain/validators/Validator.java
  domain.validators.Validator
  domain.validators.Validator$ValidationException
-domain/enums/AdminRole.java
- domain.enums.AdminRole
+domain/validators/ClockingValidator.java
+ domain.validators.ClockingValidator
 utils/Utils.java
  utils.Utils
  utils.Utils$1
@@ -33,12 +35,10 @@ domain/validators/PayslipValidator.java
  domain.validators.PayslipValidator
 repository/HolidayRepository.java
  repository.HolidayRepository
-domain/validators/EmployeeValidator.java
- domain.validators.EmployeeValidator
+services/springSecurity/WebSecurityConfig.java
+ services.springSecurity.WebSecurityConfig
 domain/Payslip.java
  domain.Payslip
-domain/validators/RequestValidator.java
- domain.validators.RequestValidator
 domain/Contract.java
  domain.Contract
 domain/Holiday.java
@@ -47,20 +47,22 @@ repository/ContractRepository.java
  repository.ContractRepository
 services/StartServices.java
  services.StartServices
-repository/EmployeeRepository.java
- repository.EmployeeRepository
 domain/dtos/response/PayslipDTO.java
  domain.dtos.response.PayslipDTO
 domain/validators/ContractValidator.java
  domain.validators.ContractValidator
 domain/dtos/response/HolidayDTO.java
  domain.dtos.response.HolidayDTO
+domain/dtos/request/ResetPassword.java
+ domain.dtos.request.ResetPassword
 repository/TimesheetRepository.java
  repository.TimesheetRepository
 domain/dtos/request/AuthenticationRequest.java
  domain.dtos.request.AuthenticationRequest
 repository/ClockingRepository.java
  repository.ClockingRepository
+domain/enums/AdminRole.java
+ domain.enums.AdminRole
 domain/dtos/response/AuthenticationResponse.java
  domain.dtos.response.AuthenticationResponse
 domain/enums/HolidayType.java
@@ -77,21 +79,23 @@ domain/dtos/response/ContractDTO.java
  domain.dtos.response.ContractDTO
 domain/enums/RequestStatus.java
  domain.enums.RequestStatus
-domain/validators/ClockingValidator.java
- domain.validators.ClockingValidator
 domain/dtos/request/RequestDTO.java
  domain.dtos.request.RequestDTO
 domain/dtos/response/SummaryHolidayDTO.java
  domain.dtos.response.SummaryHolidayDTO
 utils/HibernateSession.java
  utils.HibernateSession
-services/springSecurity/JwtUtil.java
- services.springSecurity.JwtUtil
+domain/validators/ResetPasswordValidator.java
+ domain.validators.ResetPasswordValidator
 services/springSecurity/MyUserDetailsService.java
  services.springSecurity.MyUserDetailsService
-services/RestServices.java
- services.RestServices
-services/springSecurity/WebSecurityConfig.java
- services.springSecurity.WebSecurityConfig
+domain/validators/EmployeeValidator.java
+ domain.validators.EmployeeValidator
 services/springSecurity/JwtRequestFilter.java
  services.springSecurity.JwtRequestFilter
+services/springSecurity/JwtUtil.java
+ services.springSecurity.JwtUtil
+repository/EmployeeRepository.java
+ repository.EmployeeRepository
+services/RestServices.java
+ services.RestServices
