@@ -27,7 +27,7 @@ public class TimesheetValidator implements Validator<Timesheet> {
         if (entity.getTotalOvertimeHours() < 0)
             message += "Numarul de ore libere luate din orele suplimentare nu poate fi negativ.";
         if (entity.getStatus() != TimesheetStatus.OPENED && entity.getStatus() != TimesheetStatus.CLOSED)
-            message += "Statusul pontajului trebuie să fie CLOSED sau OPENED.";
+            message += "Statusul pontajului trebuie sa fie CLOSED sau OPENED.";
         if (!message.equals("")) {
             throw new Validator.ValidationException(message);
         }

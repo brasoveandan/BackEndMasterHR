@@ -19,9 +19,18 @@ public class Contract {
     private boolean taxExempt;
     private float ticketValue;
     private int daysOff;
+    private Employee employee;
 
     public Contract() {
         //do nothing
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getUsernameEmployee() {
@@ -144,7 +153,7 @@ public class Contract {
     @Override
     public String toString() {
         return "Contract{" +
-                "usernameEmployee='" + usernameEmployee + '\'' +
+                "employee=" + usernameEmployee +
                 ", companyName='" + companyName + '\'' +
                 ", baseSalary=" + baseSalary +
                 ", currency='" + currency + '\'' +

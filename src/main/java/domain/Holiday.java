@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Holiday {
     private String idHoliday;
     private String usernameEmployee;
-    private Integer idRequest;
+    private int idRequest;
     private String idTimesheet;
     private LocalDate fromDate;
     private LocalDate toDate;
@@ -36,11 +36,11 @@ public class Holiday {
         this.usernameEmployee = usernameEmployee;
     }
 
-    public Integer getIdRequest() {
+    public int getIdRequest() {
         return idRequest;
     }
 
-    public void setIdRequest(Integer idRequest) {
+    public void setIdRequest(int idRequest) {
         this.idRequest = idRequest;
     }
 

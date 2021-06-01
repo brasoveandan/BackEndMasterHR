@@ -25,5 +25,27 @@
         <property name="gender" column="gender"/>
         <property name="bankName" column="bankName"/>
         <property name="bankAccountNumber" column="bankAccountNumber"/>
+
+        <one-to-one name="contract" cascade="all" class="domain.Contract" />
+        <set name = "payslips" cascade="all">
+            <key column = "usernameEmployee"/>
+            <one-to-many class="domain.Payslip"/>
+        </set>
+        <set name = "holidays" cascade="all">
+            <key column = "usernameEmployee"/>
+            <one-to-many class="domain.Holiday"/>
+        </set>
+        <set name = "timesheets" cascade="all">
+            <key column = "usernameEmployee"/>
+            <one-to-many class="domain.Timesheet"/>
+        </set>
+        <set name = "requests" cascade="all">
+            <key column = "usernameEmployee"/>
+            <one-to-many class="domain.Request"/>
+        </set>
+        <set name = "clockings" cascade="all">
+            <key column = "usernameEmployee"/>
+            <one-to-many class="domain.Clocking"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -1,11 +1,9 @@
 domain/dtos/response/ClockingDTO.java
  domain.dtos.response.ClockingDTO
-domain/Clocking.java
- domain.Clocking
 repository/CrudRepository.java
  repository.CrudRepository
-domain/validators/RequestValidator.java
- domain.validators.RequestValidator
+domain/Clocking.java
+ domain.Clocking
 domain/dtos/request/RequestHolidayDTO.java
  domain.dtos.request.RequestHolidayDTO
 utils/SQLiteDialect.java
@@ -14,88 +12,104 @@ utils/SQLiteDialect.java
 domain/validators/Validator.java
  domain.validators.Validator
  domain.validators.Validator$ValidationException
-domain/validators/ClockingValidator.java
- domain.validators.ClockingValidator
-utils/Utils.java
- utils.Utils
- utils.Utils$1
-domain/validators/TimesheetValidator.java
- domain.validators.TimesheetValidator
-domain/Timesheet.java
- domain.Timesheet
+domain/Request.java
+ domain.Request
+controller/springSecurity/JwtUtil.java
+ controller.springSecurity.JwtUtil
 domain/enums/ContractType.java
  domain.enums.ContractType
 domain/enums/TimesheetStatus.java
  domain.enums.TimesheetStatus
-domain/Employee.java
- domain.Employee
-domain/validators/HolidayValidator.java
- domain.validators.HolidayValidator
 domain/validators/PayslipValidator.java
  domain.validators.PayslipValidator
-repository/HolidayRepository.java
- repository.HolidayRepository
-services/springSecurity/WebSecurityConfig.java
- services.springSecurity.WebSecurityConfig
-domain/Payslip.java
- domain.Payslip
+controller/EmployeeController.java
+ controller.EmployeeController
+domain/validators/ResetPasswordValidator.java
+ domain.validators.ResetPasswordValidator
 domain/Contract.java
  domain.Contract
+controller/TimesheetController.java
+ controller.TimesheetController
+repository/TimesheetRepository.java
+ repository.TimesheetRepository
+domain/dtos/response/ContractDTO.java
+ domain.dtos.response.ContractDTO
+repository/PayslipRepository.java
+ repository.PayslipRepository
+domain/dtos/response/TimesheetDTO.java
+ domain.dtos.response.TimesheetDTO
+domain/enums/RequestStatus.java
+ domain.enums.RequestStatus
+controller/springSecurity/JwtRequestFilter.java
+ controller.springSecurity.JwtRequestFilter
+utils/HibernateSession.java
+ utils.HibernateSession
+domain/enums/AdminRole.java
+ domain.enums.AdminRole
+controller/springSecurity/WebSecurityConfig.java
+ controller.springSecurity.WebSecurityConfig
+controller/MasterHRController.java
+ controller.MasterHRController
+domain/validators/TimesheetValidator.java
+ domain.validators.TimesheetValidator
+domain/Timesheet.java
+ domain.Timesheet
+domain/Employee.java
+ domain.Employee
+controller/ContractController.java
+ controller.ContractController
+repository/EmployeeRepository.java
+ repository.EmployeeRepository
+domain/validators/EmployeeValidator.java
+ domain.validators.EmployeeValidator
+domain/dtos/request/RequestDTO.java
+ domain.dtos.request.RequestDTO
 domain/Holiday.java
  domain.Holiday
+domain/Payslip.java
+ domain.Payslip
+controller/PayslipController.java
+ controller.PayslipController
 repository/ContractRepository.java
  repository.ContractRepository
-services/StartServices.java
- services.StartServices
+controller/springSecurity/MyUserDetailsService.java
+ controller.springSecurity.MyUserDetailsService
 domain/dtos/response/PayslipDTO.java
  domain.dtos.response.PayslipDTO
 domain/validators/ContractValidator.java
  domain.validators.ContractValidator
-domain/dtos/response/HolidayDTO.java
- domain.dtos.response.HolidayDTO
-domain/dtos/request/ResetPassword.java
- domain.dtos.request.ResetPassword
-repository/TimesheetRepository.java
- repository.TimesheetRepository
-domain/dtos/request/AuthenticationRequest.java
- domain.dtos.request.AuthenticationRequest
+domain/validators/ClockingValidator.java
+ domain.validators.ClockingValidator
+domain/dtos/response/SummaryHolidayDTO.java
+ domain.dtos.response.SummaryHolidayDTO
 repository/ClockingRepository.java
  repository.ClockingRepository
-domain/enums/AdminRole.java
- domain.enums.AdminRole
+domain/dtos/request/AuthenticationRequest.java
+ domain.dtos.request.AuthenticationRequest
+domain/dtos/request/ResetPassword.java
+ domain.dtos.request.ResetPassword
+controller/RequestController.java
+ controller.RequestController
 domain/dtos/response/AuthenticationResponse.java
  domain.dtos.response.AuthenticationResponse
 domain/enums/HolidayType.java
  domain.enums.HolidayType
+controller/HolidayController.java
+ controller.HolidayController
+controller/ClockingController.java
+ controller.ClockingController
+domain/dtos/response/HolidayDTO.java
+ domain.dtos.response.HolidayDTO
+utils/Utils.java
+ utils.Utils
+ utils.Utils$1
+controller/StartServices.java
+ controller.StartServices
+domain/validators/HolidayValidator.java
+ domain.validators.HolidayValidator
+repository/HolidayRepository.java
+ repository.HolidayRepository
+domain/validators/RequestValidator.java
+ domain.validators.RequestValidator
 repository/RequestRepository.java
  repository.RequestRepository
-domain/dtos/response/TimesheetDTO.java
- domain.dtos.response.TimesheetDTO
-repository/PayslipRepository.java
- repository.PayslipRepository
-domain/Request.java
- domain.Request
-domain/dtos/response/ContractDTO.java
- domain.dtos.response.ContractDTO
-domain/enums/RequestStatus.java
- domain.enums.RequestStatus
-domain/dtos/request/RequestDTO.java
- domain.dtos.request.RequestDTO
-domain/dtos/response/SummaryHolidayDTO.java
- domain.dtos.response.SummaryHolidayDTO
-utils/HibernateSession.java
- utils.HibernateSession
-domain/validators/ResetPasswordValidator.java
- domain.validators.ResetPasswordValidator
-services/springSecurity/MyUserDetailsService.java
- services.springSecurity.MyUserDetailsService
-domain/validators/EmployeeValidator.java
- domain.validators.EmployeeValidator
-services/springSecurity/JwtRequestFilter.java
- services.springSecurity.JwtRequestFilter
-services/springSecurity/JwtUtil.java
- services.springSecurity.JwtUtil
-repository/EmployeeRepository.java
- repository.EmployeeRepository
-services/RestServices.java
- services.RestServices

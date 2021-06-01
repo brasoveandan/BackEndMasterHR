@@ -1,5 +1,7 @@
 package domain.dtos.response;
 
+import domain.Request;
+
 import java.time.LocalDate;
 
 public class HolidayDTO {

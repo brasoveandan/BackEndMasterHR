@@ -6,7 +6,13 @@ import domain.dtos.response.ContractDTO;
 import domain.enums.ContractType;
 import domain.enums.HolidayType;
 import domain.enums.RequestStatus;
-import domain.enums.TimesheetStatus;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Utils {
     public static String holidayTypeToString(HolidayType holidayType) {
@@ -117,5 +123,20 @@ public class Utils {
         employee.setBankName(contractDTO.getBankName());
         employee.setBankAccountNumber(contractDTO.getBankAccountNumber());
         return employee;
+    }
+
+    public static int calculateWorkingDays(LocalDate startDate)
+    {
+        int workDays = 0;
+        YearMonth yearMonthObject = YearMonth.of(startDate.getYear(), startDate.getMonthValue());
+        int daysInMonth = yearMonthObject.lengthOfMonth();
+        while(daysInMonth > 0){
+            if (startDate.getDayOfWeek() != DayOfWeek.SATURDAY && startDate.getDayOfWeek() != DayOfWeek.SUNDAY) {
+                workDays++;
+            }
+            startDate = startDate.plusDays(1);
+            daysInMonth--;
+        }
+        return workDays;
     }
 }

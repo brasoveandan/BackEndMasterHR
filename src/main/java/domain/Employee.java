@@ -1,8 +1,11 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import domain.enums.AdminRole;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Employee {
     private String username;
@@ -17,7 +20,68 @@ public class Employee {
     private String birthday;
     private String gender;
     private String bankName;
-    private String bankAccountNumber ;
+    private String bankAccountNumber;
+
+    @JsonIgnore
+    private Contract contract;
+    @JsonIgnore
+    private Set payslips;
+    @JsonIgnore
+    private Set holidays;
+    @JsonIgnore
+    private Set timesheets;
+    @JsonIgnore
+    private Set requests;
+    @JsonIgnore
+    private Set clockings;
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+    public Set getPayslips() {
+        return payslips;
+    }
+
+    public void setPayslips(Set payslips) {
+        this.payslips = payslips;
+    }
+
+    public Set getHolidays() {
+        return holidays;
+    }
+
+    public void setHolidays(Set holidays) {
+        this.holidays = holidays;
+    }
+
+    public Set getTimesheets() {
+        return timesheets;
+    }
+
+    public void setTimesheets(Set timesheets) {
+        this.timesheets = timesheets;
+    }
+
+    public Set getRequests() {
+        return requests;
+    }
+
+    public void setRequests(Set requests) {
+        this.requests = requests;
+    }
+
+    public Set getClockings() {
+        return clockings;
+    }
+
+    public void setClockings(Set clockings) {
+        this.clockings = clockings;
+    }
 
     public Employee() {
         // Do nothing

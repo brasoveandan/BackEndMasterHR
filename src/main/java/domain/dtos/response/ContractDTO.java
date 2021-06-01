@@ -1,5 +1,7 @@
 package domain.dtos.response;
 
+import domain.Employee;
+
 import java.time.LocalDate;
 
 public class ContractDTO {

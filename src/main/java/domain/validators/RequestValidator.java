@@ -11,8 +11,6 @@ public class RequestValidator implements Validator<Request> {
             message += "Id cerere invalid.";
         if (entity.getUsernameEmployee() == null || entity.getUsernameEmployee().equals(""))
             message += "Nume de utilizator invalid.";
-        if (!entity.getStatus().toString().equals("ACCEPTED") && !entity.getStatus().toString().equals("DECLINED") && !entity.getStatus().toString().equals("PENDING"))
-            message += "Statusul trebuie sa fie ACCEPTED, DECLINED sau PENDING";
         if (entity.getSubmittedDate().getYear() != java.time.LocalDate.now().getYear())
             message += "Se pot inregistra cereri doar pentru anul in curs.";
         if (!message.equals(""))

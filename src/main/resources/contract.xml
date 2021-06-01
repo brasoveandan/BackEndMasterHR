@@ -6,7 +6,11 @@
 
 <hibernate-mapping>
     <class name="domain.Contract" table="Contract">
-        <id name="usernameEmployee" column="usernameEmployee"/>
+        <id name="usernameEmployee" column="usernameEmployee">
+            <generator class="foreign">
+                <param name="property">employee</param>
+            </generator>
+        </id>
         <property name="companyName" column="companyName"/>
         <property name="baseSalary" type="float" column="baseSalary"/>
         <property name="currency" column="currency"/>
@@ -25,5 +29,7 @@
         <property name="taxExempt" column="taxExempt"/>
         <property name="ticketValue" column="ticketValue"/>
         <property name="daysOff" column="daysOff"/>
+
+        <one-to-one name="employee" cascade="all" class="domain.Employee" />
     </class>
 </hibernate-mapping>

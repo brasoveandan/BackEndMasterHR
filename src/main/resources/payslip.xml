@@ -18,5 +18,6 @@
         <property name="increases" type="float" column="increases"/>
         <property name="overtimeIncreases" type="float" column="overtimeIncreases"/>
         <property name="ticketsValue" type="float" column="ticketsValue"/>
+
     </class>
 </hibernate-mapping>
