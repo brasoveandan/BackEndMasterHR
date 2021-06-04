@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Request {
-    private int idRequest;
+    private Integer idRequest;
     private String usernameEmployee;
     private String description;
     private RequestStatus status;
@@ -25,11 +25,11 @@ public class Request {
         this.idTimesheet = idTimesheet;
     }
 
-    public int getIdRequest() {
+    public Integer getIdRequest() {
         return idRequest;
     }
 
-    public void setIdRequest(int idRequest) {
+    public void setIdRequest(Integer idRequest) {
         this.idRequest = idRequest;
     }
 

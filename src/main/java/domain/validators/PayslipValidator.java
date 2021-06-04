@@ -20,8 +20,6 @@ public class PayslipValidator implements Validator<Payslip> {
             message += "Salariul brut nu poate fi mai mic ca 0.";
         if (entity.getNetSalary() < 0)
             message += "Salariul net nu poate fi mai mic ca 0.";
-        if (entity.getGrossSalary()*52/100 != entity.getNetSalary())
-            message += "Salariul net nu este calculat corect.";
         if (entity.getWorkedHours() < 0)
             message += "Numarul de ore lucrate nu poate fi negativ.";
         if (entity.getHomeOfficeHours() < 0)

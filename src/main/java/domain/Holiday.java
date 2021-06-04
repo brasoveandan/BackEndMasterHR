@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Holiday {
     private String idHoliday;
     private String usernameEmployee;
-    private int idRequest;
+    private Request request;
     private String idTimesheet;
     private LocalDate fromDate;
     private LocalDate toDate;
@@ -36,12 +36,12 @@ public class Holiday {
         this.usernameEmployee = usernameEmployee;
     }
 
-    public int getIdRequest() {
-        return idRequest;
+    public Request getRequest() {
+        return request;
     }
 
-    public void setIdRequest(int idRequest) {
-        this.idRequest = idRequest;
+    public void setRequest(Request idRequest) {
+        this.request = idRequest;
     }
 
     public String getIdTimesheet() {
@@ -97,12 +97,12 @@ public class Holiday {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Holiday holiday = (Holiday) o;
-        return idRequest == holiday.idRequest && overtimeLeave == holiday.overtimeLeave && Objects.equals(idHoliday, holiday.idHoliday) && Objects.equals(usernameEmployee, holiday.usernameEmployee) && Objects.equals(idTimesheet, holiday.idTimesheet) && Objects.equals(fromDate, holiday.fromDate) && Objects.equals(toDate, holiday.toDate) && type == holiday.type && Objects.equals(proxyUsername, holiday.proxyUsername);
+        return request == holiday.request && overtimeLeave == holiday.overtimeLeave && Objects.equals(idHoliday, holiday.idHoliday) && Objects.equals(usernameEmployee, holiday.usernameEmployee) && Objects.equals(idTimesheet, holiday.idTimesheet) && Objects.equals(fromDate, holiday.fromDate) && Objects.equals(toDate, holiday.toDate) && type == holiday.type && Objects.equals(proxyUsername, holiday.proxyUsername);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idHoliday, usernameEmployee, idRequest, idTimesheet, fromDate, toDate, overtimeLeave, type, proxyUsername);
+        return Objects.hash(idHoliday, usernameEmployee, request, idTimesheet, fromDate, toDate, overtimeLeave, type, proxyUsername);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class Holiday {
         return "Holiday{" +
                 "idHoliday='" + idHoliday + '\'' +
                 ", usernameEmployee='" + usernameEmployee + '\'' +
-                ", idRequest=" + idRequest +
+                ", request=" + request +
                 ", idTimesheet='" + idTimesheet + '\'' +
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +

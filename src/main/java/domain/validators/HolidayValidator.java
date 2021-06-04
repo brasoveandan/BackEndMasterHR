@@ -10,8 +10,6 @@ public class HolidayValidator implements Validator<Holiday> {
             message += "Id vacanta invalid.";
         if (entity.getUsernameEmployee() == null || entity.getUsernameEmployee().equals(""))
             message += "Nume de utilizator invalid.";
-        if (entity.getIdRequest() < 0)
-            message += "Id cerere invalid.";
         if (entity.getFromDate().isAfter(entity.getToDate()))
             message += "Data de inceput trebuie sa fie inaintea datei de sfarsit.";
         if (entity.getFromDate().isAfter(entity.getToDate()))

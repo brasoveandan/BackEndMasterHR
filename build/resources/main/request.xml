@@ -6,7 +6,7 @@
 
 <hibernate-mapping>
     <class name="domain.Request" table="Request">
-        <id name="idRequest" column="idRequest">
+        <id name="idRequest" type="java.lang.Integer" column="idRequest">
             <generator class="identity"/>
         </id>
         <property name="usernameEmployee" column="usernameEmployee"/>

@@ -8,7 +8,6 @@
     <class name="domain.Holiday" table="Holiday">
         <id name="idHoliday" column="idHoliday"/>
         <property name="usernameEmployee" column="usernameEmployee"/>
-        <property name="idRequest" column="idRequest"/>
         <property name="idTimesheet" column="idTimesheet"/>
         <property name="fromDate" column="fromDate"/>
         <property name="toDate" column="toDate"/>
@@ -21,5 +20,7 @@
             </type>
         </property>
         <property name="proxyUsername" column="proxyUsername"/>
+        <many-to-one name="request" class="domain.Request" column="idRequest"
+                     not-null="false" cascade="delete" unique="true" fetch="join"/>
     </class>
 </hibernate-mapping>

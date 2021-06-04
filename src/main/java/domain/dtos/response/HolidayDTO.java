@@ -5,7 +5,7 @@ import domain.Request;
 import java.time.LocalDate;
 
 public class HolidayDTO {
-    private int idRequest;
+    private Integer idRequest;
     private String user;
     private LocalDate fromDate;
     private LocalDate toDate;
@@ -14,11 +14,11 @@ public class HolidayDTO {
     private String proxyUsername;
     private String status;
 
-    public int getIdRequest() {
+    public Integer getIdRequest() {
         return idRequest;
     }
 
-    public void setIdRequest(int idRequest) {
+    public void setIdRequest(Integer idRequest) {
         this.idRequest = idRequest;
     }
 
