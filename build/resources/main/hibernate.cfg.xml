@@ -5,7 +5,7 @@
 
 <hibernate-configuration>
     <session-factory>
-        <property name="dialect">utils.SQLiteDialect</property>
+        <property name="dialect">bdir.masterhr.utils.SQLiteDialect</property>
         <property name="connection.driver_class">org.sqlite.JDBC</property>
         <property name="connection.url">jdbc:sqlite:D:\Facultate\Anul III\BackEndMasterHR\DatabaseMasterHR</property>
         <property name="hibernate.jdbc.time_zone">Europe/Bucharest</property>

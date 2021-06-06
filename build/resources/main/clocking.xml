@@ -5,7 +5,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="domain.Clocking" table="Clocking">
+    <class name="bdir.masterhr.domain.Clocking" table="Clocking">
         <id name="idClocking" column="idClocking"/>
         <property name="idTimesheet" column="idTimesheet"/>
         <property name="usernameEmployee" column="usernameEmployee"/>

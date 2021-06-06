@@ -5,7 +5,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="domain.Request" table="Request">
+    <class name="bdir.masterhr.domain.Request" table="Request">
         <id name="idRequest" type="java.lang.Integer" column="idRequest">
             <generator class="identity"/>
         </id>
@@ -13,7 +13,7 @@
         <property name="description" column="description"/>
         <property name="status" column="status">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">domain.enums.RequestStatus</param>
+                <param name="enumClass">bdir.masterhr.domain.enums.RequestStatus</param>
                 <param name="type">12</param>
                 <param name="useNamed">true</param>
             </type>

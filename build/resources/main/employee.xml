@@ -5,13 +5,13 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="domain.Employee" table="Employee">
+    <class name="bdir.masterhr.domain.Employee" table="Employee">
         <id name="username" column="username"/>
         <property name="password" column="password"/>
         <property name="personalNumber" column="personalNumber"/>
         <property name="adminRole" column="adminRole">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">domain.enums.AdminRole</param>
+                <param name="enumClass">bdir.masterhr.domain.enums.AdminRole</param>
                 <param name="type">12</param>
                 <param name="useNamed">true</param>
             </type>
@@ -26,26 +26,28 @@
         <property name="bankName" column="bankName"/>
         <property name="bankAccountNumber" column="bankAccountNumber"/>
 
-        <one-to-one name="contract" cascade="all" class="domain.Contract" />
-        <set name = "payslips" cascade="all">
-            <key column = "usernameEmployee"/>
-            <one-to-many class="domain.Payslip"/>
+        <one-to-one name="contract" cascade="all" class="bdir.masterhr.domain.Contract"/>
+
+        <set name="payslips" cascade="all">
+            <key column="usernameEmployee"/>
+            <one-to-many class="bdir.masterhr.domain.Payslip"/>
         </set>
-        <set name = "holidays" cascade="all">
-            <key column = "usernameEmployee"/>
-            <one-to-many class="domain.Holiday"/>
+
+        <set name="holidays" cascade="all">
+            <key column="usernameEmployee"/>
+            <one-to-many class="bdir.masterhr.domain.Holiday"/>
         </set>
-        <set name = "timesheets" cascade="all">
-            <key column = "usernameEmployee"/>
-            <one-to-many class="domain.Timesheet"/>
+        <set name="timesheets" cascade="all">
+            <key column="usernameEmployee"/>
+            <one-to-many class="bdir.masterhr.domain.Timesheet"/>
         </set>
-        <set name = "requests" cascade="all">
-            <key column = "usernameEmployee"/>
-            <one-to-many class="domain.Request"/>
+        <set name="requests" cascade="all">
+            <key column="usernameEmployee"/>
+            <one-to-many class="bdir.masterhr.domain.Request"/>
         </set>
-        <set name = "clockings" cascade="all">
-            <key column = "usernameEmployee"/>
-            <one-to-many class="domain.Clocking"/>
+        <set name="clockings" cascade="all">
+            <key column="usernameEmployee"/>
+            <one-to-many class="bdir.masterhr.domain.Clocking"/>
         </set>
     </class>
 </hibernate-mapping>

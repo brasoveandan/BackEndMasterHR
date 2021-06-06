@@ -5,7 +5,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="domain.Contract" table="Contract">
+    <class name="bdir.masterhr.domain.Contract" table="Contract">
         <id name="usernameEmployee" column="usernameEmployee">
             <generator class="foreign">
                 <param name="property">employee</param>
@@ -17,7 +17,7 @@
         <property name="hireDate" column="hireDate"/>
         <property name="type" column="type">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">domain.enums.ContractType</param>
+                <param name="enumClass">bdir.masterhr.domain.enums.ContractType</param>
                 <param name="type">12</param>
                 <param name="useNamed">true</param>
             </type>
@@ -30,6 +30,6 @@
         <property name="ticketValue" column="ticketValue"/>
         <property name="daysOff" column="daysOff"/>
 
-        <one-to-one name="employee" cascade="all" class="domain.Employee" />
+        <one-to-one name="employee" cascade="all" class="bdir.masterhr.domain.Employee"/>
     </class>
 </hibernate-mapping>

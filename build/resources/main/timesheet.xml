@@ -5,7 +5,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="domain.Timesheet" table="Timesheet">
+    <class name="bdir.masterhr.domain.Timesheet" table="Timesheet">
         <id name="idTimesheet" column="idTimesheet"/>
         <property name="usernameEmployee" column="usernameEmployee"/>
         <property name="year" type="int" column="year"/>
@@ -17,7 +17,7 @@
         <property name="totalOvertimeHours" type="float" column="totalOvertimeHours"/>
         <property name="status" column="status">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">domain.enums.TimesheetStatus</param>
+                <param name="enumClass">bdir.masterhr.domain.enums.TimesheetStatus</param>
                 <param name="type">12</param>
                 <param name="useNamed">true</param>
             </type>

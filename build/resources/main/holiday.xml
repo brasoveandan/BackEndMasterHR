@@ -5,7 +5,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="domain.Holiday" table="Holiday">
+    <class name="bdir.masterhr.domain.Holiday" table="Holiday">
         <id name="idHoliday" column="idHoliday"/>
         <property name="usernameEmployee" column="usernameEmployee"/>
         <property name="idTimesheet" column="idTimesheet"/>
@@ -14,13 +14,13 @@
         <property name="overtimeLeave" type="int" column="overtimeLeave"/>
         <property name="type" column="type">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">domain.enums.HolidayType</param>
+                <param name="enumClass">bdir.masterhr.domain.enums.HolidayType</param>
                 <param name="type">12</param>
                 <param name="useNamed">true</param>
             </type>
         </property>
         <property name="proxyUsername" column="proxyUsername"/>
-        <many-to-one name="request" class="domain.Request" column="idRequest"
+        <many-to-one name="request" class="bdir.masterhr.domain.Request" column="idRequest"
                      not-null="false" cascade="delete" unique="true" fetch="join"/>
     </class>
 </hibernate-mapping>

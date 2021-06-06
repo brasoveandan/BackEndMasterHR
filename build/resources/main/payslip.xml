@@ -5,7 +5,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="domain.Payslip" table="Payslip">
+    <class name="bdir.masterhr.domain.Payslip" table="Payslip">
         <id name="idPayslip" column="idPayslip"/>
         <property name="usernameEmployee" column="usernameEmployee"/>
         <property name="year" type="int" column="year"/>
