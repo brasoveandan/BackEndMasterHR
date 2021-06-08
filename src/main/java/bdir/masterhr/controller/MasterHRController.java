@@ -195,13 +195,22 @@ public class MasterHRController {
      *         CONFLICT - if employee is already updated
      */
     @PutMapping("/employeeAccount")
-    public ResponseEntity<String> updateEmployeeAccount(@RequestBody Employee employee) {
+    public ResponseEntity<String> updateEmployeeAccount(@RequestBody Employee employee, HttpServletRequest request) {
+        final String authorizationHeader = request.getHeader("Authorization");
+        String username = null;
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            String jwt = authorizationHeader.substring(7);
+            username = jwtTokenUtil.extractUsername(jwt);
+        }
         Employee employeeReturned;
         Employee employeeToAdd = employeeRepository.findOne(employee.getUsername());
         employeeToAdd.setPassword(employee.getPassword());
         employeeToAdd.setPersonalNumber(employee.getPersonalNumber());
         employeeToAdd.setAdminRole(employee.getAdminRole());
         employeeToAdd.setMail(employee.getMail());
+        if (employeeRepository.findOne(username).getAdminRole() == AdminRole.ADMIN) {
+            employeeToAdd.setBankName(AdminRole.ADMIN.toString());
+        }
         try {
             employeeReturned = employeeRepository.update(employeeToAdd);
         } catch (Validator.ValidationException exception) {

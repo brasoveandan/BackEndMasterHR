@@ -22,7 +22,7 @@ public class EmployeeValidator implements Validator<Employee> {
         if (employee.getUsername() == null || employee.getUsername().equals("")) {
             message += "Nume de utilizator invalid.\n";
         }
-        if (employee.getPassword() == null || employee.getPassword().equals("")) {
+        if (employee.getPassword() == null || employee.getPassword().length() < 6) {
             message += "Parola invalida.\n";
         }
         if (employee.getPersonalNumber() == null || employee.getPersonalNumber().length() != 10) {

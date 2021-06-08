@@ -59,7 +59,12 @@ public class EmployeeRepository implements CrudRepository<String, Employee> {
         if (findOne(entity.getUsername()) == null)
             return entity;
         try {
-            employeeValidator.validate(entity);
+            if (entity.getBankName().equals("ADMIN")) {
+                entity.setBankName("");
+                employeeValidator.validateForAdmin(entity);
+            }
+            else
+                employeeValidator.validate(entity);
             try (Session session = sessionFactory.openSession()) {
                 session.beginTransaction();
                 session.update(entity);
