@@ -9,7 +9,6 @@ public class Holiday {
     private String idHoliday;
     private String usernameEmployee;
     private Request request;
-    private String idTimesheet;
     private LocalDate fromDate;
     private LocalDate toDate;
     private int overtimeLeave;
@@ -42,14 +41,6 @@ public class Holiday {
 
     public void setRequest(Request idRequest) {
         this.request = idRequest;
-    }
-
-    public String getIdTimesheet() {
-        return idTimesheet;
-    }
-
-    public void setIdTimesheet(String idTimesheet) {
-        this.idTimesheet = idTimesheet;
     }
 
     public LocalDate getFromDate() {
@@ -97,12 +88,12 @@ public class Holiday {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Holiday holiday = (Holiday) o;
-        return request == holiday.request && overtimeLeave == holiday.overtimeLeave && Objects.equals(idHoliday, holiday.idHoliday) && Objects.equals(usernameEmployee, holiday.usernameEmployee) && Objects.equals(idTimesheet, holiday.idTimesheet) && Objects.equals(fromDate, holiday.fromDate) && Objects.equals(toDate, holiday.toDate) && type == holiday.type && Objects.equals(proxyUsername, holiday.proxyUsername);
+        return request == holiday.request && overtimeLeave == holiday.overtimeLeave && Objects.equals(idHoliday, holiday.idHoliday) && Objects.equals(usernameEmployee, holiday.usernameEmployee) && Objects.equals(fromDate, holiday.fromDate) && Objects.equals(toDate, holiday.toDate) && type == holiday.type && Objects.equals(proxyUsername, holiday.proxyUsername);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idHoliday, usernameEmployee, request, idTimesheet, fromDate, toDate, overtimeLeave, type, proxyUsername);
+        return Objects.hash(idHoliday, usernameEmployee, request, fromDate, toDate, overtimeLeave, type, proxyUsername);
     }
 
     @Override
@@ -111,7 +102,6 @@ public class Holiday {
                 "idHoliday='" + idHoliday + '\'' +
                 ", usernameEmployee='" + usernameEmployee + '\'' +
                 ", request=" + request +
-                ", idTimesheet='" + idTimesheet + '\'' +
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
                 ", overtimeLeave=" + overtimeLeave +

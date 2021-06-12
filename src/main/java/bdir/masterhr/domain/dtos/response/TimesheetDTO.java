@@ -15,6 +15,7 @@ public class TimesheetDTO {
     private float overtimeHours;
     private float totalOvertimeHours;
     private TimesheetStatus status;
+    private int numberOfHoursContract;
 
     public String getUsernameEmployee() {
         return usernameEmployee;
@@ -104,6 +105,14 @@ public class TimesheetDTO {
         this.status = status;
     }
 
+    public int getNumberOfHoursContract() {
+        return numberOfHoursContract;
+    }
+
+    public void setNumberOfHoursContract(int numberOfHoursContract) {
+        this.numberOfHoursContract = numberOfHoursContract;
+    }
+
     @Override
     public String toString() {
         return "TimesheetDTO{" +
@@ -118,6 +127,7 @@ public class TimesheetDTO {
                 ", overtimeHours=" + overtimeHours +
                 ", totalOvertimeHours=" + totalOvertimeHours +
                 ", status=" + status +
+                ", numberOfHoursContract=" + numberOfHoursContract +
                 '}';
     }
 }

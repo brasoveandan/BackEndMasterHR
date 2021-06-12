@@ -8,7 +8,6 @@
     <class name="bdir.masterhr.domain.Holiday" table="Holiday">
         <id name="idHoliday" column="idHoliday"/>
         <property name="usernameEmployee" column="usernameEmployee"/>
-        <property name="idTimesheet" column="idTimesheet"/>
         <property name="fromDate" column="fromDate"/>
         <property name="toDate" column="toDate"/>
         <property name="overtimeLeave" type="int" column="overtimeLeave"/>

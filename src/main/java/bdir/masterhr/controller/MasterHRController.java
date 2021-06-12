@@ -530,15 +530,30 @@ public class MasterHRController {
 
     /**
      * This method is used for adding a new holiday
-     * @param holiday - Holiday entity
+     * @param holidayDTO - HolidayDTO entity
      * @return OK - if holiday is successfully saved
      *         EXCEPTION_FAILED and exception message - if holiday details are not valid
      *         CONFLICT - if holiday is already saved
      */
     @PostMapping("/holiday")
-    public ResponseEntity<String> saveHoliday(@RequestBody Holiday holiday) {
+    public ResponseEntity<String> saveHoliday(@RequestBody HolidayDTO holidayDTO) throws Validator.ValidationException {
         Holiday holidayReturned;
+        Holiday holiday = new Holiday();
         holiday.setIdHoliday(holiday.getUsernameEmployee() + holiday.getFromDate() + holiday.getToDate());
+        if (holidayDTO.getType() == null) {
+            holiday.setUsernameEmployee(holidayDTO.getUser());
+            holiday.setFromDate(holidayDTO.getFromDate());
+            holiday.setToDate(holidayDTO.getToDate());
+            holiday.setType(HolidayType.MEDICAL);
+            Request request = new Request();
+            request.setUsernameEmployee(holiday.getUsernameEmployee());
+            request.setStatus(RequestStatus.ACCEPTED);
+            request.setSubmittedDate(holiday.getToDate());
+            request.setIdTimesheet(holiday.getUsernameEmployee() + holiday.getFromDate().getYear() + holiday.getFromDate().getMonthValue());
+            request.setIdRequest(0);
+            request = requestRepository.save(request);
+            holiday.setRequest(request);
+        }
         try {
             holidayReturned = holidayRepository.save(holiday);
         } catch (Validator.ValidationException exception) {
@@ -556,7 +571,13 @@ public class MasterHRController {
      *         NOT_FOUND - if holiday doesn't exist
      */
     @DeleteMapping("/holiday/{idHoliday}")
-    public ResponseEntity<String> deleteHoliday(@PathVariable String idHoliday) {
+    public ResponseEntity<String> deleteHoliday(@PathVariable String idHoliday) throws Validator.ValidationException {
+        Holiday holidayToDelete = holidayRepository.findOne(idHoliday);
+        if (holidayToDelete.getType() == HolidayType.OVERTIME_LEAVE) {
+            Timesheet timesheet = timesheetRepository.findOne(holidayToDelete.getRequest().getIdTimesheet());
+            timesheet.setOvertimeHours(timesheet.getOvertimeHours() + holidayToDelete.getOvertimeLeave());
+            timesheetRepository.update(timesheet);
+        }
         Holiday holiday = holidayRepository.delete(idHoliday);
         if (holiday == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -596,19 +617,49 @@ public class MasterHRController {
         AtomicInteger otherLeave = new AtomicInteger();
         AtomicInteger overtimeLeave = new AtomicInteger();
         holidayRepository.findAll().forEach(holiday -> {
-            if (holiday.getUsernameEmployee().equals(usernameEmployee) && requestRepository.findOne(String.valueOf(holiday.getRequest().getIdRequest())).getStatus() == RequestStatus.ACCEPTED) {
+               if (holiday.getUsernameEmployee().equals(usernameEmployee) && requestRepository.findOne(String.valueOf(holiday.getRequest().getIdRequest())).getStatus() == RequestStatus.ACCEPTED) {
+                   HolidayDTO holidayDTO = new HolidayDTO();
+                   holidayDTO.setFromDate(holiday.getFromDate());
+                   holidayDTO.setToDate(holiday.getToDate());
+                   holidayDTO.setNumberOfDays((int) DAYS.between(holiday.getFromDate(), holiday.getToDate()) + 1);
+                   if (OTHER_TYPES.contains(holiday.getType()))
+                       otherLeave.addAndGet(holidayDTO.getNumberOfDays());
+                   else if (holiday.getType() == HolidayType.OVERTIME_LEAVE)
+                       overtimeLeave.addAndGet(holiday.getOvertimeLeave());
+                   else if (holiday.getType() == HolidayType.MEDICAL)
+                       medicalLeave.addAndGet((int) DAYS.between(holiday.getFromDate(), holiday.getToDate()) + 1);
+                   else daysTaken.addAndGet(holidayDTO.getNumberOfDays());
+               }
+        });
+        summaryHolidayDTO.setMedicalLeave(medicalLeave.get());
+        summaryHolidayDTO.setDaysTaken(daysTaken.get());
+        summaryHolidayDTO.setOtherLeave(otherLeave.get());
+        summaryHolidayDTO.setOvertimeLeave(overtimeLeave.get());
+        summaryHolidayDTO.setDaysAvailable((contractRepository.findOne(usernameEmployee) == null) ? 0 : contractRepository.findOne(usernameEmployee).getDaysOff());
+        return new ResponseEntity<>(summaryHolidayDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/summaryHoliday/{usernameEmployee}/{year}/{month}")
+    public ResponseEntity<SummaryHolidayDTO> getSummaryHoliday(@PathVariable String usernameEmployee, @PathVariable int year,@PathVariable int month) {
+        SummaryHolidayDTO summaryHolidayDTO = new SummaryHolidayDTO();
+        String idTimesheet = usernameEmployee + year + month;
+        AtomicInteger daysTaken = new AtomicInteger();
+        AtomicInteger medicalLeave = new AtomicInteger();
+        AtomicInteger otherLeave = new AtomicInteger();
+        AtomicInteger overtimeLeave = new AtomicInteger();
+        holidayRepository.findAll().forEach(holiday -> {
+            if (holiday.getRequest() != null && holiday.getRequest().getIdTimesheet().equals(idTimesheet) && requestRepository.findOne(String.valueOf(holiday.getRequest().getIdRequest())).getStatus() == RequestStatus.ACCEPTED) {
                 HolidayDTO holidayDTO = new HolidayDTO();
                 holidayDTO.setFromDate(holiday.getFromDate());
                 holidayDTO.setToDate(holiday.getToDate());
                 holidayDTO.setNumberOfDays((int) DAYS.between(holiday.getFromDate(), holiday.getToDate()) + 1);
-                if (holiday.getType() == HolidayType.MEDICAL) {
-                    medicalLeave.addAndGet(holidayDTO.getNumberOfDays());
-                }
                 if (OTHER_TYPES.contains(holiday.getType()))
                     otherLeave.addAndGet(holidayDTO.getNumberOfDays());
-                if (holiday.getType() == HolidayType.OVERTIME_LEAVE)
+                else if (holiday.getType() == HolidayType.OVERTIME_LEAVE)
                     overtimeLeave.addAndGet(holiday.getOvertimeLeave());
-                daysTaken.addAndGet(holidayDTO.getNumberOfDays());
+                else if (holiday.getType() == HolidayType.MEDICAL)
+                    medicalLeave.addAndGet((int) DAYS.between(holiday.getFromDate(), holiday.getToDate()) + 1);
+                else daysTaken.addAndGet(holidayDTO.getNumberOfDays());
             }
         });
         summaryHolidayDTO.setMedicalLeave(medicalLeave.get());
@@ -639,9 +690,6 @@ public class MasterHRController {
                 holidayDTO.setType(Utils.holidayTypeToString(holiday.getType()));
                 holidayDTO.setStatus(Utils.requestStatusToString(requestRepository.
                         findOne(String.valueOf(holiday.getRequest().getIdRequest())).getStatus()));
-                if (holiday.getType() == HolidayType.MEDICAL) {
-                    holidayDTO.setStatus(ACCEPT);
-                }
                 holidayDTOList.add(holidayDTO);
             }
         });
@@ -661,7 +709,7 @@ public class MasterHRController {
         List<HolidayDTO> holidayDTOList = new ArrayList<>();
         String department = contractRepository.findOne(usernameEmployee) == null ? "" : contractRepository.findOne(usernameEmployee).getDepartment();
         holidayRepository.findAll().forEach(holiday -> {
-            if (contractRepository.findOne(holiday.getUsernameEmployee()).getDepartment().equals(department)) {
+            if (contractRepository.findOne(holiday.getUsernameEmployee()).getDepartment().equals(department) && holiday.getType() != HolidayType.MEDICAL) {
                 HolidayDTO holidayDTO = new HolidayDTO();
                 holidayDTO.setIdRequest(holiday.getRequest().getIdRequest());
                 holidayDTO.setUser(holiday.getUsernameEmployee());
@@ -673,9 +721,6 @@ public class MasterHRController {
                 Request request = requestRepository.findOne(String.valueOf(holiday.getRequest().getIdRequest()));
                 holidayDTO.setStatus(Utils.requestStatusToString(request.getStatus()));
                 holidayDTO.setReason(request.getDescription());
-                if (holiday.getType() == HolidayType.MEDICAL) {
-                    holidayDTO.setStatus(ACCEPT);
-                }
                 holidayDTOList.add(holidayDTO);
             }
         });
@@ -686,7 +731,7 @@ public class MasterHRController {
     }
 
     /**
-     * This method is used for getting the number of holiday request of an employee for a given month
+     * This method is used for getting the number of holiday requests of an employee for a given month
      * @param usernameEmployee - username of employee account
      * @param year - year request
      * @param month - month request
@@ -739,6 +784,8 @@ public class MasterHRController {
             timesheet = newTimesheet;
             timesheetRepository.save(newTimesheet);
         }
+        if (clockingRepository.findOne(request.getUsernameEmployee() + request.getFromDate().getMonthValue() + request.getFromDate().getDayOfMonth()) != null)
+            return new ResponseEntity<>("Exista pontaj inregistrat pentru zilele selectate.", HttpStatus.EXPECTATION_FAILED);
         Holiday holidayReturned;
         Holiday holiday = new Holiday();
         holiday.setIdHoliday(request.getUsernameEmployee() + request.getFromDate() + request.getToDate());
@@ -748,7 +795,7 @@ public class MasterHRController {
         holiday.setProxyUsername(request.getProxyUsername());
         holiday.setType(stringToHolidayType(request.getType()));
         if (holiday.getType() == HolidayType.OVERTIME_LEAVE) {
-            int numberOfDays = (int) DAYS.between(holiday.getFromDate(), holiday.getToDate());
+            int numberOfDays = (int) DAYS.between(holiday.getFromDate(), holiday.getToDate()) + 1;
             int requiredOvertimeLeave = numberOfDays * numberOfHours;
 
             if (requiredOvertimeLeave <= timesheet.getOvertimeHours() + timesheet.getTotalOvertimeHours()) {
@@ -760,7 +807,7 @@ public class MasterHRController {
                     timesheet.setOvertimeHours(0);
                     timesheet.setTotalOvertimeHours(timesheet.getTotalOvertimeHours() - requiredOvertimeLeave);
                 }
-            } else return new ResponseEntity<>("Nu sunt suficiente ore suplimentare.", HttpStatus.EXPECTATION_FAILED);
+            } else return new ResponseEntity<>("Nu sunt suficiente ore suplimentare. Verificati numarul de ore suplimentare!", HttpStatus.EXPECTATION_FAILED);
         }
         try {
             holidayReturned = holidayRepository.save(holiday);
@@ -802,6 +849,16 @@ public class MasterHRController {
         RequestStatus requestStatus = request.getStatus();
         request = requestRepository.findOne(String.valueOf(request.getIdRequest()));
         request.setStatus(requestStatus);
+        for (Holiday holiday : holidayRepository.findAll())
+            if (holiday.getRequest().getIdRequest().equals(request.getIdRequest()) && holiday.getType() == HolidayType.OVERTIME_LEAVE && request.getStatus() == RequestStatus.DECLINED) {
+                Timesheet timesheet = timesheetRepository.findOne(request.getIdTimesheet());
+                timesheet.setOvertimeHours(timesheet.getOvertimeHours() + holiday.getOvertimeLeave());
+                try {
+                    timesheetRepository.update(timesheet);
+                } catch (Validator.ValidationException e) {
+                    return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+                }
+            }
         try {
             requestReturned = requestRepository.update(request);
         } catch (Validator.ValidationException exception) {
@@ -810,6 +867,38 @@ public class MasterHRController {
         if (requestReturned == null)
             return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
+
+    /**
+     * This method is used for searching request by id
+     * @param idRequest - username of employee account
+     * @return OK and request if exist a request, else NOT_FOUND
+     */
+    @GetMapping("/getRequest/{idRequest}")
+    public ResponseEntity<HolidayDTO> findRequestById(@PathVariable Integer idRequest) {
+        Request request = requestRepository.findOne(idRequest.toString());
+        if (request != null) {
+             for (Holiday holiday : holidayRepository.findAll()) {
+                 if (holiday.getRequest().getIdRequest().equals(idRequest))
+                 {
+                     HolidayDTO holidayDTO = new HolidayDTO();
+                     holidayDTO.setIdRequest(holiday.getRequest().getIdRequest());
+                     holidayDTO.setUser(holiday.getUsernameEmployee());
+                     holidayDTO.setFromDate(holiday.getFromDate());
+                     holidayDTO.setToDate(holiday.getToDate());
+                     holidayDTO.setNumberOfDays((int) DAYS.between(holiday.getFromDate(), holiday.getToDate()) + 1);
+                     holidayDTO.setProxyUsername(holiday.getProxyUsername());
+                     holidayDTO.setType(Utils.holidayTypeToString(holiday.getType()));
+                     holidayDTO.setStatus(Utils.requestStatusToString(request.getStatus()));
+                     holidayDTO.setReason(request.getDescription());
+                     if (holiday.getType() == HolidayType.MEDICAL) {
+                         holidayDTO.setStatus(ACCEPT);
+                     }
+                     return new ResponseEntity<>(holidayDTO, HttpStatus.OK);
+                 }
+             }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -865,6 +954,28 @@ public class MasterHRController {
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
+
+    /**
+     * This method return total hours of holidays
+     * @param username - username of employee account
+     * @param year - year of holiday summary
+     * @param month - month of holiday summary
+     * @param numberOfHoursPerDay - number of hours required per day for employee
+     * @return Total hours of holidays
+     */
+    public int getHolidaySummary(String username, int year, int month, int numberOfHoursPerDay) {
+        ResponseEntity<SummaryHolidayDTO> summaryHolidayDTOResponseEntity = this.getSummaryHoliday(username, year, month);
+        int totalHours = 0;
+        if (summaryHolidayDTOResponseEntity.getBody() != null) {
+            SummaryHolidayDTO summaryHolidayDTO = summaryHolidayDTOResponseEntity.getBody();
+            if (summaryHolidayDTO != null) {
+                int totalHolidayDays = summaryHolidayDTO.getDaysTaken() + summaryHolidayDTO.getMedicalLeave() + summaryHolidayDTO.getOtherLeave();
+                totalHours = numberOfHoursPerDay * totalHolidayDays + summaryHolidayDTO.getOvertimeLeave();
+            }
+        }
+        return totalHours;
+    }
+
      /**
      * This method is used for updating a timesheet
      * @param timesheetDTO - DTO
@@ -879,7 +990,6 @@ public class MasterHRController {
         String timesheetID = timesheetDTO.getUsernameEmployee() + timesheetDTO.getYear() + timesheetDTO.getMonth();
         Timesheet timesheet = timesheetRepository.findOne(timesheetID);
         timesheet.setStatus(timesheetDTO.getStatus());
-        timesheetDTO.setTotalOvertimeHours(timesheetDTO.getTotalOvertimeHours() + timesheetDTO.getOvertimeHours());
         try {
             timesheetReturned = timesheetRepository.update(timesheet);
         } catch (Validator.ValidationException exception) {
@@ -910,7 +1020,10 @@ public class MasterHRController {
                     workDays.getAndIncrement();
             });
             payslip.setTicketsValue(ticketValue * workDays.get());
-            float percent = (payslip.getWorkedHours() + payslip.getHomeOfficeHours()) / payslip.getRequiredHours();
+
+            int numberOfHoursPerDay = Integer.parseInt(contract.getType().toString().split("_")[2]);
+            float totalHours = payslip.getWorkedHours() + payslip.getHomeOfficeHours() + getHolidaySummary(timesheet.getUsernameEmployee(), timesheetDTO.getYear(), timesheetDTO.getMonth(), numberOfHoursPerDay);
+            float percent = (totalHours / payslip.getRequiredHours());
             if (percent < 1) {
                 float salary = contract.getBaseSalary() * percent;
                 payslip.setGrossSalary(salary);
@@ -943,6 +1056,7 @@ public class MasterHRController {
             timesheetDTO.setRequiredHours(timesheet.getRequiredHours());
             timesheetDTO.setOvertimeHours(timesheet.getOvertimeHours());
             timesheetDTO.setTotalOvertimeHours(timesheet.getTotalOvertimeHours());
+            timesheetDTO.setStatus(timesheet.getStatus());
             return new ResponseEntity<>(timesheetDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -968,6 +1082,7 @@ public class MasterHRController {
             timesheetDTO.setOvertimeHours(timesheet.getOvertimeHours());
             timesheetDTO.setTotalOvertimeHours(timesheet.getTotalOvertimeHours());
             timesheetDTO.setStatus(timesheet.getStatus());
+            timesheetDTO.setNumberOfHoursContract(Integer.parseInt(contractRepository.findOne(timesheet.getUsernameEmployee()).getType().toString().split("_")[2]));
             list.add(timesheetDTO);
         });
         if (list.isEmpty())
@@ -1005,11 +1120,14 @@ public class MasterHRController {
             newTimesheet.setRequiredHours((float) numberOfHours * workingDays);
             newTimesheet.setStatus(TimesheetStatus.OPENED);
             if (oldTimesheet != null) {
-                newTimesheet.setTotalOvertimeHours(oldTimesheet.getTotalOvertimeHours());
+                newTimesheet.setTotalOvertimeHours(oldTimesheet.getTotalOvertimeHours() + oldTimesheet.getOvertimeHours());
             }
             timesheet = newTimesheet;
             timesheetRepository.save(newTimesheet);
         }
+        long clockingHours = HOURS.between(clocking.getFromHour(), clocking.getToHour());
+        if (clockingHours > 12)
+            return new ResponseEntity<>("Nu se pot inregistra pontaje cu mai mult de 12 ore lucrate.", HttpStatus.EXPECTATION_FAILED);
         Clocking clockingReturned;
         clocking.setIdClocking(clocking.getUsernameEmployee() + clocking.getFromHour().getMonthValue() + clocking.getFromHour().getDayOfMonth());
         clocking.setIdTimesheet(timesheet.getIdTimesheet());
@@ -1019,13 +1137,13 @@ public class MasterHRController {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
         if (clockingReturned == null && clocking.getFromHour() != clocking.getToHour()) {
-            long clockingHours = HOURS.between(clocking.getFromHour(), clocking.getToHour());
-            if (clocking.getType() != null && !clocking.getType().equals("Normal"))
-                timesheet.setHomeOfficeHours(clockingHours + timesheet.getHomeOfficeHours());
-            else
-                timesheet.setWorkedHours(clockingHours + timesheet.getWorkedHours());
             if (numberOfHours <= clockingHours)
-                timesheet.setOvertimeHours((float) clockingHours - numberOfHours);
+                timesheet.setOvertimeHours((float) clockingHours - numberOfHours + timesheet.getOvertimeHours());
+            if (clocking.getType() != null && !clocking.getType().equals("Normal"))
+                timesheet.setHomeOfficeHours(numberOfHours + timesheet.getHomeOfficeHours());
+            else
+                timesheet.setWorkedHours(numberOfHours + timesheet.getWorkedHours());
+
             try {
                 timesheetRepository.update(timesheet);
             } catch (Validator.ValidationException exception) {

@@ -12,8 +12,8 @@ bdir/masterhr/domain/Contract.java
  bdir.masterhr.domain.Contract
 bdir/masterhr/domain/dtos/response/PayslipDTO.java
  bdir.masterhr.domain.dtos.response.PayslipDTO
-bdir/masterhr/domain/validators/ClockingValidator.java
- bdir.masterhr.domain.validators.ClockingValidator
+bdir/masterhr/domain/Clocking.java
+ bdir.masterhr.domain.Clocking
 bdir/masterhr/domain/dtos/request/ResetPassword.java
  bdir.masterhr.domain.dtos.request.ResetPassword
 bdir/masterhr/domain/dtos/response/ClockingDTO.java
@@ -27,22 +27,22 @@ bdir/masterhr/domain/validators/ResetPasswordValidator.java
  bdir.masterhr.domain.validators.ResetPasswordValidator
 bdir/masterhr/security/JwtRequestFilter.java
  bdir.masterhr.security.JwtRequestFilter
-bdir/masterhr/domain/Clocking.java
- bdir.masterhr.domain.Clocking
+bdir/masterhr/security/MyUserDetailsService.java
+ bdir.masterhr.security.MyUserDetailsService
 bdir/masterhr/repository/PayslipRepository.java
  bdir.masterhr.repository.PayslipRepository
 bdir/masterhr/domain/dtos/request/RequestDTO.java
  bdir.masterhr.domain.dtos.request.RequestDTO
-bdir/masterhr/repository/ClockingRepository.java
- bdir.masterhr.repository.ClockingRepository
+bdir/masterhr/domain/validators/ClockingValidator.java
+ bdir.masterhr.domain.validators.ClockingValidator
 bdir/masterhr/domain/validators/TimesheetValidator.java
  bdir.masterhr.domain.validators.TimesheetValidator
 bdir/masterhr/repository/HolidayRepository.java
  bdir.masterhr.repository.HolidayRepository
 bdir/masterhr/domain/validators/ContractValidator.java
  bdir.masterhr.domain.validators.ContractValidator
-bdir/masterhr/domain/dtos/response/TimesheetDTO.java
- bdir.masterhr.domain.dtos.response.TimesheetDTO
+bdir/masterhr/repository/ClockingRepository.java
+ bdir.masterhr.repository.ClockingRepository
 bdir/masterhr/repository/RequestRepository.java
  bdir.masterhr.repository.RequestRepository
 bdir/masterhr/domain/dtos/request/AuthenticationRequest.java
@@ -70,8 +70,8 @@ bdir/masterhr/repository/CrudRepository.java
 bdir/masterhr/utils/Utils.java
  bdir.masterhr.utils.Utils
  bdir.masterhr.utils.Utils$1
-bdir/masterhr/domain/Employee.java
- bdir.masterhr.domain.Employee
+bdir/masterhr/repository/EmployeeRepository.java
+ bdir.masterhr.repository.EmployeeRepository
 bdir/masterhr/domain/dtos/request/RequestHolidayDTO.java
  bdir.masterhr.domain.dtos.request.RequestHolidayDTO
 bdir/masterhr/repository/TimesheetRepository.java
@@ -93,9 +93,9 @@ bdir/masterhr/domain/dtos/response/HolidayDTO.java
  bdir.masterhr.domain.dtos.response.HolidayDTO
 bdir/masterhr/domain/enums/RequestStatus.java
  bdir.masterhr.domain.enums.RequestStatus
-bdir/masterhr/security/MyUserDetailsService.java
- bdir.masterhr.security.MyUserDetailsService
+bdir/masterhr/domain/Employee.java
+ bdir.masterhr.domain.Employee
+bdir/masterhr/domain/dtos/response/TimesheetDTO.java
+ bdir.masterhr.domain.dtos.response.TimesheetDTO
 bdir/masterhr/controller/MasterHRController.java
  bdir.masterhr.controller.MasterHRController
-bdir/masterhr/repository/EmployeeRepository.java
- bdir.masterhr.repository.EmployeeRepository

@@ -16,8 +16,10 @@ public class ClockingValidator implements Validator<Clocking> {
             message += "Ora de iesire si ora de intrare trebuie sa fie in aceeasi luna.";
         if (entity.getFromHour().getDayOfMonth() != entity.getToHour().getDayOfMonth())
             message += "Ora de iesire si ora de intrare trebuie sa fie in aceeasi zi.";
+        if (entity.getFromHour().getMonthValue() != LocalDateTime.now().getMonthValue())
+            message += "Pontare invalida. Se pot salva pontari doar pentru luna in curs.";
         if (entity.getFromHour().isAfter(LocalDateTime.now()))
-            message += "Pontare invalida.";
+            message += "Pontare invalida. Nu se poate salva o pontare in avans.";
         if (!message.equals("")) {
             throw new ValidationException(message);
         }
