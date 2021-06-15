@@ -64,7 +64,7 @@ public class MasterHRController {
     /**
      * This method is used for logging
      * @param authenticationRequest - DTO with username and password
-     * @return UNAUTHORIZED if credentials is bad else return OK
+     * @return UNAUTHORIZED if credentials are bad else return OK
      */
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
@@ -109,7 +109,7 @@ public class MasterHRController {
 
             String subject = "Resetare parola MasterHR";
             String content = "<p>Salut, " + fullName + "</p>"
-                    + "<p>Pentru ati reseta parola, acceseaza link-ul de mai jos.</p>"
+                    + "<p>Pentru a-ti reseta parola, acceseaza link-ul de mai jos.</p>"
                     + "<p><a href=\"" + link + "\">Schimba parola</a></p>"
                     + "<br>"
                     + "<p>Daca nu ai initiat tu aceasta cerere, te rugam sa ignori acest email.";
@@ -755,6 +755,24 @@ public class MasterHRController {
 
     //RequestController
 
+    private Timesheet calculateOvertimeHours(Timesheet timesheet, Holiday holiday, int numberOfHours) {
+        int numberOfDays = (int) DAYS.between(holiday.getFromDate(), holiday.getToDate()) + 1;
+        int requiredOvertimeLeave = numberOfDays * numberOfHours;
+
+        if (requiredOvertimeLeave <= timesheet.getOvertimeHours() + timesheet.getTotalOvertimeHours()) {
+            holiday.setOvertimeLeave(requiredOvertimeLeave);
+            if (timesheet.getOvertimeHours() >= requiredOvertimeLeave) {
+                timesheet.setOvertimeHours(timesheet.getOvertimeHours() - requiredOvertimeLeave);
+            } else {
+                requiredOvertimeLeave -= timesheet.getOvertimeHours();
+                timesheet.setOvertimeHours(0);
+                timesheet.setTotalOvertimeHours(timesheet.getTotalOvertimeHours() - requiredOvertimeLeave);
+            }
+            return timesheet;
+        }
+        return null;
+    }
+
     /**
      * This method is used for adding a new request
      * @param request - Request entity
@@ -786,6 +804,8 @@ public class MasterHRController {
         }
         if (clockingRepository.findOne(request.getUsernameEmployee() + request.getFromDate().getMonthValue() + request.getFromDate().getDayOfMonth()) != null)
             return new ResponseEntity<>("Exista pontaj inregistrat pentru zilele selectate.", HttpStatus.EXPECTATION_FAILED);
+        if (timesheet.getStatus() == TimesheetStatus.CLOSED)
+            return new ResponseEntity<>("Luna este inchisa!", HttpStatus.EXPECTATION_FAILED);
         Holiday holidayReturned;
         Holiday holiday = new Holiday();
         holiday.setIdHoliday(request.getUsernameEmployee() + request.getFromDate() + request.getToDate());
@@ -795,19 +815,9 @@ public class MasterHRController {
         holiday.setProxyUsername(request.getProxyUsername());
         holiday.setType(stringToHolidayType(request.getType()));
         if (holiday.getType() == HolidayType.OVERTIME_LEAVE) {
-            int numberOfDays = (int) DAYS.between(holiday.getFromDate(), holiday.getToDate()) + 1;
-            int requiredOvertimeLeave = numberOfDays * numberOfHours;
-
-            if (requiredOvertimeLeave <= timesheet.getOvertimeHours() + timesheet.getTotalOvertimeHours()) {
-                holiday.setOvertimeLeave(requiredOvertimeLeave);
-                if (timesheet.getOvertimeHours() >= requiredOvertimeLeave) {
-                    timesheet.setOvertimeHours(timesheet.getOvertimeHours() - requiredOvertimeLeave);
-                } else {
-                    requiredOvertimeLeave -= timesheet.getOvertimeHours();
-                    timesheet.setOvertimeHours(0);
-                    timesheet.setTotalOvertimeHours(timesheet.getTotalOvertimeHours() - requiredOvertimeLeave);
-                }
-            } else return new ResponseEntity<>("Nu sunt suficiente ore suplimentare. Verificati numarul de ore suplimentare!", HttpStatus.EXPECTATION_FAILED);
+            timesheet = calculateOvertimeHours(timesheet, holiday, numberOfHours);
+            if (timesheet == null)
+                return new ResponseEntity<>("Nu sunt suficiente ore suplimentare. Verificati numarul de ore suplimentare!", HttpStatus.EXPECTATION_FAILED);
         }
         try {
             holidayReturned = holidayRepository.save(holiday);
@@ -954,18 +964,16 @@ public class MasterHRController {
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
-
     /**
-     * This method return total hours of holidays
-     * @param username - username of employee account
-     * @param year - year of holiday summary
-     * @param month - month of holiday summary
-     * @param numberOfHoursPerDay - number of hours required per day for employee
-     * @return Total hours of holidays
+     * This method calculate salary for an employee
+     * @param timesheet - Timesheet entity
+     * @return Salary for a given month
      */
-    public int getHolidaySummary(String username, int year, int month, int numberOfHoursPerDay) {
-        ResponseEntity<SummaryHolidayDTO> summaryHolidayDTOResponseEntity = this.getSummaryHoliday(username, year, month);
+    public float calculateSalary(Timesheet timesheet) {
+        ResponseEntity<SummaryHolidayDTO> summaryHolidayDTOResponseEntity = this.getSummaryHoliday(timesheet.getUsernameEmployee(), timesheet.getYear(), timesheet.getMonth());
         int totalHours = 0;
+        Contract contract = contractRepository.findOne(timesheet.getUsernameEmployee());
+        int numberOfHoursPerDay = Integer.parseInt(contract.getType().toString().split("_")[2]);
         if (summaryHolidayDTOResponseEntity.getBody() != null) {
             SummaryHolidayDTO summaryHolidayDTO = summaryHolidayDTOResponseEntity.getBody();
             if (summaryHolidayDTO != null) {
@@ -973,7 +981,10 @@ public class MasterHRController {
                 totalHours = numberOfHoursPerDay * totalHolidayDays + summaryHolidayDTO.getOvertimeLeave();
             }
         }
-        return totalHours;
+        float percent = (timesheet.getWorkedHours() + timesheet.getHomeOfficeHours() + totalHours / timesheet.getRequiredHours());
+        if (percent < 1)
+            return contract.getBaseSalary() * percent;
+        return contract.getBaseSalary();
     }
 
      /**
@@ -989,6 +1000,9 @@ public class MasterHRController {
         Timesheet timesheetReturned;
         String timesheetID = timesheetDTO.getUsernameEmployee() + timesheetDTO.getYear() + timesheetDTO.getMonth();
         Timesheet timesheet = timesheetRepository.findOne(timesheetID);
+        LocalDate today = LocalDate.now();
+        if (!(today.getDayOfMonth() < 4 && (today.getMonthValue() - timesheet.getMonth()) == 1))
+                return new ResponseEntity<>("Pontajul poate fi confirmat doar in primele 3 zile din luna urmatoare.", HttpStatus.EXPECTATION_FAILED);
         timesheet.setStatus(timesheetDTO.getStatus());
         try {
             timesheetReturned = timesheetRepository.update(timesheet);
@@ -1020,15 +1034,7 @@ public class MasterHRController {
                     workDays.getAndIncrement();
             });
             payslip.setTicketsValue(ticketValue * workDays.get());
-
-            int numberOfHoursPerDay = Integer.parseInt(contract.getType().toString().split("_")[2]);
-            float totalHours = payslip.getWorkedHours() + payslip.getHomeOfficeHours() + getHolidaySummary(timesheet.getUsernameEmployee(), timesheetDTO.getYear(), timesheetDTO.getMonth(), numberOfHoursPerDay);
-            float percent = (totalHours / payslip.getRequiredHours());
-            if (percent < 1) {
-                float salary = contract.getBaseSalary() * percent;
-                payslip.setGrossSalary(salary);
-            } else
-                payslip.setGrossSalary(contract.getBaseSalary());
+            payslip.setGrossSalary(calculateSalary(timesheet));
             if (contract.isTaxExempt())
                 payslip.setNetSalary(payslip.getGrossSalary());
             else payslip.setNetSalary(payslip.getGrossSalary() * 55 / 100);

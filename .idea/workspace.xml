@@ -12,30 +12,68 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e8ea8708-0cf5-48a5-814f-63d6a644adba.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f89b6deb-a551-4d74-943f-8c79862dc60e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/0/00f8d7b83cb384ebbedaff9f69bed5e9978135c8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/6/16674c5f0f9a30e000e80592b22120542e16b551" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/6/16edf5046ca7a2bfcf811147de50dcb49a2acfe0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/e/1ea8f77444b05677081e513043bbac8953dde8b0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/c/9ccbbf5c0f3dc27d849a2cc5a3d4797c46d31092" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/1/a1d9e7edb10c6fa13aaaad73a3bffd1747552c94" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/a/bae4a2346c775719121e785cfce2cc4ebe4d65a2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/0/d0398340430da03aad8695677cb530895b757b95" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/6/d6faff5182c967d96b8056c3466451999e354da4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/8/d81ba8607788cc0ac2a6fe7c12fec2c51a1d9921" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/4/54284642a2b9cde23fe45b176485967deacd1f4e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/4/54284642a2b9cde23fe45b176485967deacd1f4e" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseMasterHR" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseMasterHR" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MasterHR.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/MasterHR.mdj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/StartServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/StartServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/controller/MasterHRController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/controller/MasterHRController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Clocking.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Clocking.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Contract.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Contract.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Holiday.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Holiday.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Payslip.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Payslip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Request.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Request.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Timesheet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/Timesheet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/request/AuthenticationRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/request/AuthenticationRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/request/RequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/request/RequestDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/request/RequestHolidayDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/request/RequestHolidayDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/request/ResetPassword.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/request/ResetPassword.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/AuthenticationResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/AuthenticationResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/ClockingDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/ClockingDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/ContractDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/ContractDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/HolidayDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/HolidayDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/PayslipDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/PayslipDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/SummaryHolidayDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/SummaryHolidayDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/TimesheetDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/dtos/response/TimesheetDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/AdminRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/AdminRole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/ContractType.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/ContractType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/HolidayType.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/HolidayType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/RequestStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/RequestStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/TimesheetStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/enums/TimesheetStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/ClockingValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/ClockingValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/ContractValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/ContractValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/EmployeeValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/EmployeeValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/HolidayValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/HolidayValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/PayslipValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/PayslipValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/RequestValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/RequestValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/ResetPasswordValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/ResetPasswordValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/TimesheetValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/TimesheetValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/Validator$ValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/Validator$ValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/Validator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/domain/validators/Validator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/ClockingRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/ClockingRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/ContractRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/ContractRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/CrudRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/CrudRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/EmployeeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/EmployeeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/HolidayRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/HolidayRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/PayslipRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/PayslipRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/RequestRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/RequestRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/TimesheetRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/repository/TimesheetRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/security/JwtRequestFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/security/JwtRequestFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/security/JwtUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/security/JwtUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/security/MyUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/security/MyUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/security/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/security/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/utils/SQLiteDialect$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/utils/SQLiteDialect$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/utils/SQLiteDialect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/utils/SQLiteDialect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/utils/Utils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bdir/masterhr/controller/MasterHRController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bdir/masterhr/controller/MasterHRController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bdir/masterhr/domain/Holiday.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bdir/masterhr/domain/Holiday.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bdir/masterhr/domain/dtos/response/TimesheetDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bdir/masterhr/domain/dtos/response/TimesheetDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bdir/masterhr/domain/validators/ClockingValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bdir/masterhr/domain/validators/ClockingValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/holiday.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/holiday.xml" afterDir="false" />
     </list>
     <list id="2cc9849a-e23f-4483-ae93-bf8059999f87" name="EmployeeServices" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +85,37 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BackEndMasterHR" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BackEndMasterHR" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BackEndMasterHR" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -91,7 +160,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="oracle&#10;sqlite&#10;mysql" />
+    <property name="DatabaseDriversLRU" value="oracle&#10;sqlite&#10;mysql&#10;h2" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -105,9 +174,9 @@
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="database.data.extractors.current.export.id" value="CSV-Groovy.csv.groovy" />
+    <property name="database.data.extractors.current.export.id" value="Comma-separated (CSV)_id" />
     <property name="database.data.extractors.current.id" value="Comma-separated (CSV)_id" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/DatabaseMasterHR" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/main_Contract.csv" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -115,11 +184,11 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.3943662" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -127,9 +196,13 @@
       <recent name="domain.enums" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Facultate\Anul III\BackEndMasterHR\src\webapp" />
       <recent name="D:\Facultate\Anul III\BackEndMasterHR\src\main\java\services" />
       <recent name="D:\Facultate\Anul III\BackEndMasterHR" />
       <recent name="D:\Facultate\Anul III\BackEndMasterHR\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Facultate\Anul III\BackEndMasterHR\src\main" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -151,7 +224,70 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.StartServer">
+    <configuration name="BackEndMasterHR [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BackEndMasterHR [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BackEndMasterHR [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="StartServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="BackEndMasterHR.main" />
       <extension name="coverage">
@@ -161,14 +297,24 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="bdir.masterhr.StartServer" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.BackEndMasterHR [clean]" />
+      <item itemvalue="Gradle.BackEndMasterHR [assemble]" />
+      <item itemvalue="Gradle.BackEndMasterHR [jar]" />
+      <item itemvalue="Spring Boot.StartServer" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.StartServer" />
-        <item itemvalue="Spring Boot.StartServer" />
+        <item itemvalue="Gradle.BackEndMasterHR [clean]" />
+        <item itemvalue="Gradle.BackEndMasterHR [assemble]" />
+        <item itemvalue="Gradle.BackEndMasterHR [jar]" />
       </list>
     </recent_temporary>
   </component>
@@ -263,7 +409,13 @@
       <workItem from="1623170108507" duration="4131000" />
       <workItem from="1623249436142" duration="1253000" />
       <workItem from="1623309500538" duration="3530000" />
-      <workItem from="1623324628719" duration="25177000" />
+      <workItem from="1623324628719" duration="35024000" />
+      <workItem from="1623504024648" duration="531000" />
+      <workItem from="1623570387877" duration="1809000" />
+      <workItem from="1623584948243" duration="788000" />
+      <workItem from="1623585905332" duration="6839000" />
+      <workItem from="1623680196608" duration="6412000" />
+      <workItem from="1623745135767" duration="3399000" />
     </task>
     <task id="LOCAL-00001" summary="Version01">
       <created>1614879453592</created>
