@@ -539,7 +539,7 @@ public class MasterHRController {
     public ResponseEntity<String> saveHoliday(@RequestBody HolidayDTO holidayDTO) throws Validator.ValidationException {
         Holiday holidayReturned;
         Holiday holiday = new Holiday();
-        holiday.setIdHoliday(holiday.getUsernameEmployee() + holiday.getFromDate() + holiday.getToDate());
+        holiday.setIdHoliday(holidayDTO.getUser() + holidayDTO.getFromDate() + holidayDTO.getToDate());
         if (holidayDTO.getType() == null) {
             holiday.setUsernameEmployee(holidayDTO.getUser());
             holiday.setFromDate(holidayDTO.getFromDate());
@@ -798,7 +798,8 @@ public class MasterHRController {
             newTimesheet.setMonth(request.getFromDate().getMonthValue());
             newTimesheet.setRequiredHours((float) numberOfHours * workingDays);
             newTimesheet.setStatus(TimesheetStatus.OPENED);
-            newTimesheet.setTotalOvertimeHours(oldTimesheet.getTotalOvertimeHours());
+            if (oldTimesheet != null)
+                newTimesheet.setTotalOvertimeHours(oldTimesheet.getTotalOvertimeHours());
             timesheet = newTimesheet;
             timesheetRepository.save(newTimesheet);
         }
