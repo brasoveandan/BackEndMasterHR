@@ -99,3 +99,5 @@ a
 1src/main/java/bdir/masterhr/security/JwtUtil.java,c\f\cfa390a15d4ecbca5f15a4d2a81f45df93bca776
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+_
+/src/main/java/bdir/masterhr/domain/Request.java,9\b\9b4344d4403fd290b314e146552980c4d77290f1

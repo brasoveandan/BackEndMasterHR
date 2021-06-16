@@ -11,14 +11,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/b/9b4344d4403fd290b314e146552980c4d77290f1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/0/d0398340430da03aad8695677cb530895b757b95" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseMasterHR" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseMasterHR" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/controller/MasterHRController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/bdir/masterhr/controller/MasterHRController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/BackEndMasterHR-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/BackEndMasterHR-1.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bdir/masterhr/controller/MasterHRController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bdir/masterhr/controller/MasterHRController.java" afterDir="false" />
     </list>
     <list id="2cc9849a-e23f-4483-ae93-bf8059999f87" name="EmployeeServices" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +164,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.StartServer">
+  <component name="RunManager" selected="Gradle.BackEndMasterHR [jar]">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BackEndMasterHR [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -256,10 +264,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.StartServer" />
+        <item itemvalue="Gradle.BackEndMasterHR [jar]" />
         <item itemvalue="Gradle.BackEndMasterHR [assemble]" />
         <item itemvalue="Gradle.BackEndMasterHR [clean]" />
-        <item itemvalue="Gradle.BackEndMasterHR [jar]" />
+        <item itemvalue="Spring Boot.StartServer" />
       </list>
     </recent_temporary>
   </component>
@@ -361,7 +369,7 @@
       <workItem from="1623585905332" duration="6839000" />
       <workItem from="1623680196608" duration="6412000" />
       <workItem from="1623745135767" duration="6393000" />
-      <workItem from="1623782176549" duration="3173000" />
+      <workItem from="1623782176549" duration="3270000" />
     </task>
     <task id="LOCAL-00001" summary="Version01">
       <created>1614879453592</created>
