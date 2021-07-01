@@ -799,7 +799,7 @@ public class MasterHRController {
             newTimesheet.setRequiredHours((float) numberOfHours * workingDays);
             newTimesheet.setStatus(TimesheetStatus.OPENED);
             if (oldTimesheet != null)
-                newTimesheet.setTotalOvertimeHours(oldTimesheet.getTotalOvertimeHours());
+                newTimesheet.setTotalOvertimeHours(oldTimesheet.getTotalOvertimeHours() + oldTimesheet.getOvertimeHours());
             timesheet = newTimesheet;
             timesheetRepository.save(newTimesheet);
         }
@@ -1146,6 +1146,7 @@ public class MasterHRController {
         if (clockingReturned == null && clocking.getFromHour() != clocking.getToHour()) {
             if (numberOfHours <= clockingHours)
                 timesheet.setOvertimeHours((float) clockingHours - numberOfHours + timesheet.getOvertimeHours());
+            else numberOfHours = (int)clockingHours;
             if (clocking.getType() != null && !clocking.getType().equals("Normal"))
                 timesheet.setHomeOfficeHours(numberOfHours + timesheet.getHomeOfficeHours());
             else

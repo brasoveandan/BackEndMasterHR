@@ -82,8 +82,9 @@ bdir/masterhr/utils/HibernateSession.java
  bdir.masterhr.utils.HibernateSession
 bdir/masterhr/domain/dtos/response/SummaryHolidayDTO.java
  bdir.masterhr.domain.dtos.response.SummaryHolidayDTO
-bdir/masterhr/controller/MasterHRController.java
- bdir.masterhr.controller.MasterHRController
+bdir/masterhr/domain/validators/Validator.java
+ bdir.masterhr.domain.validators.Validator
+ bdir.masterhr.domain.validators.Validator$ValidationException
 bdir/masterhr/domain/enums/HolidayType.java
  bdir.masterhr.domain.enums.HolidayType
 bdir/masterhr/domain/Holiday.java
@@ -96,6 +97,5 @@ bdir/masterhr/domain/Employee.java
  bdir.masterhr.domain.Employee
 bdir/masterhr/domain/Clocking.java
  bdir.masterhr.domain.Clocking
-bdir/masterhr/domain/validators/Validator.java
- bdir.masterhr.domain.validators.Validator
- bdir.masterhr.domain.validators.Validator$ValidationException
+bdir/masterhr/controller/MasterHRController.java
+ bdir.masterhr.controller.MasterHRController
